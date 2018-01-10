@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="it">
   <head>
     <meta charset="utf-8">
@@ -7,16 +6,18 @@
   </head>
   <body>
     <header>
+      <a href="home.html">
       <h1>SitoCibo</h1>
+      </a>
     </header>
     <header>
       <h1>Accedi</h1>
-      <h3>Accumula punti e ottieni fantastiche ricompense!</3>
+      <h2>Accumula punti e ottieni fantastiche ricompense!</h2>
     </header>
 
     <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>
-    <script type="text/javascript" src="sha512.js"></script>
-    <script type="text/javascript" src="forms.js"></script>
+    <script src="sha512.js"></script>
+    <script src="forms.js"></script>
     <?php
     if(isset($_GET['error'])) {
        echo 'Error Logging In!';
