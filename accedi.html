@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title>Accedi</title>
+  </head>
+  <body>
+    <header>
+      <h1>SitoCibo</h1>
+    </header>
+    <header>
+      <h1>Accedi</h1>
+      <h3>Accumula punti e ottieni fantastiche ricompense!</3>
+    </header>
+
+    <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>
+    <script type="text/javascript" src="sha512.js"></script>
+    <script type="text/javascript" src="forms.js"></script>
+    <?php
+    if(isset($_GET['error'])) {
+       echo 'Error Logging In!';
+    }
+    ?>
+    <form action="process_login.php" method="post" name="login_form">
+   <p><label for="ema">Email:
+     <input type="text" id="ema" name="email" autocomplete="on"
+     placeholder="inserisci email" required/></label>
+   </p>
+   <p><label for="password">Password:
+      <input type="password" name="p" id="password"
+      placeholder="inserisci password" required /></label>
+    </p>
+   <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" />
+
+    </form>
+    <br/>Non hai ancora un account? <br/>
+    <a href="regisrati.html">Registrati!</a>
+  </fieldset>
+
+  <footer>
+  </footer>
+    <p>Posted by: </p>
+    <p>Contact information: <a href="mailto:someone@example.com">
+    someone@example.com</a>.</p>
+  </body>
+</html>
