@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
   <head>
     <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+  <script>
+    function displayFunction() {
+        var x = document.getElementById("pagamento").value;
+        var y = document.getElementById("daticc");
+        if (x === "cc") {
+            y.style.display = "block";
+        } else {
+            y.style.display = "none";
+        }
+    }
+  </script>
   <title>Registrati</title>
   </head>
+
   <body>
     <header>
       <h1>SitoCibo</h1>
       <h2>Registrati</h2>
     </header>
+
     <form id="form">
+
   		<fieldset><legend>Dati anagrafici:</legend>
   		  <p><label for="name"> Nome:
           <input type="text" name="nome" id="name" required/></label></p>
@@ -22,31 +36,40 @@
         <p><label for="pw"> Password:
           <input type="password" name="password" id="pw" maxlength="10" required/></label></p>
   		</fieldset>
+
   		<fieldset><legend>Dati di recapito:</legend>
         <p><label for="indir"> Indirizzo:
           <input type="text" name="indirizzo" id="indir" required/></label></p>
-        <p><label for="pw"> Tipo pagamento:
-          <select name="pagamento">
+
+        <label for="pagamento"> Tipo pagamento:
+          <select name="pagamento" id="pagamento"  onchange="displayFunction()">
             <option value="consegna">Contanti alla consegna</option>
             <option value="cc">Carta di credito</option>
           </select>
-          <!-- <script type="text/javascript">
-            var selectedPagamento = document.forms.form.pagamento.value;
-            if (selectedPagamento == "cc") {
-              document.write("<p><label for="ncarta"> Numero Carta:
-                <input type="text" name="numeroCarta" id="ncarta" required/></label></p>");
-            }
-          </script> -->
+        </label>
+
+        <div id="daticc">
         <p><label for="ncarta"> Numero Carta:
-          <input type="text" name="numeroCarta" id="ncarta" required/></label></p>
+          <input type="number" name="numeroCarta" id="ncarta" required/></label></p>
         <p><label for="scad"> Scadenza:
-          <input type="data" name="scadenza" id="scad" required/></label>
+          <input type="date" name="scadenza" id="scad" required/></label>
           <label for="cvv"> CVV:
-          <input type="text" name="cv" id="cvv" required/></label></p>
+          <input type="number" name="cv" id="cvv" required/></label></p>
+        </div>
+        <!-- la funzione qui sotto aggiorna la visibilità dei dati appena è caricata la pagina-->
+        <script>
+          displayFunction();
+        </script>
+
         <p><label for="mtr"> Numero di matricola *:
-          <input type="text" name="numeroCarta" id="mtr"/></label></p>
-        <p><input type="submit" name="registra" id="registra"/></label></p>
+          <input type="number" name="numeroCarta" id="mtr"/></label></p>
+      </fieldset>
+
+        <input type="submit" name="registra" value="Registra" id="registra"/>
   	</form>
+
     <p>* Opzionale sconto studenti!</p>
+
   </body>
+
 </html>
