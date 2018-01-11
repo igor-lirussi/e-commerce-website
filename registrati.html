@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+  <title>Registrati</title>
+  </head>
+  <body>
+    <header>
+      <h1>SitoCibo</h1>
+      <h2>Registrati</h2>
+    </header>
+    <form id="form">
+  		<fieldset><legend>Dati anagrafici:</legend>
+  		  <p><label for="name"> Nome:
+          <input type="text" name="nome" id="name" required/></label></p>
+  			<p><label for="sname"> Cognome:
+          <input type="text" name="cognome" id="sname" maxlength="10" required/></label></p>
+        <p><label for="mail"> E-Mail:
+          <input type="text" name="mail" id="mail" required/></label></p>
+        <p><label for="pw"> Password:
+          <input type="password" name="password" id="pw" maxlength="10" required/></label></p>
+  		</fieldset>
+  		<fieldset><legend>Dati di recapito:</legend>
+        <p><label for="indir"> Indirizzo:
+          <input type="text" name="indirizzo" id="indir" required/></label></p>
+        <p><label for="pw"> Tipo pagamento:
+          <select name="pagamento">
+            <option value="consegna">Contanti alla consegna</option>
+            <option value="cc">Carta di credito</option>
+          </select>
+          <!-- <script type="text/javascript">
+            var selectedPagamento = document.forms.form.pagamento.value;
+            if (selectedPagamento == "cc") {
+              document.write("<p><label for="ncarta"> Numero Carta:
+                <input type="text" name="numeroCarta" id="ncarta" required/></label></p>");
+            }
+          </script> -->
+        <p><label for="ncarta"> Numero Carta:
+          <input type="text" name="numeroCarta" id="ncarta" required/></label></p>
+        <p><label for="scad"> Scadenza:
+          <input type="data" name="scadenza" id="scad" required/></label>
+          <label for="cv"> CV:
+          <input type="text" name="cv" id="cv" required/></label></p>
+        <p><label for="matr"> Numero di matricola *:
+          <input type="text" name="numeroCarta" id="matr"/></label></p>
+        <p><input type="submit" name="registra" id="registra"/></label></p>
+  	</form>
+    <p>* Speciale sconto studenti!</p>
+  </body>
+</html>
