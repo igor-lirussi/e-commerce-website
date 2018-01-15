@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>SitoCibo</title>
+    <link rel="icon" href="resources/favicon.ico" />
   </head>
 
   <body>
