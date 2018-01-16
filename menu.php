@@ -5,6 +5,26 @@
     <meta charset="utf-8">
     <title>SitoCibo</title>
     <link rel="icon" href="resources/favicon.ico" />
+                  <style>
+                    input[type=search] {
+                        width: 130px;
+                        box-sizing: border-box;
+                        border: 2px solid #ccc;
+                        border-radius: 4px;
+                        font-size: 16px;
+                        background-color: white;
+                        background-image: url('resources/searchicon.png');
+                        background-position: 10px 10px;
+                        background-repeat: no-repeat;
+                        padding: 12px 20px 12px 40px;
+                        -webkit-transition: width 0.4s ease-in-out;
+                        transition: width 0.4s ease-in-out;
+                    }
+
+                    input[type=search]:focus {
+                        width: 100%;
+                    }
+                  </style>
   </head>
 
   <body>
@@ -27,6 +47,12 @@
       </a>
       <h2>Menù</h2>
     </header>
+
+    <h3>Cerca</h3>
+    <form class="searchform" action="menu.php" method="post">
+      <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
+      <input type="submit">
+    </form>
 
     <h3>Pasti Veloci</h3>
     <div class="pastiVeloci">
