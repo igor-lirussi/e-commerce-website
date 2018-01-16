@@ -3,6 +3,13 @@
 
   <head>
     <meta charset="utf-8">
+    <script>
+      function displayFunction() {
+          var x = document.getElementById("menu").value;
+          x.style.display = "none";
+          }
+      }
+    </script>
     <title>SitoCibo</title>
     <link rel="icon" href="resources/favicon.ico" />
                   <style>
@@ -51,16 +58,14 @@
     <h3>Cerca</h3>
     <form class="searchform" action="menu.php" method="post">
       <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
-      <input type="submit">
+      <input type="submit" onclick="displayFunction()">
     </form>
-
-    <h3>Pasti Veloci</h3>
-    <div class="pastiVeloci">
+    <div class="searchresult">
       <?php
-
+        $search = $_POST["search"];
         $query = "SELECT *
                   FROM listino
-                  WHERE listino.Categoria ='Pasti Veloci'";
+                  WHERE listino.Nome LIKE %"$search"%";
         $result = mysqli_query($conn,$query);
 
         if(mysqli_num_rows($result)>0){
@@ -74,45 +79,68 @@
       ?>
     </div>
 
-    <h3>Primi</h3>
-    <div class="primi">
-      <?php
+    <div class="menu">
+      <h3>Pasti Veloci</h3>
+      <div class="pastiVeloci">
+        <?php
 
-        $query = "SELECT *
-                  FROM listino
-                  WHERE listino.Categoria ='Primi'";
-        $result = mysqli_query($conn,$query);
+          $query = "SELECT *
+                    FROM listino
+                    WHERE listino.Categoria ='Pasti Veloci'";
+          $result = mysqli_query($conn,$query);
 
-        if(mysqli_num_rows($result)>0){
+          if(mysqli_num_rows($result)>0){
 
-            while($row=mysqli_fetch_assoc($result)){
-              echo "<p>".$row['Nome']."</p>";
-              echo "<p>".$row['Descrizione']."</p>";
-              echo "<p>".$row['Prezzo']."€</p>";
-            }
-      }
-      ?>
+              while($row=mysqli_fetch_assoc($result)){
+                echo "<p>".$row['Nome']."</p>";
+                echo "<p>".$row['Descrizione']."</p>";
+                echo "<p>".$row['Prezzo']."€</p>";
+              }
+        }
+        ?>
+      </div>
+
+      <h3>Primi</h3>
+      <div class="primi">
+        <?php
+
+          $query = "SELECT *
+                    FROM listino
+                    WHERE listino.Categoria ='Primi'";
+          $result = mysqli_query($conn,$query);
+
+          if(mysqli_num_rows($result)>0){
+
+              while($row=mysqli_fetch_assoc($result)){
+                echo "<p>".$row['Nome']."</p>";
+                echo "<p>".$row['Descrizione']."</p>";
+                echo "<p>".$row['Prezzo']."€</p>";
+              }
+        }
+        ?>
+      </div>
+
+      <h3>Bevande</h3>
+      <div class="bevande">
+        <?php
+
+          $query = "SELECT *
+                    FROM listino
+                    WHERE listino.Categoria ='Bevande'";
+          $result = mysqli_query($conn,$query);
+
+          if(mysqli_num_rows($result)>0){
+
+              while($row=mysqli_fetch_assoc($result)){
+                echo "<p>".$row['Nome']."</p>";
+                echo "<p>".$row['Descrizione']."</p>";
+                echo "<p>".$row['Prezzo']."€</p>";
+              }
+        }
+        $conn->close();
+        ?>
+      </div>
     </div>
 
-    <h3>Bevande</h3>
-    <div class="bevande">
-      <?php
-
-        $query = "SELECT *
-                  FROM listino
-                  WHERE listino.Categoria ='Bevande'";
-        $result = mysqli_query($conn,$query);
-
-        if(mysqli_num_rows($result)>0){
-
-            while($row=mysqli_fetch_assoc($result)){
-              echo "<p>".$row['Nome']."</p>";
-              echo "<p>".$row['Descrizione']."</p>";
-              echo "<p>".$row['Prezzo']."€</p>";
-            }
-      }
-      $conn->close();
-      ?>
-    </div>
   </body>
 </html>
