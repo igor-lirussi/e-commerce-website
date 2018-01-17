@@ -2,21 +2,21 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
-  <script>
-    function displayFunction() {
-        var x = document.getElementById("pagamento").value;
-        var y = document.getElementById("daticc");
-        if (x === "cc") {
-            y.style.display = "block";
-        } else {
-            y.style.display = "none";
-        }
-    }
-  </script>
-  <title>Registrati</title>
-  <link rel="icon" href="resources/favicon.ico" />
+    <title>Registrati</title>
+    <link rel="icon" href="resources/favicon.ico" />
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      function displayFunction() {
+          var x = document.getElementById("pagamento").value;
+          var y = document.getElementById("daticc");
+          if (x === "cc") {
+              y.style.display = "block";
+          } else {
+              y.style.display = "none";
+          }
+      }
+    </script>
   </head>
 
   <body>

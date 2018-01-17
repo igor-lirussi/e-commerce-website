@@ -1,6 +1,43 @@
 
 /* FOGLIO DI STILE*/
 
+:root {
+    --main-color: orange;
+    --second-color: coral;
+}
+/*header*/
+* {
+    box-sizing: border-box;
+    font-family: "Lucida Sans", sans-serif;
+}
+
+header {
+    background-color: var(--main-color);
+    text-align: center;
+    color: #ffffff;
+    padding: 25px;
+}
+
+body {
+    background-image: url("resources/back6.jpg");
+    background-color: #cccccc;
+}
+
+footer {
+    background-color: var(--main-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 25px;
+}
+
+.aside {
+      background-color: var(--second-color);
+      color: #ffffff;
+      text-align: center;
+      padding: 25px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
 /*barra ricerca*/
   input[type=search] {
       width: 130px;
@@ -21,3 +58,25 @@
       width: 100%;
       text-shadow: 3px 3px 5px #ccc;
   }
+
+/*bottoni*/
+input[type=submit] {
+    background-color: rgba(255,255,255, 0.4);
+    border: 2px solid blue;
+    border-radius: 24%;
+    color: blue;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: blue;
+    color: white;
+}
