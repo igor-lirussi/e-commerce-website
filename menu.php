@@ -2,13 +2,11 @@
 <html lang="it">
 
   <head>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <script>
       function displayFunction() {
-          var x = document.getElementById("menu").value;
-          x.style.display = "none";
-          }
+
       }
     </script>
     <title>SitoCibo</title>
@@ -37,26 +35,36 @@
     </header>
 
     <h3>Cerca</h3>
-    <form class="searchform" action="menu.php" method="post">
+    <form class="searchform" action="menu.php" onsubmit="return displayFunction()" method="post">
       <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
-      <input type="submit" onclick="displayFunction()">
+      <input type="submit">
     </form>
     <div class="searchresult">
       <?php
+      //if(!empty($search)){
         $search = $_POST["search"];
-        $query = "SELECT *
-                  FROM listino
-                  WHERE listino.Nome LIKE %"$search"%";
-        $result = mysqli_query($conn,$query);
+        echo $search;
+        $query = $conn->prepare("SELECT * FROM listino WHERE listino.Nome LIKE '%'?'%'");
+        //if($query){
+           $result = $query->execute($search);
+           if(!$result){
+             echo "Error";
+           }
+        //}
+        // if($query->bind_param('s', $search)){
+        //   $query->execute();
+        //   $result = $query->get_result();
+          if(mysqli_num_rows($result)>0){
 
-        if(mysqli_num_rows($result)>0){
-
-            while($row=mysqli_fetch_assoc($result)){
-              echo "<p>".$row['Nome']."</p>";
-              echo "<p>".$row['Descrizione']."</p>";
-              echo "<p>".$row['Prezzo']."€</p>";
-            }
-      }
+              while($row=mysqli_fetch_assoc($result)){
+                echo "<p>".$row['Nome']."</p>";
+                echo "<p>".$row['Descrizione']."</p>";
+                echo "<p>".$row['Prezzo']."€</p>";
+              }
+          } else {
+            echo "Nessun risultato trovato.";
+          }
+        //}
       ?>
     </div>
 
