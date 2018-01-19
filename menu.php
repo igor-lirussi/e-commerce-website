@@ -3,6 +3,7 @@
 
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <script>
       function displayFunction() {
@@ -46,14 +47,15 @@
         echo $search;
         $query = $conn->prepare("SELECT * FROM listino WHERE listino.Nome LIKE '%'?'%'");
         //if($query){
-           $result = $query->execute($search);
-           if(!$result){
-             echo "Error";
-           }
+           // $result = $query->execute($search);
+           // if(!$result){
+           //   echo "Error";
+           // }
         //}
         // if($query->bind_param('s', $search)){
         //   $query->execute();
         //   $result = $query->get_result();
+        $result = mysqli_query($conn,$query);
           if(mysqli_num_rows($result)>0){
 
               while($row=mysqli_fetch_assoc($result)){
@@ -68,9 +70,9 @@
       ?>
     </div>
 
-    <div class="menu">
-      <h3>Pasti Veloci</h3>
-      <div class="pastiVeloci">
+    <div class="row listino">
+      <div class="col-4 pastiVeloci">
+        <h3>Pasti Veloci</h3>
         <?php
 
           $query = "SELECT *
@@ -81,16 +83,18 @@
           if(mysqli_num_rows($result)>0){
 
               while($row=mysqli_fetch_assoc($result)){
+                echo "<div class = 'offert fast'>";
                 echo "<p>".$row['Nome']."</p>";
                 echo "<p>".$row['Descrizione']."</p>";
                 echo "<p>".$row['Prezzo']."€</p>";
+                echo "</div>";
               }
         }
         ?>
       </div>
 
-      <h3>Primi</h3>
-      <div class="primi">
+      <div class="col-4 primi">
+        <h3>Primi</h3>
         <?php
 
           $query = "SELECT *
@@ -101,16 +105,18 @@
           if(mysqli_num_rows($result)>0){
 
               while($row=mysqli_fetch_assoc($result)){
+                echo "<div class = 'offert meal'>";
                 echo "<p>".$row['Nome']."</p>";
                 echo "<p>".$row['Descrizione']."</p>";
                 echo "<p>".$row['Prezzo']."€</p>";
+                echo "</div>";
               }
         }
         ?>
       </div>
 
-      <h3>Bevande</h3>
-      <div class="bevande">
+      <div class="col-4 bevande">
+        <h3>Bevande</h3>
         <?php
 
           $query = "SELECT *
@@ -121,9 +127,11 @@
           if(mysqli_num_rows($result)>0){
 
               while($row=mysqli_fetch_assoc($result)){
+                echo "<div class = 'offert drink'>";
                 echo "<p>".$row['Nome']."</p>";
                 echo "<p>".$row['Descrizione']."</p>";
                 echo "<p>".$row['Prezzo']."€</p>";
+                echo "</div>";
               }
         }
         $conn->close();
