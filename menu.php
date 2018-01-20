@@ -17,9 +17,9 @@
   <body>
     <?php
       $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = "databasesito";
+      $username = "sec_user";
+      $password = "gtTsfOlrsGRi";
+      $dbname = "secure_login";
 
       $conn = new mysqli($servername, $username, $password, $dbname);
 

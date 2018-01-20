@@ -1,0 +1,2 @@
+user: sec_user'@'localhost
+password: gtTsfOlrsGRi
