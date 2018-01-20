@@ -17,9 +17,9 @@
   <body>
     <?php
       $servername = "localhost";
-      $username = "sec_user";
-      $password = "gtTsfOlrsGRi";
-      $dbname = "secure_login";
+      $username = "root";
+      $password = "";
+      $dbname = "databasesito";
 
       $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -30,7 +30,7 @@
      ?>
     <header>
       <a href="home.html">
-      <h1>SitoCibo</h1>
+      <h1>Yook!</h1>
       </a>
       <h2>Menù</h2>
     </header>
@@ -42,31 +42,23 @@
     </form>
     <div class="searchresult">
       <?php
-      //if(!empty($search)){
-        $search = $_POST["search"];
-        echo $search;
-        $query = $conn->prepare("SELECT * FROM listino WHERE listino.Nome LIKE '%'?'%'");
-        //if($query){
-           // $result = $query->execute($search);
-           // if(!$result){
-           //   echo "Error";
-           // }
-        //}
-        // if($query->bind_param('s', $search)){
-        //   $query->execute();
-        //   $result = $query->get_result();
-        $result = mysqli_query($conn,$query);
-          if(mysqli_num_rows($result)>0){
-
-              while($row=mysqli_fetch_assoc($result)){
-                echo "<p>".$row['Nome']."</p>";
-                echo "<p>".$row['Descrizione']."</p>";
-                echo "<p>".$row['Prezzo']."€</p>";
-              }
-          } else {
-            echo "Nessun risultato trovato.";
+        if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Nome LIKE ?")){
+          $search = $_POST["search"];
+          $query->bind_param('s', $search);
+          $query->execute();
+          echo "after execute";
+          $result = $query->get_result();
+          echo "before while";
+          while($row = $result->fetch_row()){
+            echo "ciao";
+            echo "<p>".$row[1]."</p>";
+            echo "<p>".$row[3]."</p>";
+            echo "<p>".$row[4]."€</p>";
           }
-        //}
+          echo "after while";
+        } else {
+          echo "Query non andata a buon fine";
+        }
       ?>
     </div>
 
@@ -74,66 +66,94 @@
       <div class="col-4 pastiVeloci">
         <h3>Pasti Veloci</h3>
         <?php
-
-          $query = "SELECT *
-                    FROM listino
-                    WHERE listino.Categoria ='Pasti Veloci'";
-          $result = mysqli_query($conn,$query);
-
-          if(mysqli_num_rows($result)>0){
-
-              while($row=mysqli_fetch_assoc($result)){
-                echo "<div class = 'offert fast'>";
-                echo "<p>".$row['Nome']."</p>";
-                echo "<p>".$row['Descrizione']."</p>";
-                echo "<p>".$row['Prezzo']."€</p>";
-                echo "</div>";
-              }
-        }
+          // if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'")){
+          //   $query->execute();
+          //   if($query->num_rows == 1){
+          //     while($row = mysqli_fetch_assoc($query)){
+          //       echo "<div class = 'offert fast'>";
+          //       echo "<p>".$row['Nome']."</p>";
+          //       echo "<p>".$row['Descrizione']."</p>";
+          //       echo "<p>".$row['Prezzo']."€</p>";
+          //       echo "</div>";
+          //     }
+          //   } else {
+          //     echo "Nessun dato trovato";
+          //   }
+          // } else {
+          //   echo "Query non esguita";
+          // }
+          $query = "SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'";
+          if($result = $conn->query($query)){
+            while($row = $result->fetch_row()){
+              echo "<div class = 'offert fast'>";
+              echo "<p>".$row[1]."</p>";
+              echo "<p>".$row[3]."</p>";
+              echo "<p>".$row[4]."€</p>";
+              echo "</div>";
+            }
+          } else {
+            echo "Nessun dato trovato";
+          }
         ?>
       </div>
 
       <div class="col-4 primi">
         <h3>Primi</h3>
         <?php
-
-          $query = "SELECT *
-                    FROM listino
-                    WHERE listino.Categoria ='Primi'";
-          $result = mysqli_query($conn,$query);
-
-          if(mysqli_num_rows($result)>0){
-
-              while($row=mysqli_fetch_assoc($result)){
-                echo "<div class = 'offert meal'>";
-                echo "<p>".$row['Nome']."</p>";
-                echo "<p>".$row['Descrizione']."</p>";
-                echo "<p>".$row['Prezzo']."€</p>";
-                echo "</div>";
-              }
-        }
+          // if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Categoria ='Primi'")){
+          //   $query->execute();
+          //   if($query->num_rows == 1){
+          //     while($row=mysqli_fetch_assoc($result)){
+          //       echo "<div class = 'offert meal'>";
+          //       echo "<p>".$row['Nome']."</p>";
+          //       echo "<p>".$row['Descrizione']."</p>";
+          //       echo "<p>".$row['Prezzo']."€</p>";
+          //       echo "</div>";
+          //     }
+          //   }
+          // }
+          $query = "SELECT * FROM listino WHERE listino.Categoria ='Primi'";
+          if($result = $conn->query($query)){
+            while($row = $result->fetch_row()){
+              echo "<div class = 'offert meal'>";
+              echo "<p>".$row[1]."</p>";
+              echo "<p>".$row[3]."</p>";
+              echo "<p>".$row[4]."€</p>";
+              echo "</div>";
+            }
+          } else {
+            echo "Nessun dato trovato";
+          }
         ?>
       </div>
 
       <div class="col-4 bevande">
         <h3>Bevande</h3>
         <?php
-
-          $query = "SELECT *
-                    FROM listino
-                    WHERE listino.Categoria ='Bevande'";
-          $result = mysqli_query($conn,$query);
-
-          if(mysqli_num_rows($result)>0){
-
-              while($row=mysqli_fetch_assoc($result)){
-                echo "<div class = 'offert drink'>";
-                echo "<p>".$row['Nome']."</p>";
-                echo "<p>".$row['Descrizione']."</p>";
-                echo "<p>".$row['Prezzo']."€</p>";
-                echo "</div>";
-              }
-        }
+          // if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Categoria ='Bevande'")){
+          //   $query->execute();
+          //   if($query->num_rows == 1){
+          //     while($row=mysqli_fetch_assoc($result)){
+          //       echo "<div class = 'offert drink'>";
+          //       echo "<p>".$row['Nome']."</p>";
+          //       echo "<p>".$row['Descrizione']."</p>";
+          //       echo "<p>".$row['Prezzo']."€</p>";
+          //       echo "</div>";
+          //     }
+          //   }
+          // }
+          $query = "SELECT * FROM listino WHERE listino.Categoria ='Bevande'";
+          if($result = $conn->query($query)){
+            while($row = $result->fetch_row()){
+              echo "<div class = 'offert drink'>";
+              echo "<p>".$row[1]."</p>";
+              echo "<p>".$row[3]."</p>";
+              echo "<p>".$row[4]."€</p>";
+              echo "</div>";
+            }
+          } else {
+            echo "Nessun dato trovato";
+          }
         $conn->close();
         ?>
       </div>

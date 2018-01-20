@@ -1,4 +1,4 @@
-<?
+<?php 
 function sec_session_start() {
         $session_name = 'sec_session_id'; // Imposta un nome di sessione
         $secure = false; // Imposta il parametro a true se vuoi usare il protocollo 'https'.
