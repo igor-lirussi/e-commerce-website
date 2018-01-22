@@ -89,6 +89,7 @@
               echo "<p>".$row[1]."</p>";
               echo "<p>".$row[3]."</p>";
               echo "<p>".$row[4]."€</p>";
+              echo "<button type='button' onclick=".addFast($row[0]).">Aggiungi al carrello</button>";
               echo "</div>";
             }
           } else {
@@ -119,6 +120,7 @@
               echo "<p>".$row[1]."</p>";
               echo "<p>".$row[3]."</p>";
               echo "<p>".$row[4]."€</p>";
+              echo "<button type='button' name=".$row[3].">Aggiungi al carrello</button>";
               echo "</div>";
             }
           } else {
@@ -149,6 +151,7 @@
               echo "<p>".$row[1]."</p>";
               echo "<p>".$row[3]."</p>";
               echo "<p>".$row[4]."€</p>";
+              echo "<button type='button' name=".$row[3].">Aggiungi al carrello</button>";
               echo "</div>";
             }
           } else {
@@ -158,6 +161,15 @@
         ?>
       </div>
     </div>
-
+    <form class="" action="cart.php" method="post">
+      <input type="submit" name="cart" value="Vai al carrello">
+    </form>
+    <?php
+      function addFast($id){
+        echo $id;
+        // $fast = array('' => , );
+        // $_SESSION['fast'];
+      }
+    ?>
   </body>
 </html>
