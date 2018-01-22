@@ -11,7 +11,7 @@
 /*body*/
 body {
     nobackground-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("resources/bg/back6.jpg");
-    background: url("resources/realpizza.jpg");
+    background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("resources/realpizza.jpg");
     background-repeat: no-repeat;
     background-size: contain;
     padding: 25px;
@@ -177,12 +177,52 @@ footer {
     padding-right: 25px;
 }
 
-.offert {
-  border: solid;
-  border-radius: 10px;
-  margin: 10px;
+.pastiVeloci h3{
+  text-shadow: 3px 2px red;
+  color: #ffaa80;
 }
 
+.primi h3{
+  text-shadow: 3px 2px orange;
+  color: #ffcc00;
+}
+
+.bevande h3{
+  text-shadow: 3px 2px white;
+  color: MediumSeaGreen;
+}
+
+.offert {
+  padding: 15px;
+  border: solid;
+  border-radius: 15px 50px;
+  margin: 10px;
+  font: italic bold 16px/2 cursive;
+}
+
+.fast{
+  border-color: #ffaa80;
+}
+
+.fast:hover{
+  background-color: #ffccb3;
+}
+
+.meal{
+  border-color: #ffcc00;
+}
+
+.meal:hover{
+  background-color: #ffe066;
+}
+
+.drink{
+  border-color: MediumSeaGreen;
+}
+
+.drink:hover{
+  background-color: #79d2a6;
+}
 
 /*barra ricerca*/
   input[type=search] {
