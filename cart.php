@@ -1,4 +1,4 @@
 <?php
   session_start();
-  $_SESSION[];
+  echo $_SESSION['quantity'];
 ?>

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <script>
-      function displayFunction() {
-
+      function addFast(var quant) {
       }
     </script>
     <title>SitoCibo</title>
@@ -17,16 +16,16 @@
   <body>
     <?php
       $servername = "localhost";
-      $username = "root";
-      $password = "";
+      $username = "sec_user";
+      $password = "gtTsfOlrsGRi";
       $dbname = "databasesito";
 
       $conn = new mysqli($servername, $username, $password, $dbname);
 
-
       if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
       }
+      session_start();
      ?>
     <header>
       <a href="home.html">
@@ -89,8 +88,13 @@
               echo "<p>".$row[1]."</p>";
               echo "<p>".$row[3]."</p>";
               echo "<p>".$row[4]."€</p>";
-              echo "<button type='button' onclick=".addFast($row[0]).">Aggiungi al carrello</button>";
-              echo "</div>";
+        ?>
+        <form class="" action="menu.php" method="post">
+          <input type="number" name="quantity" max="100">
+          <input type="button" name="fast" value="Aggiungi al carrello" onclick="addFast()">
+        </form>
+        <?php
+          echo "</div>";
             }
           } else {
             echo "Nessun dato trovato";
@@ -164,12 +168,9 @@
     <form class="" action="cart.php" method="post">
       <input type="submit" name="cart" value="Vai al carrello">
     </form>
-    <?php
-      function addFast($id){
-        echo $id;
-        // $fast = array('' => , );
-        // $_SESSION['fast'];
-      }
-    ?>
+    <!-- <?php
+      echo $_POST['quantity'];
+        $_SESSION['quantity'];
+    ?> -->
   </body>
 </html>
