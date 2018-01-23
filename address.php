@@ -78,35 +78,9 @@
 
 
 
-    <div id="locationField">
-      <input id="autocomplete" placeholder="Enter your address"
-             onFocus="geolocate()" type="text"></input>
-    </div>
+
 
     <script>
-
-      var placeSearch, autocomplete;
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
-        autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-            {types: ['geocode']});
-
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete.addListener('place_changed', fillInAddress);
-      }
-
-      function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-        for (var component in componentForm) {
-          document.getElementById(component).value = '';
-          document.getElementById(component).disabled = false;
-        }
-      }
 
       // Bias the autocomplete object to the user's geographical location,
       // as supplied by the browser's 'navigator.geolocation' object.
@@ -130,13 +104,25 @@
 
 
 
+      <div class="pac-card" id="pac-card">
 
+          <div id="title">
+            Scegli luogo consegna:
+          </div>
+
+        <div id="pac-container">
+          <input id="pac-input" type="text"
+              placeholder="Enter a location">
+        </div>
+      </div>
+
+    <br/>
 
 
 
 
     <?php
-      $Address = "corso sozzi, cesena";
+      $Address = "cesena";
       $Address = urlencode($Address);
       $request_url = "http://maps.googleapis.com/maps/api/geocode/xml?address=".$Address."&sensor=true";
       $xml = simplexml_load_file($request_url) or die("url not loading");
@@ -145,6 +131,8 @@
           $Lat = $xml->result->geometry->location->lat;
           $Lon = $xml->result->geometry->location->lng;
           $LatLng = "$Lat,$Lon";
+      } else {
+        echo "Geocoding Fallito /!\ ";
       }
     ?>
 
@@ -164,18 +152,61 @@
             var marker = new google.maps.Marker({
               position: uluru,
               map: map,
-              title: "Lugo selezionato",
+              title: "Lugo selezionato per la consegna",
               animation: google.maps.Animation.BOUNCE,
-              icon: 'http://127.0.0.1/repositocibo/resources/flag.png'
+              icon: './resources/flag.png'
             });
+            marker.setVisible(false);
+            //SEZIONE AUTOCOMPLETE
+                    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('pac-input'));
+
+                    autocomplete.setTypes(['address']);
+
+                    autocomplete.setOptions({strictBounds: false});
+
+                    // Bind the map's bounds (viewport) property to the autocomplete object,
+                    // so that the autocomplete requests use the current map bounds for the
+                    // bounds option in the request.
+                    //suggerimenti in base alla mappa
+                    //autocomplete.bindTo('bounds', map);
+
+
+
+                    autocomplete.addListener('place_changed', function() {
+
+                                            marker.setVisible(true);
+                      var place = autocomplete.getPlace();
+                      if (!place.geometry) {
+                        // User entered the name of a Place that was not suggested and
+                        // pressed the Enter key, or the Place Details request failed.
+                        window.alert("No details available for input: '" + place.name + "'");
+                        return;
+                      }
+
+                      map.setCenter(place.geometry.location);
+                      marker.setPosition(place.geometry.location);
+
+                      var address = '';
+                      if (place.address_components) {
+                        address = [
+                          (place.address_components[0] && place.address_components[0].short_name || ''),
+                          (place.address_components[1] && place.address_components[1].short_name || ''),
+                          (place.address_components[2] && place.address_components[2].short_name || '')
+                        ].join(' ');
+                      }
+
+                    });
+
+
           }
         </script>
-        <script async defer
+        <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&callback=initMap">
-        </script>
+        </script> -->
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initAutocomplete"
             async defer></script> -->
-
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap"
+                    async defer></script>
 
 
 
