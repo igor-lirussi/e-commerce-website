@@ -2,19 +2,21 @@
 <html lang="it">
 
   <head>
+  </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <script>
       function addFast(var quant) {
       }
-    </script>
+      </script>
     <title>SitoCibo</title>
     <link rel="icon" href="resources/favicon.ico" />
   </head>
 
   <body>
     <?php
+      include 'functions.php';
       $servername = "localhost";
       $username = "sec_user";
       $password = "gtTsfOlrsGRi";
@@ -25,7 +27,8 @@
       if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
       }
-      session_start();
+      sec_session_start();
+      if(login_check($conn) == true) {
      ?>
     <header>
       <a href="home.html">
@@ -162,6 +165,9 @@
             echo "Nessun dato trovato";
           }
         $conn->close();
+      } else {
+         echo 'You are not authorized to access this page, please login. <br/>';
+      }
         ?>
       </div>
     </div>

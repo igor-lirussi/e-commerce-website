@@ -8,11 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="sha512.js"></script>
     <script type="text/javascript" src="forms.js"></script>
-    <?php
-      if(isset($_GET['error'])) {
-        echo 'Error Logging In!';
-      }
-    ?>
   </head>
 
   <body>
@@ -23,7 +18,11 @@
       <h2>Accedi</h2>
       <p>Accumula punti e ottieni fantastiche ricompense!</p>
     </header>
-
+    <?php
+      if(isset($_GET['error'])) {
+        echo 'Error Logging In! Try again!';
+      }
+    ?>
 
     <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>
     <form action="process_login.php" method="post" name="login_form">

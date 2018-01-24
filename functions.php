@@ -47,7 +47,7 @@
                $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // ci proteggiamo da un attacco XSS
                $_SESSION['username'] = $username;
                $_SESSION['login_string'] = hash('sha512', $password.$user_browser);
-               echo "Login effettuato con successo!";
+               //echo "Login effettuato con successo!";
                // Login eseguito con successo.
                return true;
          } else {
@@ -103,7 +103,7 @@
            $stmt->fetch();
            $login_check = hash('sha512', $password.$user_browser);
            if($login_check == $login_string) {
-             echo "Login eseguito!";
+             //echo "Login eseguito!";
               // Login eseguito!!!!
               return true;
            } else {
