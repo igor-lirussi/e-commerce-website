@@ -88,9 +88,16 @@
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert fast'>";
-              echo "<p>".$row[1]."</p>";
-              echo "<p>".$row[3]."</p>";
-              echo "<p>".$row[4]."€</p>";
+              if(strpos($row[1], "margherita") >= 0) {
+                echo "<img src='./risorse dei programmatori/immagini cibi/pizza_margherita_figa.jpg' alt='pizza margherita' width = 100px height = 100px>";
+              } elseif (strpos($row[1], "pasta") >= 0) {
+                echo "<img src='./risorse dei programmatori/immagini cibi/pasta-cup.jpg' alt='pasta al cartoccio' width = 20px height = 20px>";
+              } elseif (strpos($row[1], "panino") >= 0) {
+                echo "<img src='./risorse dei programmatori/immagini cibi/panino.jpg' alt='panino' width = 20px height = 20px>";
+              }
+              echo "<p class = 'pv'>".$row[1]."</p>";
+              echo "<p class = 'pv'>".$row[3]."</p>";
+              echo "<p class = 'pv'>".$row[4]."€</p>";
         ?>
         <form class="" action="menu.php" method="post">
           <input type="number" name="quantity" max="100">

@@ -200,6 +200,10 @@ footer {
   font: italic bold 16px/2 cursive;
 }
 
+.pv{
+  text-align: center;
+}
+
 .fast{
   border-color: #ffaa80;
 }

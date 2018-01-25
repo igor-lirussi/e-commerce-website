@@ -1,6 +1,8 @@
 cercare nel listino
 barra progresso
 notifiche abbastanza elaborate
-
+logout
+controllare login ad ogni pagina
+carrello
 
 
