@@ -9,7 +9,7 @@
     <script>
       function addFast(var quant) {
       }
-      </script>
+    </script>
     <title>SitoCibo</title>
     <link rel="icon" href="resources/favicon.ico" />
   </head>
@@ -42,21 +42,22 @@
       <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
       <input type="submit">
     </form>
-    <div class="searchresult">
+    <div class="searchresult">  <!-- DA SPOSATRE TUTTO QUESTO DIV IN UNO SCRIPT CHE SI VISUALIZZA SOLO SE E' STATO PREMUTO IL PULSANTE DELLA RICERCA -->
       <?php
-        if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Nome LIKE ?")){
+        if($query = $conn->prepare("SELECT * FROM listino WHERE Nome LIKE '%'?'%'")){ //NON FUNZIONA PER VIA DI SBAGLIATA COMBINAZIONE DI % E ?
           $search = $_POST["search"];
           $query->bind_param('s', $search);
           $query->execute();
           echo "after execute";
           $result = $query->get_result();
           echo "before while";
-          while($row = $result->fetch_row()){
+          while($row = $result->fetch_assoc()){
             echo "ciao";
             echo "<p>".$row[1]."</p>";
             echo "<p>".$row[3]."</p>";
             echo "<p>".$row[4]."€</p>";
           }
+          echo $row. "  ";
           echo "after while";
         } else {
           echo "Query non andata a buon fine";
@@ -88,23 +89,21 @@
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert fast'>";
-              if(strpos($row[1], "margherita") >= 0) {
-                echo "<img src='./risorse dei programmatori/immagini cibi/pizza_margherita_figa.jpg' alt='pizza margherita' width = 100px height = 100px>";
-              } elseif (strpos($row[1], "pasta") >= 0) {
-                echo "<img src='./risorse dei programmatori/immagini cibi/pasta-cup.jpg' alt='pasta al cartoccio' width = 20px height = 20px>";
-              } elseif (strpos($row[1], "panino") >= 0) {
-                echo "<img src='./risorse dei programmatori/immagini cibi/panino.jpg' alt='panino' width = 20px height = 20px>";
-              }
-              echo "<p class = 'pv'>".$row[1]."</p>";
-              echo "<p class = 'pv'>".$row[3]."</p>";
-              echo "<p class = 'pv'>".$row[4]."€</p>";
-        ?>
-        <form class="" action="menu.php" method="post">
-          <input type="number" name="quantity" max="100">
-          <input type="button" name="fast" value="Aggiungi al carrello" onclick="addFast()">
-        </form>
-        <?php
-          echo "</div>";
+              echo "<div class = 'row'>";
+              echo "<div class = 'col-4'>";
+              echo    "<img src = '".$row[5]."'>";
+              echo "</div>";
+              echo "<div class = 'col-8 desc'>";
+              echo    "<p>".$row[1]."</p>";
+              echo    "<p>".$row[3]."</p>";
+              echo    "<p>".$row[4]."€</p>";
+              echo "<form action='menu.php' method='post'>
+                      <input type='number' name='qfast' max='100' value = 1>
+                      <input type='button' name='fast' value='Aggiungi al carrello'>
+                    </form>";
+                    echo "</div>";
+              echo "</div>";
+              echo "</div>";
             }
           } else {
             echo "Nessun dato trovato";
@@ -131,10 +130,20 @@
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert meal'>";
-              echo "<p>".$row[1]."</p>";
-              echo "<p>".$row[3]."</p>";
-              echo "<p>".$row[4]."€</p>";
-              echo "<button type='button' name=".$row[3].">Aggiungi al carrello</button>";
+              echo "<div class = 'row'>";
+              echo "<div class = 'col-4'>";
+              echo    "<img src = '".$row[5]."'>";
+              echo "</div>";
+              echo "<div class = 'col-8 desc'>";
+              echo    "<p>".$row[1]."</p>";
+              echo    "<p>".$row[3]."</p>";
+              echo    "<p>".$row[4]."€</p>";
+              echo "<form action='menu.php' method='post'>
+                      <input type='number' name='qmeal' max='100' value = 1>
+                      <input type='button' name='fast' value='Aggiungi al carrello'>
+                    </form>";
+                    echo "</div>";
+              echo "</div>";
               echo "</div>";
             }
           } else {
@@ -162,10 +171,33 @@
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert drink'>";
-              echo "<p>".$row[1]."</p>";
-              echo "<p>".$row[3]."</p>";
-              echo "<p>".$row[4]."€</p>";
-              echo "<button type='button' name=".$row[3].">Aggiungi al carrello</button>";
+              echo  "<div class = 'row'>";
+              echo    "<div class = 'col-4'>";
+              echo      "<img src = '".$row[5]."'>";
+              echo    "</div>";
+              echo    "<div class = 'col-8 desc'>";
+              echo      "<p>".$row[1]."</p>";
+              echo      "<p>".$row[3]."</p>";
+              echo      "<p>".$row[4]."€</p>";
+              echo      "<form action='menu.php' method='post'>
+                          <input type='number' name='q".$row[0]."' max='100' value = 1>
+                          <input type='submit' name='fast' value='Aggiungi al carrello'>
+                        </form>";
+              if(isset($_SESSION['carrello'][$row[0]])){
+                echo "ciao";
+                echo $_POST['q'.$row[0]];
+                for ($i=0; $i < $_POST['q'.$row[0]]; $i++) {
+                  echo "ciao in for";
+                  $_SESSION['carrello'][$row[0]]++;
+                  print_r($_SESSION['carrello'][$row[0]]);
+                }
+              }else{
+                echo "ciao mai inizializzato";
+                $_SESSION['carrello'] = array($row[0] => $_POST['q'.$row[0]]);
+                print_r($_SESSION['carrello'][$row[0]]);
+              }
+              echo    "</div>";
+              echo  "</div>";
               echo "</div>";
             }
           } else {
@@ -175,15 +207,13 @@
       } else {
          echo 'You are not authorized to access this page, please login. <br/>';
       }
+      // session_unset();
+      // session_destroy();
         ?>
       </div>
     </div>
     <form class="" action="cart.php" method="post">
       <input type="submit" name="cart" value="Vai al carrello">
     </form>
-    <!-- <?php
-      echo $_POST['quantity'];
-        $_SESSION['quantity'];
-    ?> -->
   </body>
 </html>

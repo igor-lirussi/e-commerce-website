@@ -193,6 +193,8 @@ footer {
 }
 
 .offert {
+  display: flex;
+  flex-flow: row wrap;
   padding: 15px;
   border: solid;
   border-radius: 15px 50px;
@@ -200,8 +202,22 @@ footer {
   font: italic bold 16px/2 cursive;
 }
 
-.pv{
+.offert img {
+  width: 100px;
+  height:100px;
+}
+
+.offert>form{
+  margin-top: 70px;
+}
+
+.desc>p{
   text-align: center;
+  margin: 10px;
+}
+
+.offert>img{
+  margin: 10px;
 }
 
 .fast{
