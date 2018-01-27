@@ -90,11 +90,13 @@
         <input id="pac-input" type="text"
             placeholder="Enter a location">
       </div>
+
       <button id="but" onclick="geolocate()">Geo me</button>
     </div>
-    <div id="accu"></div>
-    <br/>
 
+    <div id="accu"></div>
+
+    <br/>
 
     <h3>Google Mappo</h3>
         <div id="map"></div>
@@ -182,7 +184,7 @@
                                 lng: position.coords.longitude
                               };
 
-                              //setto accuratezza geolocalizzazione in un div
+                              //mostro accuratezza geolocalizzazione in un div
                               document.getElementById('accu').innerHTML = "Accuracy " + position.coords.accuracy + " m";
 
                               //provo reverse geocoding per avere anche l'indirizzo
@@ -201,10 +203,12 @@
                                    }
                                  });
 
+                              //creo l'infowindow
                               infoWindow = new google.maps.InfoWindow;
                               infoWindow.setPosition(pos);
                               infoWindow.setContent('Location found.');
                               infoWindow.open(map);
+                              //centro la mappa sulla posizione
                               map.setCenter(pos);
                             }, function() {
                               handleLocationError(true, infoWindow, map.getCenter());
