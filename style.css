@@ -10,7 +10,7 @@
 
 /*body*/
 body {
-    nobackground-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("resources/bg/back6.jpg");
+    nobackground-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("resources/bg/back2.jpg");
     background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("resources/realpizza.jpg");
     background-repeat: no-repeat;
     background-size: contain;
@@ -29,9 +29,10 @@ header {
     font-family: calibri;
     color: #000000;
     padding: 15px;
-    background-image: url("resources/halflogo.png");
+    background-image: url("resources/logoV.svg");
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: -175px;
 }
 header h1 {
   font-size: 4em;
