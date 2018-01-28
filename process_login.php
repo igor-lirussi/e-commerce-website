@@ -1,17 +1,7 @@
 <?php
 
   include 'functions.php';
-
-  $servername = "localhost";
-  $username = "sec_user";
-  $password = "gtTsfOlrsGRi";
-  $dbname = "databasesito";
-
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  include 'connection.php';
 
 
   sec_session_start(); // usiamo la nostra funzione per avviare una sessione php sicura

@@ -39,20 +39,7 @@
 
 
     <?php
-
-      $servername = "localhost";
-      $username = "sec_user";
-      $password = "gtTsfOlrsGRi";
-      $database = "databasesito";
-
-
-      // Opens a connection to a MySQL server
-      $connection = new mysqli($servername, $username, $password, $database);
-
-      if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-      }
-
+      include 'connection.php';
 
 
       // Set the active MySQL database

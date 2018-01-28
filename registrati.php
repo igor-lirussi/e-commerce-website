@@ -1,18 +1,9 @@
 <?php
-
-  $servername = "localhost";
-  $username = "sec_user";
-  $password = "gtTsfOlrsGRi";
-  $dbname = "databasesito";
-
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  include 'functions.php';
+  include 'connection.php';
 
   // Recupero la password criptata dal form di inserimento.
-  $password = $_POST['p'];
+  $password = $_POST['pw'];
   // Crea una chiave casuale
   $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
   // Crea una password usando la chiave appena creata.
