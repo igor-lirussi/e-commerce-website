@@ -169,6 +169,7 @@
                             var marker = new google.maps.Marker({
                               map: map,
                               animation: google.maps.Animation.DROP,
+                              title: "Fai click per info",
                               position:  results[0].geometry.location
                               //label: icon.label
                             });
