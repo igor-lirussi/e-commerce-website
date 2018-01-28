@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./resources/JquerySteps/mysteps.css">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="map.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -57,9 +58,9 @@
             <input type="password" name="confirm" id="confirm" maxlength="10" required/></label></p>
         <p><label for="age">Age *</label>
           <input id="age" name="age" type="number" class="required number"></p>
+        <p>(*) Obbligatori</p>
         <p><label for="mtr"> Numero di matricola **:
           <input type="number" name="numeroMat" id="mtr"/></label></p>
-        <p>(*) Obbligatori</p>
         <p>(**) Opzionale sconto studenti!</p>
   		</fieldset>
 
@@ -72,8 +73,14 @@
       <h3>Indirizzo</h3>
   		<fieldset><legend>Dati di recapito:</legend>
         <p><label for="indir"> Indirizzo *:
-          <input type="text" name="indirizzo" id="indir" required/></label></p>
+          </label></p>
         <p>(*) Obbligatori</p>
+        <div class="pac-card" id="pac-card">
+          <div id="pac-container">
+            <input id="indir" name="indirizzo" type="text"
+                placeholder="Enter a location" required />
+          </div>
+        </div>
       </fieldset>
 
       <h3>Pagamento</h3>
@@ -99,6 +106,7 @@
       </fieldset>
 
   	</form>
+
 
 <script>
 var form = $("#form").show();
@@ -161,6 +169,60 @@ form.steps({
 });
 </script>
 
+
+
+<script>
+  function initMap() {
+
+    //SEZIONE AUTOCOMPLETE
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('indir'));
+
+    autocomplete.setTypes(['address']);
+    autocomplete.setComponentRestrictions(
+      {
+        country: 'IT'
+        //postalCode: '47923'
+      });
+
+    //se true i suggerimenti sono esclusivamente delle restrizioni
+    autocomplete.setOptions({strictBounds: false});
+
+    // Bind the map's bounds (viewport) property to the autocomplete object,
+    // so that the autocomplete requests use the current map bounds for the
+    // bounds option in the request.
+    //suggerimenti in base alla mappa
+    //autocomplete.bindTo('bounds', map);
+
+    autocomplete.addListener('place_changed', function() {
+
+      marker.setVisible(true);
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        // User entered the name of a Place that was not suggested and
+        // pressed the Enter key, or the Place Details request failed.
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+      }
+
+      marker.setPosition(place.geometry.location);
+
+      var address = '';
+      if (place.address_components) {
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+
+    });
+
+
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap"
+            async defer></script>
   </body>
 
 </html>
