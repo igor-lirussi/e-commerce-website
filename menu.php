@@ -183,18 +183,20 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
+              $indq = $_POST['q'.$row[0]];
               if(isset($_SESSION['carrello'][$row[0]])){
                 echo "ciao";
-                echo $_POST['q'.$row[0]];
-                for ($i=0; $i < $_POST['q'.$row[0]]; $i++) {
+                echo $indq;
+                for ($i=0; $i < $indq; $i++) {
                   echo "ciao in for";
                   $_SESSION['carrello'][$row[0]]++;
                   print_r($_SESSION['carrello'][$row[0]]);
                 }
               }else{
                 echo "ciao mai inizializzato";
-                $_SESSION['carrello'] = array($row[0] => $_POST['q'.$row[0]]);
+                $_SESSION['carrello'] = array($row[0] => $indq);
                 print_r($_SESSION['carrello'][$row[0]]);
+                print_r($_SESSION['carrello']);
               }
               echo    "</div>";
               echo  "</div>";
@@ -207,8 +209,6 @@
       } else {
          echo 'You are not authorized to access this page, please login. <br/>';
       }
-      // session_unset();
-      // session_destroy();
         ?>
       </div>
     </div>

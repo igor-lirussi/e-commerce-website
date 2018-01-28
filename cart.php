@@ -1,4 +1,4 @@
 <?php
   session_start();
-  echo $_SESSION['quantity'];
+  echo $_SESSION['carrello'];
 ?>
