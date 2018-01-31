@@ -18,7 +18,6 @@
     <?php
       include 'functions.php';
       include 'connection.php';
-      
       sec_session_start();
       if(login_check($conn) == true) {
      ?>
@@ -176,19 +175,20 @@
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
               $indq = $_POST['q'.$row[0]];
-              if(isset($_SESSION['carrello'][$row[0]])){
+              echo $indq;
+              if(isset($_SESSION['cart'][$row[0]])){
                 echo "ciao";
                 echo $indq;
                 for ($i=0; $i < $indq; $i++) {
                   echo "ciao in for";
-                  $_SESSION['carrello'][$row[0]]++;
-                  print_r($_SESSION['carrello'][$row[0]]);
+                  $_SESSION['cart'][$row[0]]++;
+                  print_r($_SESSION['cart'][$row[0]]);
                 }
               }else{
                 echo "ciao mai inizializzato";
-                $_SESSION['carrello'] = array($row[0] => $indq);
-                print_r($_SESSION['carrello'][$row[0]]);
-                print_r($_SESSION['carrello']);
+                $_SESSION['cart'] = array($row[0] => $indq);
+                print_r($_SESSION['cart'][$row[0]]);
+                print_r($_SESSION['cart']);
               }
               echo    "</div>";
               echo  "</div>";
