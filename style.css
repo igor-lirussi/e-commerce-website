@@ -327,7 +327,7 @@ input[type=submit]:hover {
 }
 
 @media screen and (min-width: 1000px) {
-  /*per schermi grandi*/
+  /*per schermi molto grandi*/
     .follow-desc:before {
         content: " Seguici su ";
         font-size: 12px;

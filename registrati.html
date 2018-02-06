@@ -37,7 +37,7 @@
       <h2>Make it Yours.</h2>
     </header>
 
-    <form id="form" action="registrati.php">
+    <form id="form" action="registrati.php" onsubmit="return false;">
 
       <h3>Account</h3>
   		<fieldset><legend>Dati anagrafici:</legend>
@@ -78,7 +78,7 @@
         <div class="pac-card" id="pac-card">
           <div id="pac-container">
             <input id="indir" name="indirizzo" type="text"
-                placeholder="Enter a location" required />
+                placeholder="Enter a location" onsubmit="#next" required />
           </div>
         </div>
       </fieldset>
@@ -195,7 +195,6 @@ form.steps({
 
     autocomplete.addListener('place_changed', function() {
 
-      marker.setVisible(true);
       var place = autocomplete.getPlace();
       if (!place.geometry) {
         // User entered the name of a Place that was not suggested and
@@ -204,7 +203,6 @@ form.steps({
         return;
       }
 
-      marker.setPosition(place.geometry.location);
 
       var address = '';
       if (place.address_components) {
