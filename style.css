@@ -11,7 +11,7 @@
 /*body*/
 body {
     nobackground-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("resources/bg/back2.jpg");
-    background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("resources/realpizza.jpg");
+    nobackground: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("resources/immaginiCibi/realpizza.jpg");
     background-repeat: no-repeat;
     background-size: contain;
     padding: 25px;
@@ -29,13 +29,18 @@ header {
     font-family: calibri;
     color: #000000;
     padding: 15px;
-    background-image: url("resources/logoV.svg");
+    background-image: url("resources/logoV2.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: -175px;
 }
 header h1 {
   font-size: 4em;
+  margin-bottom: 0px;
+}
+header h2 {
+  font-size: 1em;
+  margin: 0px;
 }
 header a:visited, header a:hover, header a:link {
     color: black;
@@ -69,26 +74,54 @@ footer {
   color: white;
   text-shadow: 2px 2px var(--main-color);
   font-size: 20px;
-
   padding: 50px;
+  background-image: url('resources/immaginiCibi/pianocucina.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-/*menu*/
-.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+
+/*menu di navigazione*/
+nav {
+  max-width: 960px;
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0));
+  margin: 0 auto;
+  padding: 5px 0;
 }
-.menu li {
-    padding: 8px;
-    margin-bottom: 7px;
-    background-color: var(--main-color);
-    color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+nav ul {
+  text-align: center;
+  /*background menù, da sx a dx da trasparente a colore a trasparente*/
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 0, 0, 0.4) 25%, rgba(255, 255, 0, 0.4) 75%, rgba(255, 255, 255, 0) 100%);
+  /*ombra box menù*/
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4), inset 0 0 1px rgba(255, 255, 255, 0.6);
 }
-.menu li:hover {
-    background-color: var(--second-color);
+
+nav ul li {
+  display: inline-block;
 }
+
+nav ul li a {
+  padding: 18px;
+  font: bold 0.5em calibri;
+  notext-transform:uppercase;
+  color: rgba(122, 0, 0, 0.5);
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+}
+
+nav ul li a:hover {
+  /*mouse sopra*/
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  /*colore testo mouse sopra*/
+  color: rgba(122, 0, 0, 0.9);
+}
+
 
 /*social container*/
 .social {
@@ -165,10 +198,14 @@ footer {
 /*info legali*/
 .legal {
       background-color: var(--main-color);
-      font-size: 70%;
-      color: #ffffff;
-      text-align: left;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('resources/immaginiCibi/pizza-forno.jpg');
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-attachment: fixed;
+      text-shadow: 3px 3px 3px red;
+      padding: 5%;
 }
 
 
@@ -288,7 +325,132 @@ input[type=submit]:hover {
     color: white;
 }
 
-/*RESPONSIVE*/
+/*pulsanti home*/
+.myButt {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+  display: block;
+  margin: 50px auto;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: rgba(255,255,255,0.5);
+  position: relative;
+  border: 2px solid #fff;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+}
+
+.one {
+  border-color: #fff;
+  overflow: hidden;
+  color: #fff;
+}
+/*dentro al button ci va <div class='insider'></div> e poi il testo*/
+.one .insider {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  left: -135px;
+  transform: rotateZ(45deg);
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+}
+.one:hover {
+  background-color: #F44336;
+  border-color: #fff;
+  color: #fff;
+}
+.one:hover .insider {
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  left: 135px;
+}
+
+.two {
+  color: darkred;
+  border-color: darkred;
+  border-radius: 5px;
+}
+.two:hover {
+  border-color: #F44336;
+  color: #F44336;
+  animation: shakeThatBooty 0.3s linear 1;
+  -webkit-animation: shakeThatBooty 0.3s linear 1;
+  -moz-animation: shakeThatBooty 0.3s linear 1;
+  -o-animation: shakeThatBooty 0.3s linear 1;
+  -ms-animation: shakeThatBooty 0.3s linear 1;
+}
+
+@keyframes shakeThatBooty {
+  33% {
+    transform: rotateZ(10deg);
+    -webkit-transform: rotateZ(10deg);
+    -moz-transform: rotateZ(10deg);
+    -o-transform: rotateZ(10deg);
+    -ms-transform: rotateZ(10deg);
+  }
+  67% {
+    transform: rotateZ(-10deg);
+    -webkit-transform: rotateZ(-10deg);
+    -moz-transform: rotateZ(-10deg);
+    -o-transform: rotateZ(-10deg);
+    -ms-transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+    -webkit-transform: rotateZ(10deg);
+    -moz-transform: rotateZ(10deg);
+    -o-transform: rotateZ(10deg);
+    -ms-transform: rotateZ(10deg);
+  }
+}
+.three {
+  color: #000;
+  border-color: transparent;
+}
+.three:before, .three:after {
+  width: 0;
+  height: 3px;
+  content: " ";
+  background-color: darkred;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}
+.three:after {
+  top: 100%;
+}
+.three:hover {
+  letter-spacing: 8px;
+  color: darkred;
+}
+.three:hover:before, .three:hover:after {
+  width: 100%;
+  left: 0;
+}
+.three:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+/***********RESPONSIVE**************/
 .row::after {
     content: "";
     clear: both;

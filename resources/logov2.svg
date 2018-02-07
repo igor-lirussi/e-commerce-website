@@ -9,15 +9,83 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="100.48109mm"
-   height="100.47352mm"
-   viewBox="0 0 100.48109 100.47351"
+   width="379.77109"
+   height="379.74243"
+   viewBox="0 0 100.4811 100.47352"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logov2.svg">
   <defs
-     id="defs2" />
+     id="defs2">
+    <filter
+       inkscape:menu="Shadows and Glows"
+       inkscape:menu-tooltip="Cut out, add inner shadow and colorize some parts of an image"
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Emergence"
+       id="filter6323">
+      <feColorMatrix
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.21 0.72 0.07 0 0 "
+         result="result1"
+         id="feColorMatrix6295" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 2 0 "
+         result="result9"
+         id="feColorMatrix6297" />
+      <feComposite
+         in2="result9"
+         in="SourceGraphic"
+         operator="in"
+         result="result4"
+         id="feComposite6299" />
+      <feFlood
+         result="result2"
+         flood-color="rgb(0,0,0)"
+         id="feFlood6301" />
+      <feComposite
+         in2="result9"
+         operator="in"
+         result="result10"
+         id="feComposite6303" />
+      <feComposite
+         in2="result4"
+         operator="atop"
+         id="feComposite6305" />
+      <feGaussianBlur
+         stdDeviation="3"
+         result="result8"
+         id="feGaussianBlur6307" />
+      <feOffset
+         dx="3"
+         dy="3"
+         result="result3"
+         in="result8"
+         id="feOffset6309" />
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(219,173,62)"
+         result="result5"
+         id="feFlood6311" />
+      <feMerge
+         result="result6"
+         id="feMerge6319">
+        <feMergeNode
+           in="result5"
+           id="feMergeNode6313" />
+        <feMergeNode
+           in="result3"
+           id="feMergeNode6315" />
+        <feMergeNode
+           in="result4"
+           id="feMergeNode6317" />
+      </feMerge>
+      <feComposite
+         in2="SourceGraphic"
+         operator="in"
+         result="result7"
+         id="feComposite6321" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -26,8 +94,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="127.67113"
-     inkscape:cy="211.87126"
+     inkscape:cx="-63.752764"
+     inkscape:cy="252.27753"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -40,7 +108,9 @@
      inkscape:window-height="705"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     units="px"
+     scale-x="1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -60,7 +130,8 @@
      transform="translate(-12.112614,-47.029718)">
     <g
        id="g6033"
-       transform="translate(-2.1381561,-4.5435822)">
+       transform="translate(-2.1381561,-4.5435822)"
+       style="filter:url(#filter6323)">
       <path
          style="fill:#fefefe;stroke-width:0.26458335"
          d="M 58.959793,151.77468 C 54.169211,151.2744 47.927362,149.51349 43.195506,147.32737 34.642803,143.37601 26.766249,136.27618 21.527404,127.79599 16.002855,118.85334 13.375342,107.25982 14.51078,96.836153 15.803355,84.969915 20.692987,74.694046 28.996254,66.394021 c 1.556198,-1.555591 3.798954,-3.565975 4.983902,-4.467519 18.141169,-13.802352 42.848473,-13.804452 61.043178,-0.0052 2.751703,2.086951 7.270146,6.602114 9.333606,9.326828 5.65088,7.461751 8.93658,15.570402 10.02362,24.736922 2.29697,19.369208 -6.79601,38.120258 -23.577174,48.619598 -9.1666,5.73519 -20.704995,8.33322 -31.843593,7.17002 z"
