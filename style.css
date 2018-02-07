@@ -29,10 +29,10 @@ header {
     font-family: calibri;
     color: #000000;
     padding: 15px;
-    background-image: url("resources/logoV2.svg");
+    background-image: url("resources/logoV2half.svg");
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: -175px;
+    nobackground-position: -175px;
 }
 header h1 {
   font-size: 4em;
@@ -207,8 +207,18 @@ nav ul li a:hover {
       text-shadow: 3px 3px 3px red;
       padding: 5%;
 }
+/*timeline*/
+.timeline {
+background-image: url("resources/immaginiCibi/pizza-posate.jpg");
+background-size: cover;
+background-attachment: fixed;
+}
 
-
+.timeline h1 {
+text-shadow: 3px 3px 5px white;
+z-index: 20;
+}
+/***/
 .listino{
     float: center;
     padding-left: 25px;

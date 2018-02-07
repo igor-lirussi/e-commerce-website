@@ -12,11 +12,32 @@
 
     <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
     <link rel="stylesheet" href="css/gallery.css">
-
-
+    <!-- per il loader -->
+    <link rel="stylesheet" href="css/loader.css">
   </head>
 
-  <body>
+  <body onload="lateFunction()">
+
+    <div id="cooking">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div id="area">
+        <div id="sides">
+          <div id="pan"></div>
+          <div id="handle"></div>
+        </div>
+        <div id="pancake">
+          <div id="pastry"></div>
+        </div>
+        Cooking in progress...
+      </div>
+    </div>
+
+<div id="allpage" style="display:none">
+
     <header>
       <a href="home.html">
       <h1>Yook!</h1>
@@ -57,7 +78,7 @@
         <a href="https://plus.google.com" class="fa fa-google"><div class="follow-desc">Google Plus</div></a>
       </div>
       <div class="col-9 right gallery">
-        <div class="demo">
+        <div class="demo" >
           <div class="demo__help">
             I nostri piatti:
           </div>
@@ -93,6 +114,20 @@
             </p>
         </div></address>
     </footer>
-
+  </div>
   </body>
+
+  <script>
+      //per il loader
+      function loadedFunction() {
+         document.getElementById("cooking").style.display = "none";
+         document.getElementById("allpage").style.display = "block";
+      }
+      function lateFunction() {
+        var myVar = setTimeout(loadedFunction, 3000);
+      }
+  </script>
+  <noscript>
+    <style>#cooking { display: none; } </style>
+  </noscript>
 </html>
