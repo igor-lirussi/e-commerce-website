@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Set a background color */
+body {
+  background-color: #474e5d;
+  font-family: Helvetica, sans-serif;
+}
+
+.ourfood{
+  background-image: url("../resources/immaginiCibi/pizza.jpg");
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px 30px 10px 30px;
+}
+
+/* The actual content */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  width: 80%;
+  padding: 20px 30px 10px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+.container h2{
+    text-align: center;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  margin: 20px;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  border-radius: 15px;
+  width: 50%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.content:hover .image {
+  opacity: 0.3;
+}
+
+.content:hover .middle {
+  opacity: 1;
+}
+
+.text1 {
+  background-color: #e67300;
+  color: white;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 16px 32px;
+}
+
+.text2 {
+  background-color: #33cc33;
+  color: white;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 16px 32px;
+}
+
+.text3 {
+  background-color: #cc3300;
+  color: white;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 16px 32px;
+}
+/* The actual content */
+/* .contaioner>div {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+} */
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media all and (max-width: 600px) {
+  /* Full-width containers */
+    .container {
+      width: 80%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+}

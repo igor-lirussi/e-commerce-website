@@ -10,7 +10,7 @@
     }
   }
 
-  $immagine = "./resources/immaginiCibi/";
+  $immagine = $_POST['img'];
   $nome = $_POST['nomeInserito'];
   $cat = $_POST['categInserita'];
   $desc = $_POST['descInserita'];

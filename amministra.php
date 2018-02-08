@@ -10,7 +10,7 @@
     </script>
     <script>
       $(document).ready(function(){
-        $("#nascondi").hide();
+        $(".nascondi").hide();
       });
     </script>
     <title>SitoCibo</title>
@@ -30,6 +30,10 @@
       </a>
       <h2>Amministra menù</h2>
     </header>
+
+    <!-- E' STATO COMMENTATA LA RICERCA, MA PENSO SIA UTILE DA LASCIARE, COSI' L'AMMINISTRATORE FA PRIMA A CERCARE UNA ROBA..
+          UNA VOLTA CHE FUNZIONA NEL MENU', SI PUO' METTERLA ANCHE QUI-->
+
 
     <!-- <h3>Cerca</h3>
     <form class="searchform" action="menu.php" onsubmit="return displayFunction()" method="post">
@@ -76,7 +80,7 @@
               echo    "<p>".$row[3]."</p>";
               echo    "<p>".$row[4]."€</p>";
               echo "<form action='delete.php' method='post'>";
-              echo    "<div id = 'nascondi'>";
+              echo    "<div class = 'nascondi'>";
               echo      "<input type = 'text' name = 'cod' value = ".$row[0].">";
               echo    "</div>";
               echo    "<input type='submit' value='Cancella prodotto'></form>";
@@ -87,46 +91,51 @@
             echo "<div class = 'offert fast'>";
             echo "<div class = 'row'>";
             echo "<div class = 'col-4'>";
+            // echo $image;
+            echo "<div class = 'nascondi'>";
+            if ($_FILES['image']) {
+              if(is_uploaded_file($_FILES['image']['tmp_name'])) {
 
-            //caricamento di immagine
-            echo "<form action='insert.php' method='post' enctype='multipart/form-data'>
-            	       <input name='image' type='file' value = 'Inserisci immagine'>";
-            if(is_uploaded_file($_FILES['image']['tmp_name'])) {
+                //controllo che il file non superi i 100 KB (1 kilobyte = 1024 byte)
+                if($_FILES['image']['size']>250000)
+                  echo "Il file ha dimensioni che superano i 2 MB";
 
-            	//controllo che il file non superi i 100 KB (1 kilobyte = 1024 byte)
-            	if($_FILES['image']['size']>250000)
-            		echo "Il file ha dimensioni che superano i 2 MB";
+                //recupero le informazioni sull'immagine
+                list($width, $height, $type, $attr)=getimagesize($_FILES['image']['tmp_name']);
 
-            	//recupero le informazioni sull'immagine
-            	list($width, $height, $type, $attr)=getimagesize($_FILES['image']['tmp_name']);
+                //controllo che le dimensioni (in pixel) non superino 800x600
+                if(($width>1280) or ($height>720))
+                  echo "Il file non deve superare le dimensioni di 1280x720";
 
-            	//controllo che le dimensioni (in pixel) non superino 800x600
-            	if(($width>1280) or ($height>720))
-            		echo "Il file non deve superare le dimensioni di 1280x720";
-
-            	//controllo che il file sia in uno dei formati GIF, JPG o PNG
-            	if(($type!=1) and ($type!=2) and ($type!=3))
-            		echo "Il file caricato deve essere un'immagine";
+                //controllo che il file sia in uno dei formati GIF, JPG o PNG
+                if(($type!=1) and ($type!=2) and ($type!=3))
+                  echo "Il file caricato deve essere un'immagine";
 
 
-            	//controllo che non esiste già un file con lo stesso nome
-            	if(file_exists('./resources/immaginiCibi/'.$_FILES['image']['name']))
-            		echo "Esiste già un file con lo stesso nome. Rinominare l'immagine prima di caricarla";
+                //controllo che non esiste già un file con lo stesso nome
+                if(file_exists('./resources/immaginiCibi/'.$_FILES['image']['name']))
+                  echo "Esiste già un file con lo stesso nome. Rinominare l'immagine prima di caricarla";
 
-            	//salvo il file nella cartella di destinazione
-            	if(!move_uploaded_file($_FILES['image']['tmp_name'], './resources/immaginiCibi/'.$_FILES['image']['name']))
-            		echo "Errore imprevisto nel caricamento del file. Controllare i permessi della cartella di destinazione";
-
+                //salvo il file nella cartella di destinazione
+                if(!move_uploaded_file($_FILES['image']['tmp_name'], './resources/immaginiCibi/'.$_FILES['image']['name']))
+                  echo "Errore imprevisto nel caricamento del file. Controllare i permessi della cartella di destinazione";
+              }
             }
             $image = "./resources/immaginiCibi/".$_FILES['image']['name'];
-            echo "<div id = 'nascondi'>";
+            echo "</div>";
+            echo "<form action='insert.php' method='post' enctype='multipart/form-data'>
+            	       <input name='image' type='file' value = 'Inserisci immagine'>";
+            // echo "<input name='invia' type='submit' value='Carica immagine' />";
+            // echo"         </form>";
+            echo "<div class = 'nascondi'>";
+            // echo "<form action='insert.php' method='post'>";
             echo "<input type = 'text' name = 'img' value = ".$image.">";
             echo "</div>";
             echo "<input type = 'text' name = 'nomeInserito' placeholder = 'Inserisci nome prodotto'>";
             echo    "<input type = 'text' name = 'categInserita' placeholder = 'Inserisci categoria prodotto'>";
             echo      "<textarea rows='4' cols='50' name = 'descInserita' placeholder = 'Inserisci descrizione prodotto'></textarea>";
             echo      "<input type = 'number' name = 'prezzoInserito' placeholder = 'Inserisci prezzo prodotto'>€";
-            echo    "<input type='submit' value='Aggiungi prodotto'></form>";
+            echo    "<input name= 'invia' type='submit' value='Aggiungi prodotto'></form>";
                   echo "</div>";
             echo "</div>";
             echo "</div>";
@@ -152,7 +161,7 @@
               echo    "<p>".$row[3]."</p>";
               echo    "<p>".$row[4]."€</p>";
               echo "<form action='delete.php' method='post'>";
-              echo    "<div id = 'nascondi'>";
+              echo    "<div class = 'nascondi'>";
               echo      "<input type = 'text' name = 'cod' value = ".$row[0].">";
               echo    "</div>";
               echo    "<input type='submit' value='Cancella prodotto'></form>";
@@ -181,6 +190,11 @@
               echo      "<p>".$row[1]."</p>";
               echo      "<p>".$row[3]."</p>";
               echo      "<p>".$row[4]."€</p>";
+              echo "<form action='delete.php' method='post'>";
+              echo    "<div class = 'nascondi'>";
+              echo      "<input type = 'text' name = 'cod' value = ".$row[0].">";
+              echo    "</div>";
+              echo    "<input type='submit' value='Cancella prodotto'></form>";
               echo    "</div>";
               echo  "</div>";
               echo "</div>";
