@@ -1,2 +1,6 @@
 user: sec_user'@'localhost
 password: gtTsfOlrsGRi
+
+
+CREATE USER 'sec_user'@'localhost' IDENTIFIED BY 'gtTsfOlrsGRi';
+GRANT SELECT, INSERT, UPDATE ON `databasesito`.* TO 'sec_user'@'localhost';

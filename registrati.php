@@ -2,18 +2,41 @@
   include 'functions.php';
   include 'connection.php';
 
-  // Recupero la password criptata dal form di inserimento.
-  $password = $_POST['pw'];
-  // Crea una chiave casuale
-  $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-  // Crea una password usando la chiave appena creata.
-  $password = hash('sha512', $password.$random_salt);
-  // Inserisci a questo punto il codice SQL per eseguire la INSERT nel tuo database
-  // Assicurati di usare statement SQL 'prepared'.
-  if ($insert_stmt = $conn->prepare("INSERT INTO members (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
-    $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
-    // Esegui la query ottenuta.
-    $insert_stmt->execute();
+  sec_session_start(); // usiamo la nostra funzione per avviare una sessione php sicura
+  /*controllo che ci siano i dati, la password non ha il nome del form ma nome "p" creato dalla funzione di hashing*/
+  if(isset($_POST['mail'], $_POST['p'])) {
+    // Recupero tutti i dati di registrazione
+    $zero = 0;
+    $name = $_POST['nome'];
+    $surname = $_POST['cognome'];
+    $username = 'stronzo';
+    $email = $_POST['mail'];
+    $indir = $_POST['indirizzo'];
+    $pagamento = $_POST['pagamento'];
+    $numeroCarta = $_POST['numeroCarta'];
+    $scadenza = $_POST['scadenza'];
+    $cvv = $_POST['cvv'];
+    $numeroMat = $_POST['numeroMat'];
+    // Recupero la password criptata dal form di inserimento (ha nome p perchè è stato creato un elemento nascosto).
+    $password = $_POST['p'];
+    // Crea una chiave casuale
+    $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+    // Crea una password usando la chiave appena creata.
+    $password = hash('sha512', $password.$random_salt);
+    // Inserisci a questo punto il codice SQL per eseguire la INSERT nel tuo database
+    // Assicurati di usare statement SQL 'prepared'.
+
+    if ($insert_stmt = $conn->prepare("INSERT INTO members (id, nome, cognome, username, email, password, salt, indirizzo, TipoPagamento, NumeroCarta, Scadenza, CVV, NumeroMatricola, Amministratore, PuntiAccumulati)
+                                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+      $insert_stmt->bind_param('issssssssisiiii', $zero, $name, $surname, $username, $email, $password, $random_salt, $indir, $pagamento, $numeroCarta, $scadenza, $cvv, $numeroMat, $zero, $zero);
+      // Esegui la query ottenuta.
+      $insert_stmt->execute();
+      header('Location: ./accedi.php?register=0');
+    }
+  } else {
+   // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
+    echo 'Non sono stati passati tutti i parametri.';
   }
+
 
 ?>

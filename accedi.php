@@ -20,8 +20,16 @@
     </header>
     <?php
       if(isset($_GET['error'])) {
-        echo 'Error Logging In! Try again!';
+        if($_GET['error']==1) {
+          echo 'Error Logging In! Try again!';
+        } else {
+          echo 'Error unknown passed';
+        }
       }
+      if(isset($_GET['register'])) {
+        echo 'Registration successfull';
+      }
+
     ?>
 
     <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>

@@ -16,6 +16,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./resources/JquerySteps/jquery.steps.js"></script>
     <script src="./resources/JquerySteps/jquery.validate.js"></script>
+    <script type="text/javascript" src="sha512.js"></script>
+    <script type="text/javascript" src="forms.js"></script>
     <script>
       function displayFunction() {
           var x = document.getElementById("pagamento").value;
@@ -37,12 +39,12 @@
       <h2>Make it Yours.</h2>
     </header>
 
-    <form id="form" action="registrati.php" onsubmit="return false;">
+    <form id="form" name="form" action="registrati.php" method="post" onsubmit="return false;">
 
       <h3>Account</h3>
   		<fieldset><legend>Dati anagrafici:</legend>
   		  <p><label for="name"> Nome *:
-          <input type="text" name="nome" id="name" required/></label></p>
+          <input type="text" name="nome" id="name" autofocus required/></label></p>
   			<p><label for="sname"> Cognome *:
           <input type="text" name="cognome" id="sname" maxlength="10" required/></label></p>
         <p><label for="mail"> E-Mail *:
@@ -53,21 +55,21 @@
       <h3>Password</h3>
       <fieldset><legend>Inserisci Password:</legend>
         <p><label for="pw"> Password *:
-          <input type="password" name="password" id="pw" maxlength="10" required/></label></p>
+          <input type="password" name="password" id="pw" maxlength="20" required/></label></p>
         <p><label for="confirm">Conferma password *:
-            <input type="password" name="confirm" id="confirm" maxlength="10" required/></label></p>
+          <input type="password" name="confirm" id="confirm" maxlength="20" required/></label></p>
         <p><label for="age">Age *</label>
-          <input id="age" name="age" type="number" class="required number"></p>
+          <input id="age" type="number" class="required number" maxlength="3"></p>
         <p>(*) Obbligatori</p>
         <p><label for="mtr"> Numero di matricola **:
-          <input type="number" name="numeroMat" id="mtr"/></label></p>
+          <input type="number" name="numeroMat" id="mtr" maxlength="10"/></label></p>
         <p>(**) Opzionale sconto studenti!</p>
   		</fieldset>
 
-      <h3>Warning</h3>
-      <fieldset><legend>Age must be over 18</legend>
-          <p>You can not register if you are under the legal age limit.
-              Please consider asking a parent or exit this site.</p>
+      <h3>Età</h3>
+      <fieldset><legend>ATTENZIONE: La tua età deve essere maggiore di 18</legend>
+          <p>Non puoi registrarti se sei sotto il limite legale di legge, vedi i <a href="./info_legali.html">Termini e Condizioni.</a>.
+              <br/>Per piacere chiedi a un maggiorenne di registrarsi per te.</p>
       </fieldset>
 
       <h3>Indirizzo</h3>
@@ -94,15 +96,17 @@
         <!-- lo script provvederà a cambiare la proprietà display se l'utente seleziona la carta-->
         <div id="daticc" style="display: none;">
         <p><label for="ncarta"> Numero Carta:
-          <input type="number" name="numeroCarta" id="ncarta" required/></label></p>
+          <input type="number" name="numeroCarta" id="ncarta" value="0000000000000000" maxlength="16" required/></label></p>
         <p><label for="scad"> Scadenza:
-          <input type="date" name="scadenza" id="scad" required/></label>
+          <input type="date" name="scadenza" id="scad" value="2020-12-31" required/></label>
           <label for="cvv"> CVV:
-          <input type="number" name="cv" id="cvv" required/></label></p>
+          <input type="number" name="cvv" id="cvv" value="000" maxlength="3" required/></label></p>
         </div>
         <br/>
-        <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
-        <input type="submit" name="registra" value="Registra(verrà tolto questo)" id="registra"/>
+        <p><label for="acceptTerms-2">
+          <input id="acceptTerms-2" name="acceptTerms" type="checkbox" checked class="required">Accetto i <a href="./info_legali.html">Termini e Condizioni.</a>
+        </label></p>
+
       </fieldset>
 
   	</form>
@@ -157,11 +161,16 @@ form.steps({
   },
   onFinished: function (event, currentIndex)
   {
-      alert("Submitted!");
+      //ALLA PRESSIONE DEL PULSANTE FINISH
+      //pulisco il campo confirm perchè non venga inviata la copia della password in chiaro
+      document.getElementById("confirm").value = "";
+      //LA FUNZIONE QUI SOTTO FA L'HASHING E INVIA IL FORM
+      formhash(document.getElementById("form"),document.getElementById("pw"));
   }
 }).validate({
   errorPlacement: function errorPlacement(error, element) { element.before(error); },
   rules: {
+      //confirm deve essere uguale alla password pw
       confirm: {
           equalTo: "#pw"
       }
@@ -219,8 +228,7 @@ form.steps({
   }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap"
-            async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap" async defer></script>
   </body>
 
 </html>

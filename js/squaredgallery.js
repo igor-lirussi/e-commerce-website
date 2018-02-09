@@ -73,7 +73,7 @@ $(document).ready(function() {
   $gallery.on("click", ".demo__part-back", function() {
     if (!isShowingBack()) return;
 
-    $help.html(`Realizzati a mano`);
+    $help.html(`Scopri di più sul <a href="./ourFood.html">nostro cibo</a>`);
 
     setTimeout(function() {
       for (let row = 1; row <= rows; row++) {
