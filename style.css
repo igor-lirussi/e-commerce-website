@@ -12,10 +12,9 @@
 body {
     nobackground-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("resources/bg/back2.jpg");
     nobackground: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url("resources/immaginiCibi/realpizza.jpg");
+    background-color:  orange;
     background-repeat: no-repeat;
     background-size: contain;
-    padding: 25px;
-    background-color: #FFFFFF;
     font-size: 100%;
     font: bold 1.5em calibri;
     padding: 0px;
@@ -48,12 +47,33 @@ header a:visited, header a:hover, header a:link {
 }
 
 /*footer*/
+/*not the footer*/
+#not-footer {
+  min-height: 100%;
+  min-height: 100vh;
+  /*il margine qui sotto è l'altezza del footer*/
+  margin-bottom: 200px;
+  position: relative;
+  z-index: 1;
+
+  -webkit-box-shadow: #000 0 7px 35px 0;
+  -moz-box-shadow: #000 0 7px 35px 0;
+  box-shadow: #000 0 7px 35px 0;
+}
+
 footer {
-    background-color: var(--main-color);
-    font-size: 60%;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px;
+  /*questo qui sotto più il padding deve concordare con il margin-bottom del non-footer*/
+  min-height: 150px;
+  padding: 25px 0;
+	font-size: 55%;
+  color: #ffffff;
+  text-align: center;
+	background-color: #2A2A2A;
+	position: fixed;
+	z-index: -1;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 /*pannello centrale*/
@@ -66,7 +86,6 @@ footer {
 }
 /*pannello destro*/
 .right {
-
 }
 
 /*choice */
@@ -177,6 +196,7 @@ nav ul li a:hover {
 /*discover home*/
 .discover {
   padding: 260px 60px ;
+  background-color: white;
   background-image: url("resources/onions.svg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -461,6 +481,9 @@ input[type=submit]:hover {
 }
 
 /***********RESPONSIVE**************/
+.row {
+background-color: yellow;
+}
 .row::after {
     content: "";
     clear: both;
@@ -468,6 +491,7 @@ input[type=submit]:hover {
 }
 [class*="col-"] {
     float: left;
+    height: 100%;
 }
 
 /* For mobile phones: */
