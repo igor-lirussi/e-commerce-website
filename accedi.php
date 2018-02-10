@@ -6,11 +6,13 @@
     <link rel="icon" href="resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="sha512.js"></script>
-    <script type="text/javascript" src="forms.js"></script>
+    <script type="text/javascript" src="./js/sha512.js"></script>
+    <script type="text/javascript" src="./js/forms.js"></script>
   </head>
 
   <body>
+    <div id="not-footer">
+
     <header>
       <a href="home.html">
       <h1>Yook!</h1>
@@ -48,6 +50,8 @@
     <br/>Non hai ancora un account? <br/>
     <a href="registrati.html">Registrati!</a>
   </fieldset>
+
+  </div>
 
   <footer>
     <p>Posted by: </p>

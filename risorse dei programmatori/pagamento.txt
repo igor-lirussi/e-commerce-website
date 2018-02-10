@@ -1,0 +1,2 @@
+
+    <iframe src="https://www.paypal.com/webapps/hermes/button?version=4&amp;env=production&amp;style.size=medium&amp;style.layout=vertical&amp;funding.allowed=credit,venmo&amp;sessionID=46171950e0&amp;locale.x=en_US&amp;logLevel=warn&amp;uid=f6713002fd&amp;xcomponent=1" width="250" height="173" frameborder="0"></iframe>

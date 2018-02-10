@@ -4,5 +4,5 @@ notifiche abbastanza elaborate
 logout
 controllare login ad ogni pagina
 carrello
-restringere campo ricerca
+restringere campo ricerca mappe
 

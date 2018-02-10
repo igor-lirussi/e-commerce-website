@@ -6,6 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <!-- per barra progressi -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
+
+    </script>
     <script>
       function addFast(var quant) {
       }
@@ -27,6 +31,17 @@
       </a>
       <h2>Menù</h2>
     </header>
+
+    <!-- barra progressi -->
+    <div class="checkout-wrap">
+      <ul class="checkout-bar">
+        <li class="active"><a href="#">Menù</a></li>
+        <li class="">Luogo Consegna</li>
+        <li class="">Carrello</li>
+        <li class="">Pagamento</li>
+        <li class="">Fine</li>
+      </ul>
+    </div>
 
     <h3>Cerca</h3>
     <form class="searchform" action="menu.php" onsubmit="return displayFunction()" method="post">
