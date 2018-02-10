@@ -62,17 +62,17 @@
                 <script>
                 var map;
                   function initMap() {
-                    var uluru = {lat: 44.1370565, lng: 12.2381712};
+                    var posrocca = {lat: 44.136503, lng: 12.240194};
                     map = new google.maps.Map(document.getElementById('map'), {
-                      zoom: 19,//minimo 18 per avere il tilt
-                      center: uluru,
+                      zoom: 18,//minimo 18 per avere il tilt
+                      center: posrocca,
                       streetViewControl: false, //niente omino street view
                       mapTypeId: 'hybrid', //solo ibrida o satellite per il tilt
                       tilt: 45, //45 quando possibile
 
                     });
                     var marker = new google.maps.Marker({
-                      position: uluru,
+                      position: posrocca,
                       map: map,
                       title: "Lugo selezionato per la consegna",
                       animation: google.maps.Animation.BOUNCE,
@@ -82,14 +82,17 @@
 
                     //SEZIONE AUTOCOMPLETE
                     var autocomplete = new google.maps.places.Autocomplete(document.getElementById('pac-input'));
-
+                    var circle = new google.maps.Circle({
+                                  center: posrocca,
+                                  radius: 5000
+                                });
                     autocomplete.setTypes(['address']);
                     autocomplete.setComponentRestrictions(
                       {
-                        country: 'IT'
-                        //postalCode: '47923'
-                      });
+                        ///country: 'IT'
 
+                      });
+                    autocomplete.setBounds(circle.getBounds());
                     //se true i suggerimenti sono esclusivamente delle restrizioni
                     autocomplete.setOptions({strictBounds: false});
 

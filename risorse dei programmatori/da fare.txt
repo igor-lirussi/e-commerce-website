@@ -1,8 +1,8 @@
 cercare nel listino
-barra progresso
+OK! barra progresso
 notifiche abbastanza elaborate
 logout
 controllare login ad ogni pagina
 carrello
-restringere campo ricerca mappe
+OK! restringere campo ricerca mappe
 

@@ -95,7 +95,7 @@ ul.checkout-bar a {
   text-decoration: none;
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 768px) {
   .checkout-bar li.active:after {
     -webkit-animation: myanimation 3s 0;
     background-size: 35px 35px;
