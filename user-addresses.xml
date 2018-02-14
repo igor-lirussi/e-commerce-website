@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <users>
-  <user name="Francesco" surname="Brutti" address="Via Carlo Pisacane, 30 47521 Cesena FC"/>
-  <user name="Igor" surname="Lirussi" address="Via Boccaquattro, 3, Cesena, FC, Italia"/>
-  <user name="vincino" surname="provolo" address="via boccaquattro 9 cesena"/>
-  <user name="Sofia" surname="Gattucci" address="Via Marchesi Romagnoli, 5, Cesena, FC, Italia"/>
-  <user name="Mariann" surname="Gregort" address="via tiberti, 3, Cesena, FC, Italia"/>
-  <user name="mario" surname="rossi" address="Contrada Uberti, 5, Cesena, FC, Italia"/>
+  <user name="Gianni" surname="Panni" address="Via Boccaquattro, 3, Cesena, FC, Italia"/>
 </users>

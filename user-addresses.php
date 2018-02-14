@@ -44,15 +44,15 @@
 
       // Set the active MySQL database
 
-      $db_selected = mysqli_select_db($connection, $database);
+      $db_selected = mysqli_select_db($conn, $dbname);
       if (!$db_selected) {
         die ('Can\'t use db : ' . mysql_error());
       }
 
       // Select all the rows in the markers table
 
-      $query = "SELECT * FROM utente_registrato WHERE 1";
-      $result = mysqli_query($connection, $query);
+      $query = "SELECT * FROM members WHERE 1";
+      $result = mysqli_query($conn, $query);
       if (!$result) {
         die('Invalid query: ' . mysql_error());
       }
