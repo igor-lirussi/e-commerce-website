@@ -48,13 +48,35 @@
 
 
     <div class = "row">
-
+      <h1>Il tuo carrello</h1>
       <?php
         include 'connection.php';
         include 'functions.php';
         sec_session_start();
-        print_r($_SESSION['cart']);
-        print_r($_SESSION);
+
+        $query = "SELECT * FROM listino";
+        if($result = $conn->query($query)){
+          // echo session_id();
+          while($row = $result->fetch_row()){
+            if(isset($_SESSION['carrello'][$row[0]])){
+              echo "<div class = 'offert drink'>";
+              echo  "<div class = 'row'>";
+              echo    "<div class = 'col-4'>";
+              echo      "<img src = '".$row[5]."'>";
+              echo    "</div>";
+              echo    "<div class = 'col-8 desc'>";
+              echo      "<p>".$row[1]."</p>";
+              echo      "<p>".$row[3]."</p>";
+              echo      "<p>".$row[4]."€</p>";
+              echo      "<p>Quantità selezionata: ";
+              print_r($_SESSION['carrello'][$row[0]]['quantity']);
+              echo "</p>";
+              echo    "</div>";
+              echo  "</div>";
+              echo "</div>";
+            }
+          }
+        }
       ?>
       <a href="menu.php">Torna al menu</a>
       <a href="pagamento.php">Paga</a>

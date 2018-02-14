@@ -189,21 +189,21 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
-              $indq = $_POST['q'.$row[0]];
-              echo $indq;
-              if(isset($_SESSION['cart'][$row[0]])){
-                echo "ciao";
-                echo $indq;
-                for ($i=0; $i < $indq; $i++) {
-                  echo "ciao in for";
-                  $_SESSION['cart'][$row[0]]++;
-                  print_r($_SESSION['cart'][$row[0]]);
-                }
-              }else{
-                echo "ciao mai inizializzato";
-                $_SESSION['cart'] = array($row[0] => $indq);
-                print_r($_SESSION['cart'][$row[0]]);
-                print_r($_SESSION['cart']);
+              echo "prima if esterno";
+              if (isset($_SESSION['carrello'][$row[0]])) {
+
+                echo " dentro if esterno";
+                $q = $_POST['q'.$row[0]];
+                echo " quantità passata da form: ".$q;
+                echo "array prima di aggiunta:";
+                print_r($_SESSION['carrello'][$row[0]]);
+                $_SESSION['carrello'][$row[0]]['quantity'] += $q;
+                echo "  array dopo di aggiunta:";
+                print_r($_SESSION['carrello'][$row[0]]);
+              } else {
+
+                echo " in else esterno";
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0);
               }
               echo    "</div>";
               echo  "</div>";
