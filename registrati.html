@@ -184,15 +184,18 @@ form.steps({
   function initMap() {
 
     //SEZIONE AUTOCOMPLETE
+    var posrocca = {lat: 44.136503, lng: 12.240194};
     var autocomplete = new google.maps.places.Autocomplete(document.getElementById('indir'));
-
+    var circle = new google.maps.Circle({
+                  center: posrocca,
+                  radius: 5000
+                });
     autocomplete.setTypes(['address']);
     autocomplete.setComponentRestrictions(
       {
-        country: 'IT'
-        //postalCode: '47923'
+        ///country: 'IT'
       });
-
+    autocomplete.setBounds(circle.getBounds());
     //se true i suggerimenti sono esclusivamente delle restrizioni
     autocomplete.setOptions({strictBounds: false});
 
