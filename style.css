@@ -301,6 +301,7 @@ z-index: 20;
   padding: 15px;
   border: solid;
   border-radius: 15px 50px;
+  border-color: var(--main-color);
   margin: 10px;
   font: italic bold 16px/2 cursive;
 }

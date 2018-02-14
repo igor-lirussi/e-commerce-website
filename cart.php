@@ -59,7 +59,7 @@
           // echo session_id();
           while($row = $result->fetch_row()){
             if(isset($_SESSION['carrello'][$row[0]])){
-              echo "<div class = 'offert drink'>";
+              echo "<div class = 'offert'>";
               echo  "<div class = 'row'>";
               echo    "<div class = 'col-4'>";
               echo      "<img src = '".$row[5]."'>";
@@ -67,7 +67,9 @@
               echo    "<div class = 'col-8 desc'>";
               echo      "<p>".$row[1]."</p>";
               echo      "<p>".$row[3]."</p>";
-              echo      "<p>".$row[4]."€</p>";
+              echo      "<p>";
+              print_r($_SESSION['carrello'][$row[0]]['price']);
+              echo "€</p>";
               echo      "<p>Quantità selezionata: ";
               print_r($_SESSION['carrello'][$row[0]]['quantity']);
               echo "</p>";

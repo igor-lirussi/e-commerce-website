@@ -95,20 +95,28 @@
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert fast'>";
-              echo "<div class = 'row'>";
-              echo "<div class = 'col-4'>";
-              echo    "<img src = '".$row[5]."'>";
-              echo "</div>";
-              echo "<div class = 'col-8 desc'>";
-              echo    "<p>".$row[1]."</p>";
-              echo    "<p>".$row[3]."</p>";
-              echo    "<p>".$row[4]."€</p>";
-              echo "<form action='menu.php' method='post'>
-                      <input type='number' name='qfast' max='100' value = 1>
-                      <input type='button' name='fast' value='Aggiungi al carrello'>
-                    </form>";
-                    echo "</div>";
-              echo "</div>";
+              echo  "<div class = 'row'>";
+              echo    "<div class = 'col-4'>";
+              echo      "<img src = '".$row[5]."'>";
+              echo    "</div>";
+              echo    "<div class = 'col-8 desc'>";
+              echo      "<p>".$row[1]."</p>";
+              echo      "<p>".$row[3]."</p>";
+              echo      "<p>".$row[4]."€</p>";
+              echo      "<form action='menu.php' method='post'>
+                          <input type='number' name='q".$row[0]."' max='100' value = 1>
+                          <input type='submit' name='fast' value='Aggiungi al carrello'>
+                        </form>";
+              if (isset($_SESSION['carrello'][$row[0]])) {
+                $q = $_POST['q'.$row[0]];
+                $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity'];
+                $_SESSION['carrello'][$row[0]]['quantity'] += $q;
+                $_SESSION['carrello'][$row[0]]['price'] = $p;
+              } else {
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0);
+              }
+              echo    "</div>";
+              echo  "</div>";
               echo "</div>";
             }
           } else {
@@ -136,20 +144,28 @@
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert meal'>";
-              echo "<div class = 'row'>";
-              echo "<div class = 'col-4'>";
-              echo    "<img src = '".$row[5]."'>";
-              echo "</div>";
-              echo "<div class = 'col-8 desc'>";
-              echo    "<p>".$row[1]."</p>";
-              echo    "<p>".$row[3]."</p>";
-              echo    "<p>".$row[4]."€</p>";
-              echo "<form action='menu.php' method='post'>
-                      <input type='number' name='qmeal' max='100' value = 1>
-                      <input type='button' name='fast' value='Aggiungi al carrello'>
-                    </form>";
-                    echo "</div>";
-              echo "</div>";
+              echo  "<div class = 'row'>";
+              echo    "<div class = 'col-4'>";
+              echo      "<img src = '".$row[5]."'>";
+              echo    "</div>";
+              echo    "<div class = 'col-8 desc'>";
+              echo      "<p>".$row[1]."</p>";
+              echo      "<p>".$row[3]."</p>";
+              echo      "<p>".$row[4]."€</p>";
+              echo      "<form action='menu.php' method='post'>
+                          <input type='number' name='q".$row[0]."' max='100' value = 1>
+                          <input type='button' name='fast' value='Aggiungi al carrello'>
+                        </form>";
+              if (isset($_SESSION['carrello'][$row[0]])) {
+                $q = $_POST['q'.$row[0]];
+                $p = $row[4] * $q;
+                $_SESSION['carrello'][$row[0]]['quantity'] += $q;
+                $_SESSION['carrello'][$row[0]]['price'] = $p;
+              } else {
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0);
+              }
+              echo    "</div>";
+              echo  "</div>";
               echo "</div>";
             }
           } else {
@@ -189,21 +205,13 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
-              echo "prima if esterno";
               if (isset($_SESSION['carrello'][$row[0]])) {
-
-                echo " dentro if esterno";
                 $q = $_POST['q'.$row[0]];
-                echo " quantità passata da form: ".$q;
-                echo "array prima di aggiunta:";
-                print_r($_SESSION['carrello'][$row[0]]);
+                $p = $row[4] * $q;
                 $_SESSION['carrello'][$row[0]]['quantity'] += $q;
-                echo "  array dopo di aggiunta:";
-                print_r($_SESSION['carrello'][$row[0]]);
+                $_SESSION['carrello'][$row[0]]['price'] = $p;
               } else {
-
-                echo " in else esterno";
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0);
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0);
               }
               echo    "</div>";
               echo  "</div>";
