@@ -5,4 +5,6 @@ logout
 controllare login ad ogni pagina
 carrello
 OK! restringere campo ricerca mappe
+risolvere conflitto boostrap nella registrazione
+canvas
 
