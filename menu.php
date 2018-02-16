@@ -22,6 +22,7 @@
     <?php
       include 'functions.php';
       include 'connection.php';
+      error_reporting(~E_WARNING);
       sec_session_start();
       if(login_check($conn) == true) {
      ?>
@@ -44,32 +45,10 @@
     </div>
 
     <h3>Cerca</h3>
-    <form class="searchform" action="menu.php" onsubmit="return displayFunction()" method="post">
-      <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
-      <input type="submit">
-    </form>
-    <div class="searchresult">  <!-- DA SPOSATRE TUTTO QUESTO DIV IN UNO SCRIPT CHE SI VISUALIZZA SOLO SE E' STATO PREMUTO IL PULSANTE DELLA RICERCA -->
-      <?php
-        if($query = $conn->prepare("SELECT * FROM listino WHERE Nome LIKE '%'?'%'")){ //NON FUNZIONA PER VIA DI SBAGLIATA COMBINAZIONE DI % E ?
-          $search = $_POST["search"];
-          $query->bind_param('s', $search);
-          $query->execute();
-          echo "after execute";
-          $result = $query->get_result();
-          echo "before while";
-          while($row = $result->fetch_assoc()){
-            echo "ciao";
-            echo "<p>".$row[1]."</p>";
-            echo "<p>".$row[3]."</p>";
-            echo "<p>".$row[4]."€</p>";
-          }
-          echo $row. "  ";
-          echo "after while";
-        } else {
-          echo "Query non andata a buon fine";
-        }
-      ?>
-    </div>
+      <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post">
+        <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
+        <input type="submit">
+      </form>
 
     <div class="row listino">
       <div class="col-4 pastiVeloci">
@@ -108,7 +87,7 @@
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
               if (isset($_SESSION['carrello'][$row[0]])) {
-                $q = $_POST['q'.$row[0]];
+                $q = @$_POST['q'.$row[0]];
                 $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity'];
                 $_SESSION['carrello'][$row[0]]['quantity'] += $q;
                 $_SESSION['carrello'][$row[0]]['price'] = $p;
@@ -157,7 +136,7 @@
                           <input type='button' name='fast' value='Aggiungi al carrello'>
                         </form>";
               if (isset($_SESSION['carrello'][$row[0]])) {
-                $q = $_POST['q'.$row[0]];
+                $q = @$_POST['q'.$row[0]];
                 $p = $row[4] * $q;
                 $_SESSION['carrello'][$row[0]]['quantity'] += $q;
                 $_SESSION['carrello'][$row[0]]['price'] = $p;
@@ -206,7 +185,7 @@
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
               if (isset($_SESSION['carrello'][$row[0]])) {
-                $q = $_POST['q'.$row[0]];
+                $q = @$_POST['q'.$row[0]];
                 $p = $row[4] * $q;
                 $_SESSION['carrello'][$row[0]]['quantity'] += $q;
                 $_SESSION['carrello'][$row[0]]['price'] = $p;
