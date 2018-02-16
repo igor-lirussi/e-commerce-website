@@ -8,10 +8,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="./js/sha512.js"></script>
     <script type="text/javascript" src="./js/forms.js"></script>
+    <!-- per il popup modal -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src="js/modal.js"></script>
   </head>
 
   <body>
+    <!-- popup modal -->
+    <!-- va messo nel body come figlio diretto, tutto gli altri figli verranno sfocati -->
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="head">
+          Wow! <i class="fas fa-child"></i>
+          <a class="btn-close trigger" href="#">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="content">
+            <div id="good-job"><?php
+              if(isset($_GET['error'])) {
+                if($_GET['error']==1) {
+                  echo '<i class="fas fa-exclamation-triangle"></i> <h1>Error Logging In!<br/>Try again!</h1>';
+
+                } else if($_GET['error']==2) {
+                  echo '<i class="fas fa-envelope"></i> <h1>An e-mail to your account has been sent!</h1>';
+                  echo 'Please log-in with the new password';
+
+                } else {
+                  echo '<i class="fas fa-exclamation-triangle"></i> <h1> Error unknown </h1>';
+                }
+              }
+              if(isset($_GET['register'])) {
+                echo '<i class="fas fa-thumbs-up"></i> <h1>Registration successfull</h>';
+              }
+            ?></div>
+        </div>
+      </div>
+    </div>
+
     <div id="not-footer">
+
+<button type="button" class="trigger" name="button">asd</button>
 
     <header>
       <a href="home.html">
@@ -20,19 +59,9 @@
       <h2>Accedi</h2>
       <p>Accumula punti e ottieni fantastiche ricompense!</p>
     </header>
-    <?php
-      if(isset($_GET['error'])) {
-        if($_GET['error']==1) {
-          echo 'Error Logging In! Try again!';
-        } else {
-          echo 'Error unknown passed';
-        }
-      }
-      if(isset($_GET['register'])) {
-        echo 'Registration successfull';
-      }
 
-    ?>
+
+
 
     <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>
     <form action="process_login.php" method="post" name="login_form">
@@ -42,7 +71,14 @@
    </p>
    <p><label for="password">Password:
       <input type="password" name="p" id="password"
-      placeholder="inserisci password" required /></label>
+      placeholder="inserisci password" required />
+        <?php
+          if(isset($_GET['error'])) {
+          if($_GET['error']==1) {
+            echo '<div class="tip"> Forgot your password? Send an <a href="accedi.php?error=2">e-mail</a></div>';
+          }}
+        ?>
+      </label>
     </p>
    <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" />
 
@@ -57,6 +93,6 @@
     <p>Posted by: </p>
     <p>Contact information: <a href="mailto:someone@example.com">
     someone@example.com</a>.</p>
-    </footer>
+  </footer>
   </body>
 </html>

@@ -1,0 +1,91 @@
+
+.blur-it {
+  -webkit-filter: blur(6px);
+          filter: blur(6px);
+}
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255, 165, 0, 0.6);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  z-index: 99999;
+}
+
+.modal-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+  z-index: 99999;
+}
+
+.modal {
+  width: 100%;
+  display: block;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  opacity: 0;
+  border-radius: 20px;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  z-index: 99999;
+}
+
+.modal-wrapper.open .modal {
+  margin-top: 0px;
+  opacity: 1;
+  z-index: 99999;
+}
+
+.head {
+  border-radius: 20px 20px 0px 0px;
+  color: white;
+  padding: 12px 30px;
+  overflow: hidden;
+  background: #e2525c;
+  font-size: 50px;
+}
+
+.btn-close {
+  display: block;
+  float: right;
+  color: #fff;
+}
+
+.content {
+  padding: 10%;
+  text-align: center;
+  color: #e2525c;
+}
+
+.content .fas {
+  /*icone nel contenitore*/
+  font-size:255%;
+}
+.content h1 {
+  font-size: 45px;
+}
+
+/***************RESPONSIVE******************/
+@media all and (min-width: 768px) {
+  .head{
+    font-size: 20px;
+    height: 25px;
+  }
+  .modal {
+    width: 600px;
+    margin: 50% 0 0 -300px;
+    position: relative;
+  }
+
+  .modal-wrapper.open .modal {
+    margin-top: -200px;
+    opacity: 1;
+  }
+}

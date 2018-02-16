@@ -516,6 +516,13 @@ input[type=submit]:hover {
   left: 0;
 }
 
+.tip {
+  color: red;
+  font-size: 15px;
+}
+.tip a {
+  color: red;
+}
 /***********RESPONSIVE**************/
 .row {
 background-color: yellow;

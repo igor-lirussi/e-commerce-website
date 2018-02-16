@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per barra progressi -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
-
+    <!-- per il paypal -->
+  <script src="https://www.paypalobjects.com/api/checkout.js"></script>
   </head>
 
   <body>
@@ -48,9 +49,51 @@
 
 
     <div class = "row">
+      <!-- PayPal Logo -->
+      <table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr>
+      <tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;">
+        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now Accepting PayPal"></a></td></tr></table>
+        <!-- PayPal Logo -->
 
           <iframe src="https://www.paypal.com/webapps/hermes/button?version=4&amp;env=production&amp;style.size=medium&amp;style.layout=vertical&amp;funding.allowed=credit,venmo&amp;sessionID=46171950e0&amp;locale.x=en_US&amp;logLevel=warn&amp;uid=f6713002fd&amp;xcomponent=1" width="250" height="173" frameborder="0"></iframe>
+          <div id="paypal-button"></div>
 
+           <script>
+             paypal.Button.render({
+               env: 'production', // Or 'sandbox',
+
+               commit: true, // Show a 'Pay Now' button
+
+               style: {
+                 color: 'gold',
+                 size: 'small'
+               },
+
+               payment: function(data, actions) {
+                 /*
+                  * Set up the payment here
+                  */
+               },
+
+               onAuthorize: function(data, actions) {
+                 /*
+                  * Execute the payment here
+                  */
+               },
+
+               onCancel: function(data, actions) {
+                 /*
+                  * Buyer cancelled the payment
+                  */
+               },
+
+               onError: function(err) {
+                 /*
+                  * An error occurred during the transaction
+                  */
+               }
+             }, '#paypal-button');
+           </script>
     </div>
 
 
