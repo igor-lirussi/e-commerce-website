@@ -9,8 +9,36 @@
       $codice = $row[0] + 1;
     }
   }
+  if ($_FILES['image']) {
+    if(is_uploaded_file($_FILES['image']['tmp_name'])) {
 
-  $immagine = $_POST['img'];
+      //controllo che il file non superi i 100 KB (1 kilobyte = 1024 byte)
+      if($_FILES['image']['size']>250000)
+        echo "Il file ha dimensioni che superano i 2 MB";
+
+      //recupero le informazioni sull'immagine
+      list($width, $height, $type, $attr)=getimagesize($_FILES['image']['tmp_name']);
+
+      //controllo che le dimensioni (in pixel) non superino 800x600
+      if(($width>1280) or ($height>720))
+        echo "Il file non deve superare le dimensioni di 1280x720";
+
+      //controllo che il file sia in uno dei formati GIF, JPG o PNG
+      if(($type!=1) and ($type!=2) and ($type!=3))
+        echo "Il file caricato deve essere un'immagine";
+
+
+      //controllo che non esiste già un file con lo stesso nome
+      if(file_exists('./resources/immaginiCibi/'.$_FILES['image']['name']))
+        echo "Esiste già un file con lo stesso nome. Rinominare l'immagine prima di caricarla";
+
+      //salvo il file nella cartella di destinazione
+      if(!move_uploaded_file($_FILES['image']['tmp_name'], './resources/immaginiCibi/'.$_FILES['image']['name']))
+        echo "Errore imprevisto nel caricamento del file. Controllare i permessi della cartella di destinazione";
+    }
+  }
+  $immagine = "./resources/immaginiCibi/".$_FILES['image']['name'];
+  echo $immagine;
   $nome = $_POST['nomeInserito'];
   $cat = $_POST['categInserita'];
   $desc = $_POST['descInserita'];
