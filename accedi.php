@@ -50,8 +50,6 @@
 
     <div id="not-footer">
 
-<button type="button" class="trigger" name="button">asd</button>
-
     <header>
       <a href="home.html">
       <h1>Yook!</h1>
