@@ -32,6 +32,8 @@
       // Esegui la query ottenuta.
       $insert_stmt->execute();
       header('Location: ./accedi.php?register=0');
+    } else {
+      echo 'errore di connessione database';
     }
   } else {
    // Le variabili corrette non sono state inviate a questa pagina dal metodo POST.
