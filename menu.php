@@ -10,10 +10,6 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
 
     </script>
-    <script>
-      function addFast(var quant) {
-      }
-    </script>
     <title>SitoCibo</title>
     <link rel="icon" href="resources/favicon.ico" />
   </head>
