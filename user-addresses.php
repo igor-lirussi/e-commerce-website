@@ -62,9 +62,11 @@
 
       while($row = mysqli_fetch_array($result)){
         $marker = $xml->addChild("user");
-        $marker->addAttribute("name", $row['Nome'] );
-        $marker->addAttribute("surname", $row['Cognome'] );
+        $marker->addAttribute("id", $row['id'] );
+        $marker->addAttribute("punti", $row['PuntiAccumulati'] );
         $marker->addAttribute("address", $row['Indirizzo'] );
+        $marker->addAttribute("surname", $row['Cognome'] );
+        $marker->addAttribute("name", $row['Nome'] );
       }
       //salvo l'xml nella stringa
       $notformattedXML = $xml->asXML();
@@ -74,9 +76,11 @@
       $dom->formatOutput = true;
       $formattedXML = $dom->saveXML();
 
-      echo $formattedXML;
+      //per il debug posso stampare direttamente nel codice della pagina l'XML
+      //echo $formattedXML;
+
       //scrivo l'xml nel file
-      $fp = fopen("user-addresses.xml", "w+");
+      $fp = fopen("users.xml", "w+");
       if(!$fp) die ("Errore nell'operazione con il file xml");
 
       fwrite($fp, $formattedXML);
@@ -94,6 +98,7 @@
 
 
             <script>
+            //customLabel non usato ma in caso è qui
             var customLabel = {
               restaurant: {
                 label: 'R'
@@ -102,13 +107,15 @@
                 label: 'B'
               }
             };
-
+            // script per la mappa
             var map;
             var pos;
               function initMap() {
 
-                var infoWindow = new google.maps.InfoWindow;
+                var infoWindow = new google.maps.InfoWindow; //le infowindow verranno modificate per ogni posto in seguito
+                // posto principale
                 pos = {lat: 44.137535, lng: 12.245450 };
+                // creo mapp
                 map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 15,//minimo 18 per avere il tilt
                   center: pos,
@@ -117,6 +124,7 @@
                   tilt: 45, //45 quando possibile
 
                 });
+                // creo il marker della base
                 var markerbase = new google.maps.Marker({
                   position: pos,
                   map: map,
@@ -129,7 +137,7 @@
 
 
 
-                downloadUrl('user-addresses.xml', function(data) {
+                downloadUrl('users.xml', function(data) {
                   var geocoder = new google.maps.Geocoder();
                   var xml = data.responseXML;
                   var markers = xml.documentElement.getElementsByTagName('user');
@@ -139,6 +147,7 @@
                     var name = markerElem.getAttribute('name');
                     var surname = markerElem.getAttribute('surname');
                     var address = markerElem.getAttribute('address');
+                    var id = markerElem.getAttribute('id');
                     //infoWindow
                     var infowincontent = document.createElement('div');
                     var strong = document.createElement('strong');
@@ -158,7 +167,7 @@
                               animation: google.maps.Animation.DROP,
                               title: "Fai click per info",
                               position:  results[0].geometry.location
-                              //label: icon.label
+                              //label: id
                             });
                             //al marker collego la infoWindow
                             marker.addListener('click', function() {

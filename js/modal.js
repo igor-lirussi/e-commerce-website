@@ -1,7 +1,3 @@
-// ===================================
-// Created for Codepad.co
-// https://codepad.co/snippet/hNg85isU
-// ===================================
 
 $( document ).ready(function() {
   //verifica se al caricamento il contenuto dell'ID è vuoto
