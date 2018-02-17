@@ -304,11 +304,21 @@ z-index: 20;
   border-color: var(--main-color);
   margin: 10px;
   font: italic bold 16px/2 cursive;
+  -webkit-transition: width 2s, height 4s;
+  transition: width 2s, height 4s;
 }
 
 .offert img {
   width: 100px;
   height:100px;
+  -webkit-transition: width 2s, height 2s;
+  transition: width 2s, height 2s;
+}
+
+.offert:hover img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
 }
 
 .offert>form{

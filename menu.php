@@ -54,27 +54,11 @@
       <div class="col-4 pastiVeloci">
         <h3>Pasti Veloci</h3>
         <?php
-          // if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'")){
-          //   $query->execute();
-          //   if($query->num_rows == 1){
-          //     while($row = mysqli_fetch_assoc($query)){
-          //       echo "<div class = 'offert fast'>";
-          //       echo "<p>".$row['Nome']."</p>";
-          //       echo "<p>".$row['Descrizione']."</p>";
-          //       echo "<p>".$row['Prezzo']."€</p>";
-          //       echo "</div>";
-          //     }
-          //   } else {
-          //     echo "Nessun dato trovato";
-          //   }
-          // } else {
-          //   echo "Query non esguita";
-          // }
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'";
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert fast'>";
-              echo  "<div class = 'row'>";
+              echo  "<div class = 'row prova'>";
               echo    "<div class = 'col-4'>";
               echo      "<img src = '".$row[5]."'>";
               echo    "</div>";
@@ -107,23 +91,11 @@
       <div class="col-4 primi">
         <h3>Primi</h3>
         <?php
-          // if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Categoria ='Primi'")){
-          //   $query->execute();
-          //   if($query->num_rows == 1){
-          //     while($row=mysqli_fetch_assoc($result)){
-          //       echo "<div class = 'offert meal'>";
-          //       echo "<p>".$row['Nome']."</p>";
-          //       echo "<p>".$row['Descrizione']."</p>";
-          //       echo "<p>".$row['Prezzo']."€</p>";
-          //       echo "</div>";
-          //     }
-          //   }
-          // }
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Primi'";
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert meal'>";
-              echo  "<div class = 'row'>";
+              echo  "<div class = 'row prova'>";
               echo    "<div class = 'col-4'>";
               echo      "<img src = '".$row[5]."'>";
               echo    "</div>";
@@ -133,7 +105,7 @@
               echo      "<p>".$row[4]."€</p>";
               echo      "<form action='menu.php' method='post'>
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
-                          <input type='button' name='fast' value='Aggiungi al carrello'>
+                          <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
               if (isset($_SESSION['carrello'][$row[0]])) {
                 $q = @$_POST['q'.$row[0]];
@@ -156,23 +128,11 @@
       <div class="col-4 bevande">
         <h3>Bevande</h3>
         <?php
-          // if($query = $conn->prepare("SELECT * FROM listino WHERE listino.Categoria ='Bevande'")){
-          //   $query->execute();
-          //   if($query->num_rows == 1){
-          //     while($row=mysqli_fetch_assoc($result)){
-          //       echo "<div class = 'offert drink'>";
-          //       echo "<p>".$row['Nome']."</p>";
-          //       echo "<p>".$row['Descrizione']."</p>";
-          //       echo "<p>".$row['Prezzo']."€</p>";
-          //       echo "</div>";
-          //     }
-          //   }
-          // }
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Bevande'";
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
               echo "<div class = 'offert drink'>";
-              echo  "<div class = 'row'>";
+              echo  "<div class = 'row prova'>";
               echo    "<div class = 'col-4'>";
               echo      "<img src = '".$row[5]."'>";
               echo    "</div>";
