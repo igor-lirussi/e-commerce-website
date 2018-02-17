@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+
+  <head>
+  </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </script>
+    <script>
+      $(document).ready(function(){
+        $(".nascondi").hide();
+      });
+    </script>
+    <title>SitoCibo</title>
+    <link rel="icon" href="resources/favicon.ico" />
+  </head>
+
+  <body>
+    <header>
+      <a href="home.html">
+      <h1>Yook!</h1>
+      </a>
+      <h2>Disegna la tua pizza!</h2>
+    </header>
+
+    <p>Image to use:</p>
+
+    <img id="funghi" width="220" height="277" src="./resources/immaginiCibi/fungo.jpg" alt="Mashroom">
+    <div class="nascondi">
+      <img id="impasto" width="100" height="100" src="./resources/immaginiCibi/impasto.jpg" alt="impasto">
+    </div>
+
+    <p>Canvas:</p>
+
+    <canvas id="myCanvas" width="500" height="500"
+    style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+    </canvas>
+
+    <script>
+    window.onload = function() {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var img = document.getElementById("funghi");
+        var sfondo = document.getElementById("impasto");
+        ctx.drawImage(sfondo, 10, 10, 400, 300);
+        $(document).ready(function(){
+          $("#funghi").click(function(){
+          // ctx.globalCompositeOperation = "source-over";
+          ctx.drawImage(img, 117, 95, 30, 30);
+          ctx.drawImage(img, 175, 238, 30, 30);
+          ctx.drawImage(img, 200, 65, 30, 30);
+          ctx.drawImage(img, 157, 132, 30, 30);
+          ctx.drawImage(img, 280, 160, 30, 30);
+          ctx.drawImage(img, 270, 100, 30, 30);
+          ctx.drawImage(img, 270, 208, 30, 30);
+          ctx.drawImage(img, 220, 179, 30, 30);
+          ctx.drawImage(img, 110, 160, 30, 30);
+          ctx.drawImage(img, 157, 198, 30, 30);
+          ctx.drawImage(img, 210, 118, 30, 30);
+          });
+        });
+
+    };
+    </script>
+
+  </body>
+</html>
