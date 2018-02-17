@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <users>
-  <user id="0" punti="0" address="Via Boccaquattro, 3, Cesena, FC, Italia" surname="Panni" name="Gianni"/>
-  <user id="0" punti="0" address="Via Dismano, Cesena, FC, Italia" surname="gigio" name="topo"/>
-  <user id="0" punti="0" address="Via Calcinaro, Cesena, FC, Italia" surname="cresta" name="giacomo"/>
-  <user id="3" punti="23" address="corso Sozzi, cesena" surname="rmario" name="mario"/>
+  <user id="0" punti="10" address="Via Boccaquattro, 3, Cesena, FC, Italia" surname="Panni" name="Gianni"/>
+  <user id="0" punti="34" address="Via Dismano, Cesena, FC, Italia" surname="Logio" name="topo"/>
+  <user id="0" punti="4" address="Via Calcinaro, Cesena, FC, Italia" surname="Cresta" name="giacomo"/>
+  <user id="3" punti="23" address="corso Sozzi, cesena" surname="Rozzi" name="mario"/>
 </users>
