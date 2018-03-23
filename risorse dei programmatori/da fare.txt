@@ -1,13 +1,16 @@
 cercare nel listino
 OK! barra progresso
 notifiche abbastanza elaborate
+salvataggio ordini in db
+accesso admin ad amministra
+pagamento
+
 logout
 controllare login ad ogni pagina
 carrello
 OK! restringere campo ricerca mappe
 risolvere conflitto boostrap nella registrazione
 canvas
-
 
 mettere l'auto increment nell'ID
 mettere il default admin a 0 così non si deve passare lo zero
