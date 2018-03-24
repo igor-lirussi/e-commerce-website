@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./resources/JquerySteps/mysteps.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/map.css">
+    <!-- per indicatore psw -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/strengthify.css" >
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -18,6 +20,8 @@
     <script src="./resources/JquerySteps/jquery.validate.js"></script>
     <script type="text/javascript" src="./js/sha512.js"></script>
     <script type="text/javascript" src="./js/forms.js"></script>
+    <!-- per indicatore psw -->
+    <script type="text/javascript" src="./js/jquery.strengthify.js"></script>
     <script>
       function displayFunction() {
           var x = document.getElementById("pagamento").value;
@@ -55,7 +59,7 @@
       <h3>Password</h3>
       <fieldset><legend>Inserisci Password:</legend>
         <p><label for="pw"> Password *:
-          <input type="password" name="password" id="pw" maxlength="20" required/></label></p>
+          <input type="password" name="password" id="pw" maxlength="20" required/></label></p><br/>
         <p><label for="confirm">Conferma password *:
           <input type="password" name="confirm" id="confirm" maxlength="20" required/></label></p>
         <p><label for="age">Age *</label>
@@ -191,10 +195,10 @@ form.steps({
                   radius: 5000
                 });
     autocomplete.setTypes(['address']);
-    autocomplete.setComponentRestrictions(
+    /*autocomplete.setComponentRestrictions(
       {
-        ///country: 'IT'
-      });
+        country: 'IT'
+      });*/
     autocomplete.setBounds(circle.getBounds());
     //se true i suggerimenti sono esclusivamente delle restrizioni
     autocomplete.setOptions({strictBounds: false});
@@ -230,7 +234,14 @@ form.steps({
 
   }
 </script>
-
+<script>
+//script per indicatore psw, attenzione va messo dopo
+$('#pw').strengthify({
+  zxcvbn: 'https://cdn.rawgit.com/dropbox/zxcvbn/master/dist/zxcvbn.js',
+  drawTitles: true,
+  drawMessage: false
+})
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap" async defer></script>
   </body>
 

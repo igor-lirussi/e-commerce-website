@@ -13,4 +13,5 @@ risolvere conflitto boostrap nella registrazione
 canvas
 
 mettere l'auto increment nell'ID
+mettere un username decente o toglierlo
 mettere il default admin a 0 così non si deve passare lo zero
