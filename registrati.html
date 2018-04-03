@@ -22,6 +22,7 @@
     <script type="text/javascript" src="./js/forms.js"></script>
     <!-- per indicatore psw -->
     <script type="text/javascript" src="./js/jquery.strengthify.js"></script>
+    <!-- per mostrare o meno i campi pagamento -->
     <script>
       function displayFunction() {
           var x = document.getElementById("pagamento").value;
@@ -72,13 +73,13 @@
 
       <h3>Età</h3>
       <fieldset><legend>ATTENZIONE: La tua età deve essere maggiore di 18</legend>
-          <p>Non puoi registrarti se sei sotto il limite legale di legge, vedi i <a href="./info_legali.html">Termini e Condizioni.</a>.
+          <p>Non puoi registrarti se sei sotto il limite legale di legge, vedi i <a href="./info_legali.html" target="_blank">Termini e Condizioni.</a>.
               <br/>Per piacere chiedi a un maggiorenne di registrarsi per te.</p>
       </fieldset>
 
       <h3>Indirizzo</h3>
   		<fieldset><legend>Dati di recapito:</legend>
-        <p><label for="indir"> Indirizzo *:
+        <p><label for="indir"> Indirizzo abitazione *:
           </label></p>
         <p>(*) Obbligatori</p>
         <div class="pac-card" id="pac-card">
@@ -108,7 +109,7 @@
         </div>
         <br/>
         <p><label for="acceptTerms-2">
-          <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required">Accetto i <a href="./info_legali.html" target=”_blank”>Termini e Condizioni.</a>
+          <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required">Accetto i <a href="./info_legali.html" target="_blank">Termini e Condizioni.</a>
         </label></p>
 
       </fieldset>
@@ -148,14 +149,14 @@ form.steps({
   onStepChanged: function (event, currentIndex, priorIndex)
   {
       // Used to skip the "Warning" step if the user is old enough.
-      if (currentIndex === 2 && Number($("#age").val()) >= 18)
+      if (currentIndex === 2 && priorIndex === 1 && Number($("#age").val()) >= 18)
       {
           form.steps("next");
       }
       // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
       if (currentIndex === 2 && priorIndex === 3)
       {
-          //form.steps("previous");
+          form.steps("previous");
       }
   },
   onFinishing: function (event, currentIndex)
@@ -234,6 +235,7 @@ form.steps({
 
   }
 </script>
+
 <script>
 //script per indicatore psw, attenzione va messo dopo
 $('#pw').strengthify({

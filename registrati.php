@@ -9,7 +9,7 @@
     $zero = 0;
     $name = $_POST['nome'];
     $surname = $_POST['cognome'];
-    $username = 'stronzo';
+    $username = strtolower($name."_".$surname);
     $email = $_POST['mail'];
     $indir = $_POST['indirizzo'];
     $pagamento = $_POST['pagamento'];
@@ -26,9 +26,9 @@
     // Inserisci a questo punto il codice SQL per eseguire la INSERT nel tuo database
     // Assicurati di usare statement SQL 'prepared'.
 
-    if ($insert_stmt = $conn->prepare("INSERT INTO members (id, nome, cognome, username, email, password, salt, indirizzo, TipoPagamento, NumeroCarta, Scadenza, CVV, NumeroMatricola, Amministratore, PuntiAccumulati)
-                                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-      $insert_stmt->bind_param('issssssssisiiii', $zero, $name, $surname, $username, $email, $password, $random_salt, $indir, $pagamento, $numeroCarta, $scadenza, $cvv, $numeroMat, $zero, $zero);
+    if ($insert_stmt = $conn->prepare("INSERT INTO members ( nome, cognome, username, email, password, salt, indirizzo, TipoPagamento, NumeroCarta, Scadenza, CVV, NumeroMatricola, Amministratore, PuntiAccumulati)
+                                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+      $insert_stmt->bind_param('ssssssssisiiii', $name, $surname, $username, $email, $password, $random_salt, $indir, $pagamento, $numeroCarta, $scadenza, $cvv, $numeroMat, $zero, $zero);
       // Esegui la query ottenuta.
       $insert_stmt->execute();
       header('Location: ./accedi.php?register=0');
