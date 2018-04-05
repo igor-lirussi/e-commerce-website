@@ -14,4 +14,7 @@ canvas
 
 OK! mettere l'auto increment nell'ID
 OK! mettere un username decente o toglierlo
-mettere il default admin a 0 così non si deve passare lo zero
+OK! mettere il default admin a 0 così non si deve passare lo zero
+
+risolvere registrazione con mail uguali
+immagine vettoriale logo

@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="css/squaredgallery.css">
     <!-- per il loader -->
     <link rel="stylesheet" href="css/loader.css">
+    <!-- per il passaggio dei dati guest -->
+    <script type="text/javascript" src="./js/forms.js"></script>
+    <script type="text/javascript" src="./js/sha512.js"></script>
   </head>
 
   <body onload="lateFunction()">
@@ -58,8 +61,11 @@
 
     <div class="row choice">
       <div class="col-6 left">
-        <form class="" action="menu.php" >
-          <button class='myButt three'>Ordina al volo</button>
+        <form action="process_login.php" method="post">
+           <input type="text" id="ema" name="email" value="guest@guest" style="display:none;"/></label>
+           <input type="text" id="password" name="p" value="guest" style="display:none;"/></label>
+          <!-- pulsante ordina al volo -->
+          <button class='myButt three' onclick="formhash(this.form, this.form.password);">Ordina al volo</button>
         </form>
       </div>
 
@@ -73,7 +79,7 @@
 
     <div class = "row">
       <div class="col-3 left social">
-        Seguici su:<br/>
+        Social:<br/>
         <a href="https://www.facebook.com" class="fa fa-facebook"><div class="follow-desc">Facebook</div></a>
         <a href="https://twitter.com" class="fa fa-twitter"><div class="follow-desc">Twitter</div></a>
         <a href="https://www.instagram.com" class="fa fa-instagram"><div class="follow-desc">Instagram</div></a>
