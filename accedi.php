@@ -41,7 +41,7 @@
                 }
               }
               if(isset($_GET['register'])) {
-                echo '<i class="fas fa-thumbs-up"></i> <h1>Registration successfull</h>';
+                echo '<i class="fas fa-thumbs-up"></i> <h1>Registration successfull</h1>  8 points gained!';
               }
             ?></div>
         </div>
@@ -86,11 +86,22 @@
   </fieldset>
 
   </div>
-
   <footer>
-    <p>Posted by: </p>
-    <p>Contact information: <a href="mailto:someone@example.com">
-    someone@example.com</a>.</p>
+    <address>
+          <p>
+              Copyright 2018 <strong>Yook S.r.l.</strong><br>
+              Via Albert Einstein n. 3, 48018 Faenza (RA)<br>
+              <a href="mailto:info@Yook.it">info@Yook.it</a>
+          </p>
+          <p>
+              P.Iva: 02684269693 - REA: RA-526419
+              <br>
+              Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 101.000€ interamente versati.
+          </p>
+          <p>
+              <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
+          </p>
+    </address>
   </footer>
   </body>
 </html>
