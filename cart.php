@@ -55,8 +55,9 @@
         sec_session_start();
 
         $query = "SELECT * FROM listino";
+        $totale = 0;
         if($result = $conn->query($query)){
-          // echo session_id();
+          echo session_id();
           while($row = $result->fetch_row()){
             if(isset($_SESSION['carrello'][$row[0]])){
               echo "<div class = 'offert'>";
@@ -72,12 +73,14 @@
               echo "€</p>";
               echo      "<p>Quantità selezionata: ";
               print_r($_SESSION['carrello'][$row[0]]['quantity']);
+              $totale = $totale + $_SESSION['carrello'][$row[0]]['price'];
               echo "</p>";
               echo    "</div>";
               echo  "</div>";
               echo "</div>";
             }
           }
+          echo $totale;
         }
       ?>
       <a href="menu.php">Torna al menu</a>

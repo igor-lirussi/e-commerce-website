@@ -158,6 +158,7 @@
         $conn->close();
       } else {
          echo 'You are not authorized to access this page, please login. <br/>';
+         echo "<a href='accedi.php'>Accedi</a>";
       }
         ?>
       </div>
