@@ -16,12 +16,12 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     font-size: 100%;
-    font: bold 1.5em calibri;
+    font: bold 24px calibri;
     padding: 0px;
     margin: 0px;
 }
 
-/*header*/
+/*sezione header*/
 header {
     background-color: white;
     text-align: center;
@@ -36,19 +36,26 @@ header {
 header h1 {
   font-size: 4em;
   margin-bottom: 0px;
+  margin-top: 50px;
   display: block;
   font-weight: bold;
+  line-height: 1.0;
 }
 header h2 {
   font-size: 1em;
   margin: 0px;
+  font-weight: bold;
+  line-height: 1.0;
+}
+header p {
+  margin: 24px;
 }
 header a:visited, header a:hover, header a:link {
     color: black;
     text-decoration: none;
 }
 
-/*footer*/
+/*sezione footer*/
 /*not the footer*/
 #not-footer {
   background-color: lightblue;
@@ -103,6 +110,7 @@ footer a:after {
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
   z-index: -1;
+  box-sizing: border-box;
 }
 footer a:hover {
   color: #2D2D2D;
@@ -113,6 +121,16 @@ footer a:hover:after {
   height: 100%;
 }
 
+address {
+  font-style: italic;
+  margin: 0;
+  line-height: normal;
+  box-sizing: border-box;
+}
+
+address p {
+  margin: 14px;
+}
 /*pannello centrale*/
 .center {
   text-align: center;
@@ -125,7 +143,7 @@ footer a:hover:after {
 .right {
 }
 
-/*choice */
+/*choice nel menù */
 .choice {
   color: white;
   text-shadow: 2px 2px var(--main-color);
@@ -230,7 +248,7 @@ nav ul li a:hover {
   background: #bb0000;
   color: white;
 }
-/*discover home*/
+/*discover nella home*/
 .discover {
   padding: 260px 60px ;
   background-color: white;
@@ -403,7 +421,7 @@ input[type=submit]:hover {
     color: white;
 }
 
-/*pulsanti home*/
+/*pulsanti nella choice della home*/
 .myButt {
   outline: none;
   border: none;
@@ -527,7 +545,7 @@ input[type=submit]:hover {
   width: 100%;
   left: 0;
 }
-
+/*tip hai dimenticato psw in accedi*/
 .tip {
   color: red;
   font-size: 15px;
@@ -535,7 +553,13 @@ input[type=submit]:hover {
 .tip a {
   color: red;
 }
-/***********RESPONSIVE**************/
+
+.clearfix {
+  font-size: 0.8em;
+}
+
+/******************************************************************************/
+/******************************RESPONSIVE**************************************/
 .row {
 background-color: yellow;
 }

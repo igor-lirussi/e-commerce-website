@@ -9,7 +9,7 @@ logout
 controllare login ad ogni pagina
 carrello
 OK! restringere campo ricerca mappe
-risolvere conflitto boostrap nella registrazione
+OK! risolvere conflitto boostrap nella registrazione
 canvas
 
 OK! mettere l'auto increment nell'ID

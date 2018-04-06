@@ -45,8 +45,13 @@
       <a href="home.html">
       <h1>Yook!</h1>
       </a>
-      <h2>Make it Yours.</h2>
+      <h2>Registrati</h2>
+      <p>Make it Yours.</p>
     </header>
+
+<div class="timeline">
+  <br/>
+
 
     <form id="form" name="form" action="registrati.php" method="post" onsubmit="return false;">
 
@@ -58,7 +63,15 @@
           <input type="text" name="cognome" id="sname" maxlength="10" required/></label></p>
         <p><label for="mail"> E-Mail *:
           <input type="email" name="mail" id="mail" required/></label></p>
-        <p>(*) Obbligatori</p>
+        <p>(*) Obbligatori</p> <br/><br/>
+        <figure style="float:left;">
+				  <img src="./resources/registrazione/sign-up.png" alt="" height="150em">
+				      <figcaption></figcaption>
+			  </figure>
+          <h3>I vantaggi sono tanti:</h3>
+          <p>La registrazione gratuita ti permette di accumulare punti poi convertibili
+          direttamente in sconti! <br/> Inoltre non dovrai più inserire i tuoi recapiti e i tuoi dati di pagamento,
+           nemmeno la tua matricola. <br> In pochi e semplici passi renderai la tua esperienza totalmente nuova! </p>
       </fieldset>
 
       <h3>Password</h3>
@@ -92,6 +105,15 @@
                 placeholder="Enter a location" onsubmit="#next" required />
           </div>
         </div>
+        <br/><br/><br/>
+        <figure style="float:left;">
+				  <img src="./resources/registrazione/map.png" alt="" height="150em">
+				      <figcaption></figcaption>
+			  </figure>
+          <h3>I tuoi luoghi:</h3>
+          <p>Impostare un indirizzo ti permette di ricevere il nostro cibo proprio sotto casa!
+            <br/> Inoltre non dovrai più inserire i tuoi recapiti e ci permetterai di migliorare il servizio.
+            <br> La consegna se sei registrato è gratis! </p>
       </fieldset>
 
       <h3>Pagamento</h3>
@@ -104,13 +126,15 @@
         </label>
         <!-- lo script provvederà a cambiare la proprietà display se l'utente seleziona la carta-->
         <div id="daticc" style="display: none;">
-        <p><label for="ncarta"> Numero Carta:
+        <p><br/><label for="ncarta"> Numero Carta:
           <input type="number" name="numeroCarta" id="ncarta" value="0000000000000000" maxlength="16" required/></label></p>
         <p><label for="scad"> Scadenza:
           <input type="date" name="scadenza" id="scad" value="2020-12-31" required/></label>
           <label for="cvv"> CVV:
           <input type="number" name="cvv" id="cvv" value="000" maxlength="3" required/></label></p>
         </div>
+        <br/>
+        <br/>
         <br/>
         <p><label for="acceptTerms-2">
           <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required">Accetto i <a href="./info_legali.html" target="_blank">Termini e Condizioni.</a>
@@ -121,6 +145,7 @@
   	</form>
 
 
+    </div>
 <script>
 var form = $("#form").show();
 
