@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./resources/JquerySteps/mysteps.css">
+    <!-- per suggerimenti mappa -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/map.css">
     <!-- per indicatore psw -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/strengthify.css" >
@@ -18,10 +19,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./resources/JquerySteps/jquery.steps.js"></script>
     <script src="./resources/JquerySteps/jquery.validate.js"></script>
-    <script type="text/javascript" src="./js/sha512.js"></script>
-    <script type="text/javascript" src="./js/forms.js"></script>
+    <script src="./js/sha512.js"></script>
+    <script src="./js/forms.js"></script>
     <!-- per indicatore psw -->
-    <script type="text/javascript" src="./js/jquery.strengthify.js"></script>
+    <script src="./js/jquery.strengthify.js"></script>
     <!-- per mostrare o meno i campi pagamento -->
     <script>
       function displayFunction() {
@@ -49,7 +50,7 @@
       <p>Make it Yours.</p>
     </header>
 
-<div class="timeline">
+<div class="timeline">     <!-- la uso per lo sfondo -->
   <br/>
 
 
@@ -58,11 +59,11 @@
       <h3>Account</h3>
   		<fieldset><legend>Dati anagrafici:</legend>
   		  <p><label for="name"> Nome *:
-          <input type="text" name="nome" id="name" autofocus required/></label></p>
+          <input type="text" name="nome" id="name" class="form-control" autofocus required/></label></p>
   			<p><label for="sname"> Cognome *:
-          <input type="text" name="cognome" id="sname" maxlength="10" required/></label></p>
+          <input type="text" name="cognome" id="sname" class="form-control" maxlength="10" required/></label></p>
         <p><label for="mail"> E-Mail *:
-          <input type="email" name="mail" id="mail" required/></label></p>
+          <input type="email" name="mail" id="mail" class="form-control" required/></label></p>
         <p>(*) Obbligatori</p> <br/><br/>
         <figure style="float:left;">
 				  <img src="./resources/registrazione/sign-up.png" alt="" height="150em">
@@ -77,14 +78,14 @@
       <h3>Password</h3>
       <fieldset><legend>Inserisci Password:</legend>
         <p><label for="pw"> Password *:
-          <input type="password" name="password" id="pw" maxlength="20" required/></label></p><br/>
+          <input type="password" name="password" id="pw" class="form-control" maxlength="20" required/></label></p><br/>
         <p><label for="confirm">Conferma password *:
-          <input type="password" name="confirm" id="confirm" maxlength="20" required/></label></p>
-        <p><label for="age">Age *</label>
-          <input id="age" type="number" class="required number" maxlength="3"></p>
+          <input type="password" name="confirm" id="confirm" class="form-control" maxlength="20" required/></label></p>
+        <p><label for="age">Age *
+          <input id="age" type="number" class="required number form-control" maxlength="3"></label></p>
         <p>(*) Obbligatori</p>
         <p><label for="mtr"> Numero di matricola **:
-          <input type="number" name="numeroMat" id="mtr" maxlength="10"/></label></p>
+          <input type="number" name="numeroMat" id="mtr" class="form-control" maxlength="10"/></label></p>
         <p>(**) Opzionale sconto studenti!</p>
   		</fieldset>
 
@@ -101,7 +102,7 @@
         <p>(*) Obbligatori</p>
         <div class="pac-card" id="pac-card">
           <div id="pac-container">
-            <input id="indir" name="indirizzo" type="text"
+            <input id="indir" class="form-control" name="indirizzo" type="text"
                 placeholder="Enter a location" onsubmit="#next" required />
           </div>
         </div>
@@ -119,7 +120,7 @@
       <h3>Pagamento</h3>
       <fieldset><legend>Dati di pagamento:</legend>
         <label for="pagamento"> Tipo pagamento:
-          <select name="pagamento" id="pagamento"  onchange="displayFunction()">
+          <select name="pagamento" id="pagamento" class="form-control" onchange="displayFunction()">
             <option value="consegna">Contanti alla consegna</option>
             <option value="cc">Carta di credito</option>
           </select>
@@ -127,11 +128,11 @@
         <!-- lo script provvederà a cambiare la proprietà display se l'utente seleziona la carta-->
         <div id="daticc" style="display: none;">
         <p><br/><label for="ncarta"> Numero Carta:
-          <input type="number" name="numeroCarta" id="ncarta" value="0000000000000000" maxlength="16" required/></label></p>
+          <input type="number" name="numeroCarta" id="ncarta" class="form-control" value="0000000000000000" maxlength="16" required/></label></p>
         <p><label for="scad"> Scadenza:
-          <input type="date" name="scadenza" id="scad" value="2020-12-31" required/></label>
+          <input type="date" name="scadenza" id="scad" class="form-control" value="2020-12-31" required/></label>
           <label for="cvv"> CVV:
-          <input type="number" name="cvv" id="cvv" value="000" maxlength="3" required/></label></p>
+          <input type="number" name="cvv" id="cvv" class="form-control" value="000" maxlength="3" required/></label></p>
         </div>
         <br/>
         <br/>

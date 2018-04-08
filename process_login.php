@@ -7,7 +7,7 @@
   sec_session_start(); // usiamo la nostra funzione per avviare una sessione php sicura
   if(isset($_POST['email'], $_POST['p'])) {
     $email = $_POST['email'];
-    echo $email;
+    //echo $email;
     $password = $_POST['p']; // Recupero la password criptata.
     if(login($email, $password, $conn) == true) {
       // Login eseguito

@@ -17,4 +17,4 @@ OK! mettere un username decente o toglierlo
 OK! mettere il default admin a 0 così non si deve passare lo zero
 
 risolvere registrazione con mail uguali
-immagine vettoriale logo
+OK! rimettere immagine vettoriale logo

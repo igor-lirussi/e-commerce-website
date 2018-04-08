@@ -421,7 +421,7 @@ input[type=submit]:hover {
     color: white;
 }
 
-/*pulsanti nella choice della home*/
+/*pulsanti nella choice della home che si allargano*/
 .myButt {
   outline: none;
   border: none;
@@ -446,8 +446,8 @@ input[type=submit]:hover {
   overflow: hidden;
   color: #fff;
 }
-/*dentro al button ci va <div class='insider'></div> e poi il testo*/
-.one .insider {
+
+.one .insider { /*dentro al button ci va <div class='insider'></div> e poi il testo*/
   background-color: #fff;
   border-radius: 5px;
   width: 100%;
@@ -554,6 +554,7 @@ input[type=submit]:hover {
   color: red;
 }
 
+/*titoli form della registrazione*/
 .clearfix {
   font-size: 0.8em;
 }
