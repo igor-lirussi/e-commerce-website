@@ -1,4 +1,4 @@
-cercare nel listino
+OK! cercare nel listino
 OK! barra progresso
 notifiche abbastanza elaborate
 salvataggio ordini in db
@@ -8,6 +8,8 @@ pagamento
 logout
 controllare login ad ogni pagina
 carrello
+galleria responsive nella home
+
 OK! restringere campo ricerca mappe
 OK! risolvere conflitto boostrap nella registrazione
 canvas
@@ -16,5 +18,5 @@ OK! mettere l'auto increment nell'ID
 OK! mettere un username decente o toglierlo
 OK! mettere il default admin a 0 così non si deve passare lo zero
 
-risolvere registrazione con mail uguali
+(più avanti) risolvere registrazione con mail uguali
 OK! rimettere immagine vettoriale logo
