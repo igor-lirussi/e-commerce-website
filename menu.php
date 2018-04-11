@@ -40,24 +40,26 @@
       </ul>
     </div>
 
+    <!-- Barra ricerca-->
     <h3>Cerca</h3>
-      <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post">
+      <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
         <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
         <input type="submit">
       </form>
 
+    <!-- Inizio elenco menù-->
     <div class="row listino">
-      <div class="col-4 pastiVeloci">
+      <div class="col-4 pastiVeloci"> <!-- Categoria pasti veloci-->
         <h3>Pasti Veloci</h3>
         <?php
-          $query = "SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'";
-          if($result = $conn->query($query)){
-            while($row = $result->fetch_row()){
+          $query = "SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'"; //con questa query seleziono tutti i pasti dalla tabella listino che sono nella categoria "Pasti Veloci"
+          if($result = $conn->query($query)){ //se la query ha prodotto un risultato
+            while($row = $result->fetch_row()){ //il risultato prodotto è un insieme di righe prelevate dal database. faccio la fetch del risultato e ogni riga, fintanto che ci sono righe, la analizzo mettendola nella variabile "row"
               echo "<div class = 'offert fast'>";
               echo  "<div class = 'row prova'>";
               echo    "<div class = 'col-4'>";
-              echo      "<img src = '".$row[5]."'>";
-              echo    "</div>";
+              echo      "<img src = '".$row[5]."'>"; //la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0
+              echo    "</div>";  //es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)
               echo    "<div class = 'col-8 desc'>";
               echo      "<p>".$row[1]."</p>";
               echo      "<p>".$row[3]."</p>";
