@@ -54,13 +54,13 @@
         include 'functions.php';
         sec_session_start();
 
-        $query = "SELECT * FROM listino";
-        $totale = 0;
-        if($result = $conn->query($query)){
+        $query = "SELECT * FROM listino"; //seleziono tutti i cibi dal listino
+        $totale = 0; //mi servirà per tenere conto del prezzo totale che l'utente deve pagare alla fine
+        if($result = $conn->query($query)){ //se la query ha prodotto risultato
           echo session_id();
-          while($row = $result->fetch_row()){
-            if(isset($_SESSION['carrello'][$row[0]])){
-              echo "<div class = 'offert'>";
+          while($row = $result->fetch_row()){ //fetcho e ciclo ogni riga della tabella
+            if(isset($_SESSION['carrello'][$row[0]])){ //se esiste una sessione corrispondente a quel prodotto (ovvero è stato inserito nel carrello)
+              echo "<div class = 'offert'>"; //lo mostro
               echo  "<div class = 'row'>";
               echo    "<div class = 'col-4'>";
               echo      "<img src = '".$row[5]."'>";
@@ -69,18 +69,18 @@
               echo      "<p>".$row[1]."</p>";
               echo      "<p>".$row[3]."</p>";
               echo      "<p>";
-              print_r($_SESSION['carrello'][$row[0]]['price']);
+              print_r($_SESSION['carrello'][$row[0]]['price']); //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione
               echo "€</p>";
               echo      "<p>Quantità selezionata: ";
-              print_r($_SESSION['carrello'][$row[0]]['quantity']);
-              $totale = $totale + $_SESSION['carrello'][$row[0]]['price'];
+              print_r($_SESSION['carrello'][$row[0]]['quantity']); //stampo la quantità selezionata dall'utente nel menù e salvata nella sessione
+              $totale = $totale + $_SESSION['carrello'][$row[0]]['price']; //aggiorno il prezzo totale
               echo "</p>";
               echo    "</div>";
               echo  "</div>";
               echo "</div>";
             }
           }
-          echo $totale;
+          echo $totale; //stampo il prezzo totale da pagare
         }
       ?>
       <a href="menu.php">Torna al menu</a>

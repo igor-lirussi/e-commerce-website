@@ -68,13 +68,13 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) {
-                $q = @$_POST['q'.$row[0]];
-                $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity'];
-                $_SESSION['carrello'][$row[0]]['quantity'] += $q;
-                $_SESSION['carrello'][$row[0]]['price'] = $p;
-              } else {
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0);
+              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione
+                $q = @$_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, che è referenziato con l'indice "q[idprodotto]"
+                $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità
+                $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella eventualmente già presente
+                $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+              } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
               }
               echo    "</div>";
               echo  "</div>";
@@ -86,7 +86,7 @@
         ?>
       </div>
 
-      <div class="col-4 primi">
+      <div class="col-4 primi"> <!-- come sopra -->
         <h3>Primi</h3>
         <?php
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Primi'";
@@ -123,7 +123,7 @@
         ?>
       </div>
 
-      <div class="col-4 bevande">
+      <div class="col-4 bevande"> <!-- come sopra -->
         <h3>Bevande</h3>
         <?php
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Bevande'";
