@@ -15,8 +15,7 @@
 
   <body>
 
-<!-- inizio corpo del sito, displayed -->
-<div id="allpage">
+
   <!-- il not-footer serve per il footer statico -->
   <div id="not-footer">
 
@@ -61,13 +60,12 @@
             </p>
       </address>
     </footer>
-  <!-- fine corpo del sito -->
-  </div>
+
   </body>
 
 <script type="text/javascript">
 
-google.charts.load('current', {packages: ['corechart'], 'language': 'ja'});
+google.charts.load('current', {packages: ['corechart'], 'language': 'it'});
    google.charts.setOnLoadCallback(drawChart);
 
    function drawChart() {
@@ -75,17 +73,19 @@ google.charts.load('current', {packages: ['corechart'], 'language': 'ja'});
      var data = new google.visualization.DataTable();
      data.addColumn('string', 'Name');
      data.addColumn('number', 'Points');
-     //apro il php, da questo dovranno uscire solo righe: data.addRow([namehere, valuehere]);
+     //apro il php, da questo dovranno uscire solo righe: data.addRow([stringhere, valuehere]);
      <?php
           //carico l'xml
           $xml = simplexml_load_file("users.xml");
+          //conto gli user per l'altezza del grafico
+          echo "var my_height_graph = 60 * ".count($xml->user);
           // per ogni user stampo il comando di aggiungi riga
           foreach ($xml->user as $user) {
             echo "
               data.addRow(["
-              ."'".$user['surname']." id:".$user['id']."'"
+              ."'".$user['surname']." id:".$user['id']."'"  //qui stringa
               .","
-              .$user['punti']
+              .$user['punti'] //qui valore
               ."]);";
           }
       ?>
@@ -93,6 +93,7 @@ google.charts.load('current', {packages: ['corechart'], 'language': 'ja'});
 
      // Set chart options
            var options = {'title':'Points of people registered in this site',
+                          'height':my_height_graph,
                           animation:{
                             duration: 2000,
                             easing: 'out',
