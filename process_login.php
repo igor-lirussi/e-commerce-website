@@ -11,8 +11,12 @@
     $password = $_POST['p']; // Recupero la password criptata.
     if(login($email, $password, $conn) == true) {
       // Login eseguito
-      // echo 'Success: You have been logged in!';
-      header('Location: ./menu.php');
+      // echo 'Succ"ess: You have been logged in!';
+      if($email == "admin@admin.com"){
+        header('Location: ./amministra.php');
+      } else {
+        header('Location: ./menu.php');
+      }
       exit;
     } else {
       // Login fallito

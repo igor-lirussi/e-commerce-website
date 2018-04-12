@@ -291,6 +291,25 @@ background-attachment: fixed;
 text-shadow: 3px 3px 5px white;
 z-index: 20;
 }
+
+.admin a {
+  text-decoration: none;
+}
+
+.link1{
+  /* background-image: url("resources/menu_con_logo.png"); */
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.link2{
+  /* background-image: url("resources/grafico.png"); */
+  margin: 20px;
+  padding: 20px;
+  border-radius: 7px;
+}
+
 /***/
 .listino{
     float: center;
@@ -322,22 +341,23 @@ z-index: 20;
   border-color: var(--main-color);
   margin: 10px;
   font: italic bold 16px/2 cursive;
-  -webkit-transition: width 2s, height 4s;
-  transition: width 2s, height 4s;
+  /* -webkit-transition: width 2s, height 4s; //tolte momentaneamente le animazioni perchè sono in mezzo alle palle
+  transition: width 2s, height 4s; */
 }
 
 .offert img {
   width: 100px;
   height:100px;
-  -webkit-transition: width 2s, height 2s;
-  transition: width 2s, height 2s;
+  /* -webkit-transition: width 2s, height 2s;   //commentato perchè così non ci rompe le palle tutte le volte che passiamo sulle immagini
+  transition: width 2s, height 2s; */
 }
 
-.offert:hover img {
+/* commentato perchè così non ci rompe le palle tutte le volte che passiamo sulle immagini */
+/* .offert:hover img {
   width: 100%;
   height: 100%;
   opacity: 0.4;
-}
+} */
 
 .offert>form{
   margin-top: 70px;

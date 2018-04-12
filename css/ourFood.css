@@ -70,28 +70,27 @@ body {
   opacity: 1;
 }
 
-.text1 {
-  background-color: #e67300;
+.text {
   color: white;
   font-size: 16px;
   border-radius: 15px;
   padding: 16px 32px;
+}
+
+.text1 {
+  background-color: #e67300;
 }
 
 .text2 {
   background-color: #33cc33;
-  color: white;
-  font-size: 16px;
-  border-radius: 15px;
-  padding: 16px 32px;
 }
 
 .text3 {
   background-color: #cc3300;
-  color: white;
-  font-size: 16px;
-  border-radius: 15px;
-  padding: 16px 32px;
+}
+
+.text4 {
+  background-color: #DAA520;
 }
 /* The actual content */
 /* .contaioner>div {

@@ -40,7 +40,7 @@
       <!-- Identify the chart. -->
         <div id="firstChart"/>
     </div>
-
+    <a href="amministra.php">Torna alla pagina iniziale</a>
     <!-- fine non footer -->
     </div>
     <footer>

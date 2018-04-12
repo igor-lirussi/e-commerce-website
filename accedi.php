@@ -78,7 +78,7 @@
         ?>
       </label>
     </p>
-   <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" />
+   <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" /> <!-- se l'utente accede con admin@admin.com, pw:admin, viene rediretto sulla pagina dell'amministratore -->
 
     </form>
     <br/>Non hai ancora un account? <br/>
