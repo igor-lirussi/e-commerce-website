@@ -63,7 +63,7 @@ header a:visited, header a:hover, header a:link {
   min-height: 100vh;
   /*il margine qui sotto è l'altezza del footer*/
   margin-bottom: 200px;
-  position: relative;
+  /* position: relative; tolto perchè non veniva fuori nel graph l'ombra*/
   z-index: 1;
 
   -webkit-box-shadow: #000 0 7px 35px 0;
