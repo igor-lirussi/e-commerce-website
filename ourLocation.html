@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Yook</title>
+    <link rel="icon" href="resources/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="css/ourLocation.css">
+    <!-- per la mappa -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/map.css">
+
+  </head>
+
+  <body >
+
+  <!-- il not-footer serve per il footer statico -->
+  <div id="not-footer">
+
+    <header>
+      <a href="home.html">
+      <h1>Yook!</h1>
+      </a>
+      <h2>Location.</h2>
+      <p>La nostra sede, dove la magia avviene </p>
+    </header>
+
+<div id="location">
+
+    <div class = "row">
+      <div class="col-6">
+        <!-- indicazioni -->
+        <h1>Come trovarci:</h1>
+        <p>La nostra sede si trova in <address class="[object Object]">Piazza Fabbri 5, Cesena, FC, Italia. </address> </br>
+          Originariamente collocata nella periferia della città l'attività si insedia inPiazza Fabbri nel 2005, in posizione strategica in quanto non distante dalla biblioteca e in pieno centro.
+          Qui c’è possibilità di espansione, sia per i cibi che per i dipendenti che nell'arco di 10 anni quasi raddoppiano.</p>
+          <figure style="float:left;">
+            <img src="./resources/immaginiCibi/esterno.jpg" alt="" height="150em">
+                <figcaption></figcaption>
+          </figure>
+          <p>L'ampio spiazzo frontale permette di parcheggiare momentaneamente l'auto per poter ritirare il cibo ordinato senza dover cercare parcheggio.
+          Negli ultimi anni si è particolarmente espanso l’angolo bimbi, uno spazio dedicato ai più giovani con giochi e divertimenti.</p>
+          <br/>
+      </div>
+      <div class="col-6">
+          <!-- mappa -->
+          <div id="map"></div>
+          <p>Il look è rustico e in linea con il nostro culto per le tradizioni. Vi è spazio anche per mangiare fuori, dedicato agli amanti del verde e dell'aria aperta, all'esterno infatti vi si trovano svariati tavolini all'ombra dei nostri pioppi.
+          Non solo, se mangerete presso la nostra sede a consigliare l'acquisto del prodotto più indicato sarà uno dei nostri cuochi, aggiornato sui più attuali alimenti disponibili sul mercato.
+          </p>
+          <figure style="float:left;">
+            <img src="./resources/immaginiCibi/interno.jpg" alt="" height="150em">
+                <figcaption></figcaption>
+          </figure>
+      </div>
+
+      </div>
+    </div>
+    <script>
+    var map;
+      function initMap() {
+        pos = {lat: 44.1383845, lng: 12.2433957 };
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 18,//minimo 18 per avere il tilt
+          center: pos,
+          streetViewControl: false, //niente omino street view
+          mapTypeId: 'hybrid', //solo ibrida o satellite per il tilt
+          tilt: 45, //45 quando possibile
+
+        });
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: "Posizione del negozio",
+          animation: google.maps.Animation.BOUNCE,
+          icon: './resources/flag.png'
+        });
+        marker.setVisible(true);
+
+
+      }
+
+      //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO GEOLOCATION
+      function geolocate() {
+
+              // Try HTML5 geolocation.
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                  var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                  };
+
+                  //mostro accuratezza geolocalizzazione in un div
+                  document.getElementById('accu').innerHTML = "Accuracy " + position.coords.accuracy + " m";
+
+                  //provo reverse geocoding per avere anche l'indirizzo
+                   var geocoder = new google.maps.Geocoder;
+                   var latlng = {lat: position.coords.latitude, lng: position.coords.longitude};
+                     geocoder.geocode({'location': latlng}, function(results, status) {
+                       if (status === 'OK') {
+                         if (results[0]) {
+                           //setto
+                           document.getElementById('pac-input').value = results[0].formatted_address;
+                         } else {
+                           window.alert('No near address found');
+                         }
+                       } else {
+                         window.alert('near address searching failed due to: ' + status);
+                       }
+                     });
+
+                  //creo l'infowindow
+                  infoWindow = new google.maps.InfoWindow;
+                  infoWindow.setPosition(pos);
+                  infoWindow.setContent('Location found.');
+                  infoWindow.open(map);
+                  //centro la mappa sulla posizione
+                  map.setCenter(pos);
+                }, function() {
+                  handleLocationError(true, infoWindow, map.getCenter());
+                });
+              } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+              }
+            }
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+              infoWindow.setPosition(pos);
+              infoWindow.setContent(browserHasGeolocation ?
+                                    'Error: The Geolocation service failed.' :
+                                    'Error: Your browser doesn\'t support geolocation.');
+              infoWindow.open(map);
+            }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap"
+        async defer></script>
+
+
+
+    </div>
+    <footer>
+      <address>
+            <p>
+                Copyright 2018 <strong>Yook S.r.l.</strong><br>
+                Via Albert Einstein n. 3, 48018 Faenza (RA)<br>
+                <a href="mailto:info@Yook.it">info@Yook.it</a>
+            </p>
+            <p>
+                P.Iva: 02684269693 - REA: RA-526419
+                <br>
+                Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 101.000€ interamente versati.
+            </p>
+            <p>
+                <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
+            </p>
+      </address>
+    </footer>
+  </body>
+
+
+</html>

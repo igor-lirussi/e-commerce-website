@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <users>
-  <user id="1" punti="1" address="Via Aeroporto, Orio al serio, BG, Italia" surname="farytell" name="bachelorette "/>
-  <user id="2" punti="2" address="via map" surname="meridio" name="nome"/>
-  <user id="3" punti="3" address="via terno" surname="registro" name="Primo"/>
-  <user id="5" punti="4" address="via loppo" surname="lazze" name="puzzole"/>
-  <user id="6" punti="5" address="vsfds" surname="Lirussi" name="igor"/>
-  <user id="7" punti="6" address="22 massa" surname="Gattu" name="SOfia"/>
-  <user id="8" punti="7" address="via finale" surname="Countdown" name="Final"/>
+  <user id="1" punti="0" address="Via Aeroporto, Orio al serio, BG, Italia" surname="farytell" name="bachelorette "/>
+  <user id="2" punti="0" address="via map" surname="meridio" name="nome"/>
+  <user id="3" punti="0" address="via terno" surname="registro" name="Primo"/>
+  <user id="5" punti="0" address="via loppo" surname="lazze" name="puzzole"/>
+  <user id="6" punti="0" address="vsfds" surname="Lirussi" name="igor"/>
+  <user id="7" punti="0" address="22 massa" surname="Gattu" name="SOfia"/>
+  <user id="8" punti="0" address="via finale" surname="Countdown" name="Final"/>
   <user id="9" punti="5" address="sodija" surname="mazzi" name="provolo"/>
   <user id="10" punti="5" address="sodija" surname="mazzi" name="prlo"/>
   <user id="11" punti="0" address="Via Mario Angeloni, Cesena, FC, Italia" surname="paperino" name="pippo"/>
@@ -15,4 +15,5 @@
   <user id="15" punti="8" address="Via Cesenatico, Cesenatico, FC, Italia" surname="guest" name="guest"/>
   <user id="16" punti="8" address="Via Boccaquattro 2, Cesena, FC, Italia" surname="meridio" name="nome"/>
   <user id="17" punti="8" address="Piazza del Popolo, Cesena, FC, Italia" surname="meridio" name="nome"/>
+  <user id="18" punti="8" address="ASD Passirana, Rho, MI, Italia" surname="admin" name="admin"/>
 </users>

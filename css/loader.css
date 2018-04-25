@@ -76,9 +76,10 @@
 #cooking #area {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 10%; // è più centrato di tutto a destra
   width: 50%;
   height: 50%;
+  color: #333;    //il colore del testo
   background-color: transparent;
   transform-origin: 15% 60%;
   animation: flip 2.1s ease-in-out infinite;

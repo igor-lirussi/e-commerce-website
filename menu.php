@@ -43,7 +43,7 @@
     <!-- Barra ricerca-->
     <h3>Cerca</h3>
       <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
-        <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
+        <input type="search" name="search" value="" placeholder="Inserisci ricerca qui...">
         <input type="submit">
       </form>
 

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="it">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Yook</title>
+    <link rel="icon" href="resources/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="css/ourContacts.css">
+    <!-- per le icone -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body >
+    <script>
+    function cambia() {
+      $( ".frequent-questions" ).toggle("slow");
+    };
+    </script>
+  <!-- il not-footer serve per il footer statico -->
+  <div id="not-footer">
+
+    <header>
+      <a href="home.html">
+      <h1>Yook!</h1>
+      </a>
+      <h2>Contattaci.</h2>
+      <p> In questa pagina trovi tutti i recapiti. </p>
+    </header>
+
+<div id="help">
+
+    <div  class = "row">
+      </br>
+      <h1>Come possiamo aiutarti?</h1>
+      <form class="searchform" action="ourContacts.html" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
+        <input type="search" name="search" value="" placeholder="Inserisci ricerca qui...">
+        <button class="btn third">Cerca</button>
+      </form>
+      <div class="col-6">
+          <h2>Non hai un'account? </br></h2>
+          <h3>Per le domande più frequenti fai click qui: <a onclick="cambia();"><em><u>FAQ</u></em></a>.
+        </h3>
+          <div class="frequent-questions" style="display: none;">
+            </br>
+            <h3>Non rieso ad accedere</h3>
+            Le sugeriamo di controllare di aver digitato correttamente la password ponendo attenzione al caps-lock.
+            Se non si è prima registrato non può accedere ad un suo account perchè non è stato creato.
+            Se l'ordine è urgente può comunque ordinare con "Ordina subito" scrivendo poi una mail con il codice dell'ordine
+            al nostro servizio clienti <a href="mailto:info@Yook.it">info@Yook.it</a>.
+            </br></br>
+            <h3>Non trovo casa mia</h3>
+            Non tutti i posti di consegna sono disponibili a causa del lungo tragitto, ci limitiamo a 5 km dal centro.
+            Noi ci serivamo del servizio mappe di Google, nella remota possibilità che non venga visualizzato il suo indirizzo
+            può procedere con la consegna nel luogo più vicino, senza indirizzo civico, specificando l'ora e pagando in anticipo.
+            </br></br>
+            <h3>Come cucinate il cibo che vendete?</h3>
+            Tutti i dettagli si trovano nella <a href="./ourFood.html">pagina dedicata</a>.
+            </br></br>
+            <h3>Posso ritirare direttamente in negozio?</h3>
+            Certo, basta specificarlo nella sezione consegna.
+            Non ci assumiamo eventuali responsabilità per sanzioni da zone a traffico limitato o multe per
+            accesso a aree riservate.
+            </br></br>
+            <h3>Non trovo la mia domanda tra quelle proposte</h3>
+            Se vi sono dei disservizi o problemi che qui non sono risolti puoi contattarci via mail
+            al nostro servizio clienti <a href="mailto:info@Yook.it">info@Yook.it</a>.
+          </div>
+
+      </div>
+      <div class="col-6">
+        <h2>La mia domanda riguarda il mio account. </h2>
+        <h3>Scrivi direttamente al nostro servizio clienti <a href="mailto:info@Yook.it">info@Yook.it</a> specificando
+          la natura del problema e la mail con cui accedi. </br>Saremo felici di aiutarti!</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      </br>
+      <h1>Cerchi lavoro?</h1>
+      <div class="col-4">
+        <i class="fab fa-facebook-square"></i>
+        <h2>Messaggia</h2>
+        <p>Inviaci un messaggio su <a href="https://www.facebook.com/messages/t/Yook" target="_blank">Facebook</a></p>
+      </div>
+      <div class="col-4">
+        <i class="fas fa-phone"></i>
+        <h2>Chiamaci</h2>
+        <p>Contattaci al numero verde tutti i giorni, dal lunedì alla domenica, dalle 7.00 alle 22.00. <br/>
+          <a href="tel:555-555-5555">555-555-5555</a>
+        </p>
+      </div>
+      <div class="col-4">
+        <i class="fas fa-envelope"></i>
+        <h2>Scrivici</h2>
+        Scrivi una mail al nostro servizio clienti </br><a href="mailto:info@Yook.it">info@Yook.it</a>
+        <p></p>
+      </div>
+
+    </div>
+
+</div>
+
+
+    </div>
+
+
+
+<script>
+
+	'use strict';
+
+	;( function ( document, window, index )
+	{
+		var hasElementClass		= function( element, className ){ return element.classList ? element.classList.contains( className ) : new RegExp( '(^| )' + className + '( |$)', 'gi' ).test( element.className ); },
+			addElementClass		= function( element, className ){ element.classList ? element.classList.add( className ) : element.className += ' ' + className; },
+			removeElementClass	= function( element, className ){ element.classList ? element.classList.remove( className ) : element.className = element.className.replace( new RegExp( '(^|\\b)' + className.split( ' ' ).join( '|' ) + '(\\b|$)', 'gi' ), ' ' ); };
+
+
+		// search & highlight
+
+		;( function ( document, window, index )
+		{
+			var container = document.querySelector( '.faq' );
+			if( !container ) return true;
+
+			var input			= container.querySelector( 'input' ),
+				notfound		= container.querySelector( '.faq__notfound' ),
+				items			= document.querySelectorAll( '.faq > ul > li' ),
+				item			= {},
+				itemsIndexed	= [];
+
+			[].forEach.call( items, function( entry )
+			{
+				itemsIndexed.push( entry.textContent.replace( /\s{2,}/g, ' ' ).toLowerCase() );
+			});
+
+			input.addEventListener( 'keyup', function( e )
+			{
+				if( e.keyCode == 13 ) // enter
+				{
+					input.blur();
+					return true;
+				}
+
+				[].forEach.call( items, function( entry )
+				{
+					entry.innerHTML = entry.innerHTML.replace( /<span class="highlight">([^<]+)<\/span>/gi, '$1' );
+				});
+
+				var searchVal = input.value.trim().toLowerCase();
+				if( searchVal.length )
+				{
+					itemsIndexed.forEach( function( entry, i )
+					{
+						if( itemsIndexed[ i ].indexOf( searchVal ) != -1 )
+						{
+							removeElementClass( items[ i ], 'is-hidden' );
+							items[ i ].innerHTML = items[ i ].innerHTML.replace( new RegExp( searchVal+'(?!([^<]+)?>)', 'gi' ), '<span class="highlight">$&</span>' );
+						}
+						else
+							addElementClass( items[ i ], 'is-hidden' );
+					});
+				}
+				else [].forEach.call( items, function( entry ){ removeElementClass( entry, 'is-hidden' ); });
+
+				if( items.length == [].filter.call( items, function( entry ){ return hasElementClass( entry, 'is-hidden' ) } ).length )
+					addElementClass( notfound, 'is-visible' );
+				else
+					removeElementClass( notfound, 'is-visible' );
+
+			});
+		}( document, window, 0 ));
+
+
+		// toggling items on title press
+
+		;( function ( document, window, index )
+		{
+			[].forEach.call( document.querySelectorAll( '.faq h2 a' ), function( entry )
+			{
+				addElementClass( entry, 'js--is-toggleable-item' );
+			});
+
+			document.addEventListener( 'click', function( e )
+			{
+				if( hasElementClass( e.target, 'js--is-toggleable-item' ) )
+				{
+					e.preventDefault();
+					var current = e.target;
+					while( current.parentNode )
+					{
+						current = current.parentNode;
+						if( current.tagName.toLowerCase() == 'li' )
+						{
+							hasElementClass( current, 'is-active' ) ? removeElementClass( current, 'is-active' ) : addElementClass( current, 'is-active' );
+							break;
+						}
+					}
+				}
+			});
+		}( document, window, 0 ));
+
+
+		// auto-show item content when show results reduces to single
+
+		;( function ( document, window, index )
+		{
+			var container = document.querySelector( '.faq' );
+			if( !container ) return true;
+
+			var input	= container.querySelector( 'input' ),
+				items	= document.querySelectorAll( '.faq > ul > li' ),
+				item	= {};
+
+			input.addEventListener( 'keyup', function( e )
+			{
+				item = [].filter.call( items, function( entry ){ return !hasElementClass( entry, 'is-hidden' ); } )
+
+				if( item.length == 1 )
+				{
+					addElementClass( item[ 0 ], 'js--autoshown' );
+					addElementClass( item[ 0 ], 'is-active' );
+				}
+				else
+					[].forEach.call( items, function( entry )
+					{
+						if( hasElementClass( entry, 'js--autoshown' ) )
+						{
+							removeElementClass( entry, 'js--autoshown' );
+							removeElementClass( entry, 'is-active' );
+						}
+					});
+			});
+		}( document, window, 0 ));
+
+	}( document, window, 0 ));
+
+</script>
+
+
+    <footer>
+      <address>
+            <p>
+                Copyright 2018 <strong>Yook S.r.l.</strong><br>
+                Via Albert Einstein n. 3, 48018 Faenza (RA)<br>
+                <a href="mailto:info@Yook.it">info@Yook.it</a>
+            </p>
+            <p>
+                P.Iva: 02684269693 - REA: RA-526419
+                <br>
+                Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 101.000€ interamente versati.
+            </p>
+            <p>
+                <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
+            </p>
+      </address>
+    </footer>
+  </body>
+
+
+</html>

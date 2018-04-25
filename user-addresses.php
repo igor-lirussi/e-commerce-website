@@ -114,7 +114,7 @@
 
                 var infoWindow = new google.maps.InfoWindow; //le infowindow verranno modificate per ogni posto in seguito
                 // posto principale
-                pos = {lat: 44.137535, lng: 12.245450 };
+                pos = {lat: 44.1383845, lng: 12.2433957 };
                 // creo mapp
                 map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 15,//minimo 18 per avere il tilt

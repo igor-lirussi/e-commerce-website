@@ -28,7 +28,7 @@
       <nav>
       <ul>
         <li><a href="ourFood.html">Il nostro cibo</a></li>
-        <li><a href="story.html">La nostra storia</a></li>
+        <li><a href="ourStory.html">La nostra storia</a></li>
         <li><a href="#">Location</a></li>
         <li><a href="#">Contattaci</a></li>
       </ul>

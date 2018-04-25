@@ -6,7 +6,9 @@
     --second-color: pink;
 }
 
-
+html {
+  noheight: 100%; //MI TOGLIE IL FOOTER
+}
 
 /*body*/
 body {
@@ -19,6 +21,7 @@ body {
     font: bold 24px calibri;
     padding: 0px;
     margin: 0px;
+    noheight: 100%; //mi rende inutilizzabili i collegamenti del footer
 }
 
 /*sezione header*/
@@ -55,12 +58,15 @@ header a:visited, header a:hover, header a:link {
     text-decoration: none;
 }
 
+#allpage {
+  NOheight: 100%;
+}
 /*sezione footer*/
 /*not the footer*/
 #not-footer {
   background-color: lightblue;
-  min-height: 100%;
-  min-height: 100vh;
+  height: 100%;
+  nomin-height: 100vh;
   /*il margine qui sotto è l'altezza del footer*/
   margin-bottom: 200px;
   /* position: relative; tolto perchè non veniva fuori nel graph l'ombra*/
@@ -144,17 +150,19 @@ address p {
 }
 
 /*choice nel menù */
-.choice {
+#choice {
   color: white;
   text-shadow: 2px 2px var(--main-color);
   font-size: 20px;
   padding: 50px;
+  margin-bottom: 0px;
   background-image: url('resources/immaginiCibi/pianocucina.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
+  nobackground-color: rgba(255, 0, 0, 0.0); /*per rendere invisibile lo sfondo, così si vede l'immagine del altezzacento*/
 }
 
 
@@ -250,10 +258,20 @@ nav ul li a:hover {
 .discover {
   padding: 260px 60px ;
   background-color: white;
-  background-image: url("resources/onions.svg");
   background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
+}
+.onions{
+  background-image: url("resources/onions.svg");
+  background-attachment: fixed;
+}
+.loca {
+  background-image: url("resources/immaginiCibi/location.jpg");
+}
+.people {
+  background-image: url("resources/immaginiCibi/contact.jpg");
+  background-attachment: fixed;
 }
 .discover a:visited, .discover a:hover, .discover a:link {
     color: darkred;
@@ -398,7 +416,7 @@ z-index: 20;
 
 /*barra ricerca*/
   input[type=search] {
-      width: 130px;
+      width: 20%;
       box-sizing: border-box;
       border: 2px solid #ccc;
       border-radius: 4px;
@@ -413,7 +431,7 @@ z-index: 20;
   }
 
   input[type=search]:focus {
-      width: 100%;
+      width: 75%;
       text-shadow: 3px 3px 5px #ccc;
   }
 
@@ -437,6 +455,41 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: var(--main-color);
     color: white;
+}
+.btn {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.btn:hover, .btn:focus {
+  color: #fff;
+  outline: 0;
+}
+.third {
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  transition: all 150ms ease-in-out;
+}
+.third:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 }
 
 /*pulsanti nella choice della home che si allargano*/

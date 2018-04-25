@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <title>Inserisci Indirizzo</title>
     <link rel="icon" href="resources/favicon.ico" />
-    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/map.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <!-- per la mappa -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/map.css">
     <!-- per barra progressi -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
-
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <!-- per font icone -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
   </head>
 
@@ -45,7 +46,8 @@
             placeholder="Enter a location">
       </div>
 
-      <button id="but" onclick="geolocate()">Geo me</button>
+      <button id="but" onclick="geolocate()">Geo me <i class="fas fa-street-view"></i></button>
+      <button id="but" onclick=""> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
     </div>
 
     <div id="accu"></div>
@@ -87,11 +89,11 @@
                                   radius: 5000
                                 });
                     autocomplete.setTypes(['address']);
-                    autocomplete.setComponentRestrictions(
-                      {
-                        ///country: 'IT'
-
-                      });
+                    // autocomplete.setComponentRestrictions(
+                    //   {
+                    //     ///country: 'IT'
+                    //
+                    //   });
                     autocomplete.setBounds(circle.getBounds());
                     //se true i suggerimenti sono esclusivamente delle restrizioni
                     autocomplete.setOptions({strictBounds: false});
