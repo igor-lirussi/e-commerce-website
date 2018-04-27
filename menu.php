@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
 
     </script>
-    <title>SitoCibo</title>
+    <title>SitoSchifo</title>
     <link rel="icon" href="resources/favicon.ico" />
   </head>
 
@@ -40,11 +40,11 @@
       </ul>
     </div>
 
+    <h3> I nostri piatti sono divisi in categorie </h3>
     <!-- Barra ricerca-->
-    <h3>Cerca</h3>
       <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
         <input type="search" name="search" value="" placeholder="Inserisci ricerca qui...">
-        <input type="submit">
+        <button class="btn third">Cerca</button>
       </form>
 
     <!-- Inizio elenco menù-->

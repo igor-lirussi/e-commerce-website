@@ -24,3 +24,4 @@ OK! rimettere immagine vettoriale logo
 mettere pulsante "ritira in negozio" che inserisce di nascosto l'indirizzo del negozio
 sistemare ricerca FAQ in contattaci
 sistemare home 
+aggiornare indirizzo nelle info legali

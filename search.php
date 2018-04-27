@@ -45,7 +45,7 @@
       <h3><a href="menu.php">Torna al menù</a></h3>
         <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post">
           <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
-          <input type="submit">
+          <button class="btn third">Cerca</button>
         </form>
         <div class="searchresult">  <!-- DA SPOSATRE TUTTO QUESTO DIV IN UNO SCRIPT CHE SI VISUALIZZA SOLO SE E' STATO PREMUTO IL PULSANTE DELLA RICERCA -->
           <?php

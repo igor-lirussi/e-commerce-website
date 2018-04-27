@@ -16,7 +16,7 @@
 
   <body >
     <script>
-    function cambia() {
+    function cambia() { //per mostrare o meno le FAQ
       $( ".frequent-questions" ).toggle("slow");
     };
     </script>
@@ -37,11 +37,11 @@
       </br>
       <h1>Come possiamo aiutarti?</h1>
       <form class="searchform" action="ourContacts.html" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
-        <input type="search" name="search" value="" placeholder="Inserisci ricerca qui...">
+        <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..." autofocus>
         <button class="btn third">Cerca</button>
       </form>
       <div class="col-6">
-          <h2>Non hai un'account? </br></h2>
+          <hr/><h2>Non hai un'account? </br></h2>
           <h3>Per le domande più frequenti fai click qui: <a onclick="cambia();"><em><u>FAQ</u></em></a>.
         </h3>
           <div class="frequent-questions" style="display: none;">
@@ -72,14 +72,14 @@
 
       </div>
       <div class="col-6">
-        <h2>La mia domanda riguarda il mio account. </h2>
+        <hr/><h2>La mia domanda riguarda il mio account. </h2>
         <h3>Scrivi direttamente al nostro servizio clienti <a href="mailto:info@Yook.it">info@Yook.it</a> specificando
           la natura del problema e la mail con cui accedi. </br>Saremo felici di aiutarti!</h3>
       </div>
     </div>
 
     <div class="row">
-      </br>
+      </br><hr/>
       <h1>Cerchi lavoro?</h1>
       <div class="col-4">
         <i class="fab fa-facebook-square"></i>
