@@ -59,32 +59,35 @@
         if($result = $conn->query($query)){ //se la query ha prodotto risultato
           echo session_id();
           while($row = $result->fetch_row()){ //fetcho e ciclo ogni riga della tabella
-            if(isset($_SESSION['carrello'][$row[0]])){ //se esiste una sessione corrispondente a quel prodotto (ovvero è stato inserito nel carrello)
-              echo "<div class = 'offert'>"; //lo mostro
-              echo  "<div class = 'row'>";
-              echo    "<div class = 'col-4'>";
-              echo      "<img src = '".$row[5]."'>";
-              echo    "</div>";
-              echo    "<div class = 'col-8 desc'>";
-              echo      "<p>".$row[1]."</p>";
-              echo      "<p>".$row[3]."</p>";
-              echo      "<p>";
-              print_r($_SESSION['carrello'][$row[0]]['price']); //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione
-              echo "€</p>";
-              echo      "<p>Quantità selezionata: ";
-              print_r($_SESSION['carrello'][$row[0]]['quantity']); //stampo la quantità selezionata dall'utente nel menù e salvata nella sessione
-              $totale = $totale + $_SESSION['carrello'][$row[0]]['price']; //aggiorno il prezzo totale
-              echo "</p>";
-              echo    "</div>";
-              echo  "</div>";
-              echo "</div>";
+            if( isset($_SESSION['carrello'][$row[0]]) ){ //se esiste una sessione corrispondente a quel prodotto (ovvero è stato inserito nel carrello)
+              if( $_SESSION['carrello'][$row[0]]['quantity'] > 0 ) { //se c'è una quantità > 0
+                echo "<div class = 'offert'>"; //lo mostro
+                echo  "<div class = 'row'>";
+                echo    "<div class = 'col-4'>";
+                echo      "<img src = '".$row[5]."'>";
+                echo    "</div>";
+                echo    "<div class = 'col-8 desc'>";
+                echo      "<p>".$row[1]."</p>";
+                echo      "<p>".$row[3]."</p>";
+                echo      "<p>";
+                print_r($_SESSION['carrello'][$row[0]]['price']); //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione
+                echo "€</p>";
+                echo      "<p>Quantità selezionata: ";
+                print_r($_SESSION['carrello'][$row[0]]['quantity']); //stampo la quantità selezionata dall'utente nel menù e salvata nella sessione
+                $totale = $totale + $_SESSION['carrello'][$row[0]]['price']; //aggiorno il prezzo totale
+                echo "</p>";
+                echo    "</div>";
+                echo  "</div>";
+                echo "</div>";
+              }
             }
           }
-          echo $totale; //stampo il prezzo totale da pagare
+          echo "Totale: ".$totale." €"; //stampo il prezzo totale da pagare
         }
       ?>
+      </br>
       <a href="menu.php">Torna al menu</a>
-      <a href="pagamento.php">Paga</a>
+      <a href="pagamento.php">Vai alla pagina di pagamento</a>
 
     </div>
 

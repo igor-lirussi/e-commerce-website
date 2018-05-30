@@ -2,24 +2,50 @@
 <html lang="it">
 
   <head>
-  </script>
     <meta charset="utf-8">
+    <title>Yook</title>
+    <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per barra progressi -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
-
-    </script>
-    <title>SitoSchifo</title>
-    <link rel="icon" href="resources/favicon.ico" />
+    <!-- per il popup modal -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/modal.css">
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src="js/modal.js"></script>
   </head>
 
   <body>
+    <!-- popup modal -->
+    <!-- va messo nel body come figlio diretto, tutto gli altri figli verranno sfocati -->
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="head">
+          Wow! <i class="fas fa-child"></i>
+          <a class="btn-close trigger" href="#">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="content">
+            <div id="good-job"><?php
+              if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+                if(true) {  //sempre
+                  echo '<i class="fas fa-exclamation-triangle"></i> <h1>Aggiunto!<br/></h1>';
+
+                }
+              }
+            ?></div>
+        </div>
+      </div>
+    </div>
+
+
     <?php
       include 'functions.php';
       include 'connection.php';
       error_reporting(~E_WARNING);
-      sec_session_start();
+      sec_session_start();  //chiama inizia sessione
       if(login_check($conn) == true) {
      ?>
     <header>
@@ -68,12 +94,15 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione
-                $q = @$_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, che è referenziato con l'indice "q[idprodotto]"
-                $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità
-                $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella eventualmente già presente
-                $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
+                if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                  $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                  $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                  $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                  $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+                }
               } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
                 $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
               }
               echo    "</div>";
