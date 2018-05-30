@@ -14,8 +14,6 @@
 
   <body>
 
-    <!-- inizio corpo del sito, displayed dopo il loading-->
-<div id="allpage">
   <!-- il not-footer serve per il footer statico -->
   <div id="not-footer">
 
@@ -24,22 +22,15 @@
       <h1>Yook!</h1>
       </a>
       <h2>Make it Yours.</h2>
-      <nav>
-      <ul>
-        <li><a href="ourFood.html">Il nostro cibo</a></li>
-        <li><a href="ourStory.html">La nostra storia</a></li>
-        <li><a href="#">Location</a></li>
-        <li><a href="#">Contattaci</a></li>
-      </ul>
-      </nav>
+      <p>Resoconto degli acquisti</p>
     </header>
 
 
         <!-- barra progressi -->
         <div class="checkout-wrap">
           <ul class="checkout-bar">
-            <li class="visited"><a href="#">Menù</a></li>
-            <li class="visited">Luogo Consegna</li>
+            <li class="visited"><a href="menu.php">Menù</a></li>
+            <li class="visited"><a href="address.html">Luogo Consegna</a></li>
             <li class="active">Carrello</li>
             <li class="">Pagamento</li>
             <li class="">Fine</li>
@@ -91,26 +82,25 @@
 
     </div>
 
-    </div>
-    <footer>
-      <address>
-            <p>
-                Copyright 2018 <strong>Yook S.r.l.</strong><br>
-                Via Albert Einstein n. 3, 48018 Faenza (RA)<br>
-                <a href="mailto:info@Yook.it">info@Yook.it</a>
-            </p>
-            <p>
-                P.Iva: 02684269693 - REA: RA-526419
-                <br>
-                Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 101.000€ interamente versati.
-            </p>
-            <p>
-                <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
-            </p>
-      </address>
-    </footer>
-  <!-- fine corpo del sito -->
   </div>
+  <footer>
+    <address>
+          <p>
+              Copyright 2018 <strong>Yook S.r.l.</strong><br>
+              Piazza Fabbri n.5, Cesena 47521 (FC), Italia<br>
+              <a href="mailto:info@Yook.it">info@Yook.it</a>
+          </p>
+          <p>
+              P.Iva: 02684269693 - REA: FC-526419
+              <br>
+              Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 100.000€ interamente versati.
+          </p>
+          <p>
+              <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
+          </p>
+    </address>
+  </footer>
+
   </body>
 
 </html>

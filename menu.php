@@ -17,6 +17,10 @@
   </head>
 
   <body>
+
+  <!-- il not-footer serve per il footer statico -->
+  <div id="not-footer">
+
     <!-- popup modal -->
     <!-- va messo nel body come figlio diretto, tutto gli altri figli verranno sfocati -->
     <div class="modal-wrapper">
@@ -31,8 +35,7 @@
             <div id="good-job"><?php
               if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                 if(true) {  //sempre
-                  echo '<i class="fas fa-exclamation-triangle"></i> <h1>Aggiunto!<br/></h1>';
-
+                  echo '<i class="fas fa-shopping-cart"></i> <h1>Aggiunto al carrello!<br/></h1>';
                 }
               }
             ?></div>
@@ -53,12 +56,13 @@
       <h1>Yook!</h1>
       </a>
       <h2>Menù</h2>
+      <p>I nostri prodotti</p>
     </header>
 
     <!-- barra progressi -->
     <div class="checkout-wrap">
       <ul class="checkout-bar">
-        <li class="active"><a href="#">Menù</a></li>
+        <li class="active">Menù</li>
         <li class="">Luogo Consegna</li>
         <li class="">Carrello</li>
         <li class="">Pagamento</li>
@@ -134,13 +138,16 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) {
-                $q = @$_POST['q'.$row[0]];
-                $p = $row[4] * $q;
-                $_SESSION['carrello'][$row[0]]['quantity'] += $q;
-                $_SESSION['carrello'][$row[0]]['price'] = $p;
-              } else {
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0);
+              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
+                if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                  $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                  $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                  $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                  $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+                }
+              } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
               }
               echo    "</div>";
               echo  "</div>";
@@ -171,13 +178,16 @@
                           <input type='number' name='q".$row[0]."' max='100' value = 1>
                           <input type='submit' name='fast' value='Aggiungi al carrello'>
                         </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) {
-                $q = @$_POST['q'.$row[0]];
-                $p = $row[4] * $q;
-                $_SESSION['carrello'][$row[0]]['quantity'] += $q;
-                $_SESSION['carrello'][$row[0]]['price'] = $p;
-              } else {
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0);
+              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
+                if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                  $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                  $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                  $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                  $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+                }
+              } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
+                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
               }
               echo    "</div>";
               echo  "</div>";
@@ -197,5 +207,24 @@
     <form class="" action="cart.php" method="post">
       <input type="submit" name="cart" value="Vai al carrello">
     </form>
+
+  </div>
+  <footer>
+    <address>
+          <p>
+              Copyright 2018 <strong>Yook S.r.l.</strong><br>
+              Piazza Fabbri n.5, Cesena 47521 (FC), Italia<br>
+              <a href="mailto:info@Yook.it">info@Yook.it</a>
+          </p>
+          <p>
+              P.Iva: 02684269693 - REA: FC-526419
+              <br>
+              Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 100.000€ interamente versati.
+          </p>
+          <p>
+              <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
+          </p>
+    </address>
+  </footer>
   </body>
 </html>
