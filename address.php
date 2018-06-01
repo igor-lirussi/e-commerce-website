@@ -20,6 +20,14 @@
   <!-- il not-footer serve per il footer statico -->
   <div id="not-footer">
 
+    <?php
+      include 'functions.php';
+      include 'connection.php';
+      error_reporting(~E_WARNING);
+      sec_session_start();  //chiama inizia sessione
+      if(login_check($conn) == true) {
+     ?>
+
     <header>
       <a href="home.html">
       <h1>Yook!</h1>
@@ -41,25 +49,24 @@
 
     <div class="row">
 
-      <div class="col-4">
+      <div class="col-4 center">
         <!-- classe dove l'utente sceglie -->
         <div class="pac-card" id="pac-card">
-          <div id="title">
+          <div id="title"></br>
             Scegli luogo consegna:
           </div>
           <!-- input -->
           <div id="pac-container">
-            <input id="pac-input" type="text"
-                placeholder="Enter a location">
+            <input id="pac-input" type="text" placeholder="Enter a location">
           </div>
           <!-- pulsanti -->
-          <button id="but" onclick="geolocate()">Geo me <i class="fas fa-street-view"></i></button>
-          <button id="but" onclick=""> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
+          <button class="but" onclick="geolocate()">Geo me <i class="fas fa-street-view"></i></button>
+          <button class="but" onclick="insede()"> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
         </div>
         <!-- accuratezza stampata nel caso di geoloc -->
         <div id="accu"></div>
         <!-- pulsante consegna in questo luogo -->
-
+        <button class="but" onclick="consegna()"> Consegna qui <i class="fas fa-check-circle"></i></button>
       </div>
 
       <div class="col-8">
@@ -72,6 +79,22 @@
 
 
                 <script>
+                //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO IN SEDE
+                function insede() {
+                  document.getElementById('pac-input').value = "Piazza Fabbri, 5, Cesena, FC, Italia";  //modifico indirizzo con quello della sede
+                  consegna(); //premo pulsante consegna
+                }
+
+                //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO CONSEGNA
+                function consegna() {
+                  if (!(document.getElementById('pac-input').value == "")) {
+                    //uso il metodo post sotto definito
+                    post('./cart.php', { indir_new : document.getElementById('pac-input').value });
+                  } else {
+                    window.alert("Please set a place");
+                  }
+                }
+
                 var map;
                   function initMap() {
                     var posrocca = {lat: 44.136503, lng: 12.240194};
@@ -196,6 +219,31 @@
                           infoWindow.open(map);
                         }
 
+                        //per il POST
+                        function post(path, params, method) {
+                          method = method || "post"; // Set method to post by default if not specified.
+
+                          // The rest of this code assumes you are not using a library.
+                          // It can be made less wordy if you use one.
+                          var form = document.createElement("form");
+                          form.setAttribute("method", method);
+                          form.setAttribute("action", path);
+
+                          for(var key in params) {
+                              if(params.hasOwnProperty(key)) {
+                                  var hiddenField = document.createElement("input");
+                                  hiddenField.setAttribute("type", "hidden");
+                                  hiddenField.setAttribute("name", key);
+                                  hiddenField.setAttribute("value", params[key]);
+
+                                  form.appendChild(hiddenField);
+                              }
+                          }
+
+                          document.body.appendChild(form);
+                          form.submit();
+                      }
+
                 </script>
         <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&callback=initMap">
@@ -205,8 +253,13 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap"
                     async defer></script>
 
-
-
+      <?php
+      //alternativa alla pagina
+      } else {
+         echo 'You are not authorized to access this page, please login. <br/>';
+         echo "<a href='accedi.php'>Accedi</a>";
+      }
+      ?>
 
     </div>
     <footer>

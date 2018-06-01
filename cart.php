@@ -30,7 +30,7 @@
         <div class="checkout-wrap">
           <ul class="checkout-bar">
             <li class="visited"><a href="menu.php">Menù</a></li>
-            <li class="visited"><a href="address.html">Luogo Consegna</a></li>
+            <li class="visited"><a href="address.php">Luogo Consegna</a></li>
             <li class="active">Carrello</li>
             <li class="">Pagamento</li>
             <li class="">Fine</li>
@@ -44,9 +44,21 @@
         include 'connection.php';
         include 'functions.php';
         sec_session_start();
+        if(login_check($conn) == true) {
+
+        //prendo il POST dell'indirizzo
+        if ( !empty($_SESSION['indir_new']) || !empty($_POST['indir_new']) ) {
+          if ( !empty($_POST['indir_new']) ) {
+            $_SESSION['indir_new'] = $_POST['indir_new'];
+          }
+          echo $_SESSION['indir_new'];
+        } else {
+          echo "Indirizzo di consegna non impostato.</br>";
+        }
+
 
         $query = "SELECT * FROM listino"; //seleziono tutti i cibi dal listino
-        $totale = 0; //mi servirà per tenere conto del prezzo totale che l'utente deve pagare alla fine
+        $_SESSION['totale'] = 0; //mi servirà per tenere conto del prezzo totale che l'utente deve pagare alla fine
         if($result = $conn->query($query)){ //se la query ha prodotto risultato
           echo session_id();
           while($row = $result->fetch_row()){ //fetcho e ciclo ogni riga della tabella
@@ -65,7 +77,7 @@
                 echo "€</p>";
                 echo      "<p>Quantità selezionata: ";
                 print_r($_SESSION['carrello'][$row[0]]['quantity']); //stampo la quantità selezionata dall'utente nel menù e salvata nella sessione
-                $totale = $totale + $_SESSION['carrello'][$row[0]]['price']; //aggiorno il prezzo totale
+                $_SESSION['totale'] = $_SESSION['totale'] + $_SESSION['carrello'][$row[0]]['price']; //aggiorno il prezzo totale e lo inserisco nella variabile di sessione
                 echo "</p>";
                 echo    "</div>";
                 echo  "</div>";
@@ -73,13 +85,21 @@
               }
             }
           }
-          echo "Totale: ".$totale." €"; //stampo il prezzo totale da pagare
+          echo "Totale: ".$_SESSION['totale']." €"; //stampo il prezzo totale da pagare
         }
       ?>
       </br>
       <a href="menu.php">Torna al menu</a>
       <a href="pagamento.php">Vai alla pagina di pagamento</a>
 
+
+      <?php
+      //alternativa alla pagina
+      } else {
+         echo 'You are not authorized to access this page, please login. <br/>';
+         echo "<a href='accedi.php'>Accedi</a>";
+      }
+      ?>
     </div>
 
   </div>

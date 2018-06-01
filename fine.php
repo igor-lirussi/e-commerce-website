@@ -19,26 +19,27 @@
   <!-- il not-footer serve per il footer statico -->
   <div id="not-footer">
 
-    <header>
-      <a href="home.html">
-      <h1>Yook!</h1>
-      </a>
-      <h2>Make it Yours.</h2>
-      <nav>
-      <ul>
-        <li><a href="ourFood.html">Il nostro cibo</a></li>
-        <li><a href="ourStory.html">La nostra storia</a></li>
-        <li><a href="#">Location</a></li>
-        <li><a href="#">Contattaci</a></li>
-      </ul>
-      </nav>
-    </header>
+    <?php
+      include 'functions.php';
+      include 'connection.php';
+      error_reporting(~E_WARNING);
+      sec_session_start();  //chiama inizia sessione
+      if(login_check($conn) == true) {
+     ?>
+
+     <header>
+       <a href="home.html">
+       <h1>Yook!</h1>
+       </a>
+       <h2>Make it Yours.</h2>
+       <p>Il tuo ordine è stato accetato!</p>
+     </header>
 
 
         <!-- barra progressi -->
         <div class="checkout-wrap">
           <ul class="checkout-bar">
-            <li class="visited"><a href="#">Menù</a></li>
+            <li class="visited">Menù</li>
             <li class="visited">Luogo Consegna</li>
             <li class="visited">Carrello</li>
             <li class="visited">Pagamento</li>
@@ -52,6 +53,14 @@
     </div>
 
 
+
+    <?php
+    //alternativa alla pagina
+    } else {
+       echo 'You are not authorized to access this page, please login. <br/>';
+       echo "<a href='accedi.php'>Accedi</a>";
+    }
+    ?>
 
     </div>
     <footer>

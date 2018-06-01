@@ -15,10 +15,18 @@
 
   </head>
 
-  <body>
+  <body onload="body_loaded()">
 
   <!-- il not-footer serve per il footer statico -->
   <div id="not-footer">
+
+    <?php
+      include 'functions.php';
+      include 'connection.php';
+      error_reporting(~E_WARNING);
+      sec_session_start();  //chiama inizia sessione
+      if(login_check($conn) == true) {
+     ?>
 
     <header>
       <a href="home.html">
@@ -33,7 +41,7 @@
     <div class="checkout-wrap">
       <ul class="checkout-bar">
         <li class="visited"><a href="menu.php">Menù</a></li>
-        <li class="visited"><a href="address.html">Luogo Consegna</a></li>
+        <li class="visited"><a href="address.php">Luogo Consegna</a></li>
         <li class="visited"><a href="cart.php">Carrello</a></li>
         <li class="active">Pagamento</li>
         <li class="">Fine</li>
@@ -42,9 +50,13 @@
 
 
     <div class = "row">
-      <div class="tips">
-    Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39) DinersClub, (34-37) American Express, (65) Discover, (5019) dankort
+
+    <div class="tips">
+      Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39) DinersClub, (34-37) American Express, (65) Discover, (5019) DanKort
     </div>
+
+  </br>
+    <h2>Inserisci i tuoi dati di pagamento</h2></br>
 
     <div class="container">
       <div class="col1">
@@ -62,29 +74,50 @@
             <div class="magnetic"></div>
             <div class="bar"></div>
             <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
-            <span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random corporation. <br> If found please return to Random Bank of Random corporation - 21968 Paris, Verdi Street, 34 </span>
+            <span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random corporation. <br> If found please return to Random Bank of Random corporation - 47521, via Boccaquattro, 3 Cesena </span>
           </div>
         </div>
       </div>
       <div class="col2">
         <label>Card Number</label>
-        <input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+        <input id="c_num" class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
         <label>Cardholder name</label>
-        <input class="inputname" type="text" placeholder=""/>
+        <input id="c_name" class="inputname" type="text" placeholder=""/>
         <label>Expiry date</label>
-        <input class="expire" type="text" placeholder="MM / YYYY"/>
+        <input id="c_date" class="expire" type="text" placeholder="MM / YYYY"/>
         <label>Security Number</label>
-        <input class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-        <button class="buy"><i class="material-icons">lock</i> Pay --.-- €</button>
+        <input id="c_cvv" class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+        <button class="buy" onclick="window.location.href='./fine.php'" ><i class="material-icons">lock</i> Pay <?php echo $_SESSION['totale']; ?> €</button>
       </div>
     </div>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-
-        <script src="js/payment.js"></script>
+    <script src="js/payment.js"></script>
     </div>
 
+    <script>
+      function body_loaded() {
+        //carico i dati della carta
+        if ( "<?php echo $_SESSION['nome'] ?>" != "guest") {  //guest non visualizza nulla
+          document.getElementById("c_num").value = "<?php echo $_SESSION['carta']?>";
+          document.getElementById("c_name").value = "<?php echo $_SESSION['nome']." ".$_SESSION['cognome'] ?>";
+          document.getElementById("c_date").value = "<?php echo $_SESSION['scadenza']?>";
+          document.getElementById("c_cvv").value = "<?php echo $_SESSION['cvv'] ?>";
+
+        }
+      }
+    </script>
+
+    <script src="js/payment.js"></script>
+
+    <?php
+    //alternativa alla pagina
+    } else {
+       echo 'You are not authorized to access this page, please login. <br/>';
+       echo "<a href='accedi.php'>Accedi</a>";
+    }
+    ?>
 
   </div>
   <footer>

@@ -9,9 +9,6 @@ html {
   --text-color: #e1e1e1;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-}
 
 .tips {
   position: fixed;
@@ -22,6 +19,7 @@ body {
   line-height: 30px;
   font-size: 14px;
   padding: 2px 15px;
+  z-index: 80; //maggiore di 50 che è quello della carta di credito
 }
 
 .container {
@@ -258,4 +256,12 @@ body {
   bottom: 0;
   margin: auto;
   background: #ddd;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobiles: */
+    .col1 {display: none} /*nascondo carta*/
+    .container .col2 .buy {width: auto}
+    .container .col2 input {width: auto}
+    .container {width: auto}  /*container senza larghezza*/
 }

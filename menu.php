@@ -33,7 +33,7 @@
         </div>
         <div class="content">
             <div id="good-job"><?php
-              if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+              if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {  //se mi è giunto qualcosa via metodo post
                 if(true) {  //sempre
                   echo '<i class="fas fa-shopping-cart"></i> <h1>Aggiunto al carrello!<br/></h1>';
                 }
@@ -43,14 +43,38 @@
       </div>
     </div>
 
-
     <?php
       include 'functions.php';
       include 'connection.php';
       error_reporting(~E_WARNING);
       sec_session_start();  //chiama inizia sessione
-      if(login_check($conn) == true) {
+      if(login_check($conn) == true) {  //se loggato
      ?>
+
+     <?php
+     //faccio query per le informazioni dell'utente
+       $query = "SELECT * FROM members WHERE id = '".$_SESSION['user_id']."'"; //con questa query seleziono tutti i dati dell'utente
+       if($result = $conn->query($query)){ //se la query ha prodotto un risultato
+         while($row = $result->fetch_row()) { //il risultato prodotto è un insieme di righe prelevate dal database. faccio la fetch del risultato e ogni riga, fintanto che ci sono righe, la analizzo mettendola nella variabile "row"
+           echo "Benvenuto ".$row[1]; //username c'è già dal login
+           $_SESSION['nome'] = $row[1];
+           $_SESSION['cognome'] = $row[2];
+           $_SESSION['email'] = $row[4];
+           $_SESSION['indirizzo'] = $row[7];
+           $_SESSION['pagamento'] = $row[8];
+           $_SESSION['carta'] = $row[9];
+           $_SESSION['scadenza'] = $row[10];
+           $_SESSION['cvv'] = $row[11];
+           $_SESSION['punti'] = $row[14];
+           //echo "<br>Dati in-sessione: ".$_SESSION['nome']." ".$_SESSION['cognome']." ".$_SESSION['email']." ".$_SESSION['indirizzo']." ";
+           //echo "<br>Dati in-sessione: ".$_SESSION['pagamento']." ".$_SESSION['carta']." ".$_SESSION['scadenza']." ".$_SESSION['cvv']." ".$_SESSION['punti'];
+         }
+       } else {
+         echo "Nessun dato sull' utente trovato";
+       }
+     ?>
+
+     
     <header>
       <a href="home.html">
       <h1>Yook!</h1>
@@ -204,8 +228,8 @@
         ?>
       </div>
     </div>
-    <form class="" action="cart.php" method="post">
-      <input type="submit" name="cart" value="Vai al carrello">
+    <form class="" action="address.php" method="post">
+      <input type="submit" name="cart" value="Scegli luogo consegna">
     </form>
 
   </div>
