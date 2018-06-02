@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per barra progressi -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
-
+    <!-- per le figurine/carte -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/food_figure.css">
   </head>
 
   <body>
@@ -51,7 +52,7 @@
           if ( !empty($_POST['indir_new']) ) {
             $_SESSION['indir_new'] = $_POST['indir_new'];
           }
-          echo $_SESSION['indir_new'];
+          echo "Consegna in ".$_SESSION['indir_new'];
         } else {
           echo "Indirizzo di consegna non impostato.</br>";
         }
@@ -60,18 +61,23 @@
         $query = "SELECT * FROM listino"; //seleziono tutti i cibi dal listino
         $_SESSION['totale'] = 0; //mi servirà per tenere conto del prezzo totale che l'utente deve pagare alla fine
         if($result = $conn->query($query)){ //se la query ha prodotto risultato
-          echo session_id();
+          //echo session_id();
           while($row = $result->fetch_row()){ //fetcho e ciclo ogni riga della tabella
             if( isset($_SESSION['carrello'][$row[0]]) ){ //se esiste una sessione corrispondente a quel prodotto (ovvero è stato inserito nel carrello)
               if( $_SESSION['carrello'][$row[0]]['quantity'] > 0 ) { //se c'è una quantità > 0
-                echo "<div class = 'offert'>"; //lo mostro
-                echo  "<div class = 'row'>";
-                echo    "<div class = 'col-4'>";
-                echo      "<img src = '".$row[5]."'>";
-                echo    "</div>";
-                echo    "<div class = 'col-8 desc'>";
-                echo      "<p>".$row[1]."</p>";
-                echo      "<p>".$row[3]."</p>";
+                echo "<div class = 'figurina'>";
+                echo  "<section class='movie_image'>";
+                echo      "<img class='movie_poster' src = '".$row[5]."'>"; //la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0
+                echo  "</section>";  //es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)
+                echo  "<section class='center_fig'>";
+                echo    "<div class='about_movie'>";
+                echo      "<h3>".$row[1]."</h3>";
+                echo      "<div class='movie_info'>";
+                echo        "<p>".($_SESSION['carrello'][$row[0]]['price'] * 2)." punti</p>";
+                echo      "</div>";
+                echo      "<div class='movie_desc'>";
+                echo        "<p>".$row[3]."</p>";
+                echo      "</div>";
                 echo      "<p>";
                 print_r($_SESSION['carrello'][$row[0]]['price']); //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione
                 echo "€</p>";
@@ -80,12 +86,13 @@
                 $_SESSION['totale'] = $_SESSION['totale'] + $_SESSION['carrello'][$row[0]]['price']; //aggiorno il prezzo totale e lo inserisco nella variabile di sessione
                 echo "</p>";
                 echo    "</div>";
-                echo  "</div>";
+                echo  "</section>";
                 echo "</div>";
               }
             }
           }
-          echo "Totale: ".$_SESSION['totale']." €"; //stampo il prezzo totale da pagare
+          echo "Totale: ".$_SESSION['totale']." €</br>"; //stampo il prezzo totale da pagare
+          echo "Punti guadagnati: ".($_SESSION['totale']*2)."</br>";
         }
       ?>
       </br>

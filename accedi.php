@@ -36,6 +36,10 @@
                   echo '<i class="fas fa-envelope"></i> <h1>An e-mail to your account has been sent!</h1>';
                   echo 'Please log-in with the new password';
 
+                } else if($_GET['error']==3) {
+                  echo '<i class="fas fa-sign-out-alt"></i> <h1>Successfully logged-out!</h1>';
+                  echo 'Next time log-in will be required';
+
                 } else {
                   echo '<i class="fas fa-exclamation-triangle"></i> <h1> Error unknown </h1>';
                 }
@@ -63,23 +67,22 @@
 
     <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>
     <form action="process_login.php" method="post" name="login_form">
-   <p><label for="ema">Email:
-     <input type="text" id="ema" name="email" autocomplete="on"
-     placeholder="inserisci email" required/></label>
-   </p>
-   <p><label for="password">Password:
-      <input type="password" name="p" id="password"
-      placeholder="inserisci password" required />
-        <?php
-          if(isset($_GET['error'])) {
-          if($_GET['error']==1) {
-            echo '<div class="tip"> Forgot your password? Send an <a href="accedi.php?error=2">e-mail</a></div>';
-          }}
-        ?>
-      </label>
-    </p>
-   <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" /> <!-- se l'utente accede con admin@admin.com, pw:admin, viene rediretto sulla pagina dell'amministratore -->
-
+       <p><label for="ema">Email:
+         <input type="text" id="ema" name="email" autocomplete="on"
+         placeholder="inserisci email" required/></label>
+       </p>
+       <p><label for="password">Password:
+          <input type="password" name="p" id="password"
+          placeholder="inserisci password" required />
+            <?php
+              if(isset($_GET['error'])) {
+              if($_GET['error']==1) {
+                echo '<div class="tip"> Forgot your password? Send an <a href="accedi.php?error=2">e-mail</a></div>';
+              }}
+            ?>
+          </label>
+        </p>
+        <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" /> <!-- se l'utente accede con admin@admin.com, pw:admin, viene rediretto sulla pagina dell'amministratore -->
     </form>
     <br/>Non hai ancora un account? <br/>
     <a href="registrati.html">Registrati!</a>

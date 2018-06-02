@@ -11,7 +11,6 @@
 .checkout-wrap {
   color: #444;
   font-family: 'PT Sans Caption', sans-serif;
-  margin: 40px auto;
   max-width: 1200px;
   padding-bottom: 10px;
   position: relative;
@@ -114,7 +113,7 @@ ul.checkout-bar a {
   }
 
   .checkout-wrap {
-    margin: 80px auto;
+    margin: 20px auto 60px;
   }
 
   ul.checkout-bar {

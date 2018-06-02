@@ -81,8 +81,8 @@
                 <script>
                 //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO IN SEDE
                 function insede() {
-                  document.getElementById('pac-input').value = "Piazza Fabbri, 5, Cesena, FC, Italia";  //modifico indirizzo con quello della sede
-                  consegna(); //premo pulsante consegna
+                  //uso il metodo post sotto definito
+                  post('./cart.php', { indir_new : "Piazza Fabbri, 5, Cesena, FC, Italia" });
                 }
 
                 //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO CONSEGNA
