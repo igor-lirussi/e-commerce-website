@@ -12,7 +12,7 @@
     if(login($email, $password, $conn) == true) {
       // Login eseguito
       // echo 'Succ"ess: You have been logged in!';
-      if($email == "admin@admin.com"){
+      if($email == "admin@admin"){
         header('Location: ./amministra.php');
       } else {
         header('Location: ./menu.php');

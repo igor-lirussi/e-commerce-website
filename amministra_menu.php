@@ -143,6 +143,31 @@
               echo "</div>";
               echo "</div>";
             }
+            echo "<div class = 'offert meal'>";
+            echo "<div class = 'row'>";
+            echo "<div class = 'col-4'>";
+            // echo $image;
+            echo "<div class = 'nascondi'>";
+
+            // print_r($_FILES['image']['name']);
+            // $image = "./resources/immaginiCibi/".$_FILES['image']['name'];
+            echo "</div>";
+            echo "<form action='insert.php' method='post' enctype='multipart/form-data'>
+            	       <input name='image' type='file' value = 'Inserisci immagine'>";
+            // echo "<input name='invia' type='submit' value='Carica immagine' />";
+            // echo"         </form>";
+            // echo "<div class = 'nascondi'>";
+            // // echo "<form action='insert.php' method='post'>";
+            // echo "<input type = 'text' name = 'img' value = ".$image.">";
+            // echo "</div>";
+            echo "<input type = 'text' name = 'nomeInserito' placeholder = 'Inserisci nome prodotto'>";
+            echo    "<input type = 'text' name = 'categInserita' placeholder = 'Inserisci categoria prodotto'>";
+            echo      "<textarea rows='4' cols='50' name = 'descInserita' placeholder = 'Inserisci descrizione prodotto'></textarea>";
+            echo      "<input type = 'number' name = 'prezzoInserito' placeholder = 'Inserisci prezzo prodotto'>€";
+            echo    "<input name= 'invia' type='submit' value='Aggiungi prodotto'></form>";
+                  echo "</div>";
+            echo "</div>";
+            echo "</div>";
           } else {
             echo "Nessun dato trovato";
           }
@@ -173,6 +198,31 @@
               echo  "</div>";
               echo "</div>";
             }
+            echo "<div class = 'offert drink'>";
+            echo "<div class = 'row'>";
+            echo "<div class = 'col-4'>";
+            // echo $image;
+            echo "<div class = 'nascondi'>";
+
+            // print_r($_FILES['image']['name']);
+            // $image = "./resources/immaginiCibi/".$_FILES['image']['name'];
+            echo "</div>";
+            echo "<form action='insert.php' method='post' enctype='multipart/form-data'>
+            	       <input name='image' type='file' value = 'Inserisci immagine'>";
+            // echo "<input name='invia' type='submit' value='Carica immagine' />";
+            // echo"         </form>";
+            // echo "<div class = 'nascondi'>";
+            // // echo "<form action='insert.php' method='post'>";
+            // echo "<input type = 'text' name = 'img' value = ".$image.">";
+            // echo "</div>";
+            echo "<input type = 'text' name = 'nomeInserito' placeholder = 'Inserisci nome prodotto'>";
+            echo    "<input type = 'text' name = 'categInserita' placeholder = 'Inserisci categoria prodotto'>";
+            echo      "<textarea rows='4' cols='50' name = 'descInserita' placeholder = 'Inserisci descrizione prodotto'></textarea>";
+            echo      "<input type = 'number' name = 'prezzoInserito' placeholder = 'Inserisci prezzo prodotto'>€";
+            echo    "<input name= 'invia' type='submit' value='Aggiungi prodotto'></form>";
+                  echo "</div>";
+            echo "</div>";
+            echo "</div>";
           } else {
             echo "Nessun dato trovato";
           }
