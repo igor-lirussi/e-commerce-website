@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
-.figurina {
+.figurina {         /*normalmente*/
   background: url(../resources/bg/bb1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,7 +11,16 @@
   overflow: hidden;
   margin: 10px;
 }
-@media (max-width: 520px) {
+
+.col-4 .figurina {         /*normalmente ma dentro una colonna che divide*/
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 520px) {   /*meno di 520px*/
   .figurina {
     max-height: none;
     display: flex;

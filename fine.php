@@ -49,7 +49,21 @@
 
 
     <div class = "row">
-        FINE.
+        FINE.</br>
+        <?php
+        echo "</br>Consegna in ".$_SESSION['indir_new'];
+        echo "</br>Nome ".$_SESSION['nome'];
+        echo "</br>cognome ".$_SESSION['cognome'];
+        echo "</br>email in ".$_SESSION['email'];
+        echo "</br>Indirizzo in ".$_SESSION['indirizzo'];
+        echo "</br>pagamento in ".$_SESSION['pagamento'];
+        echo "</br>carta in ".$_SESSION['carta'];
+        echo "</br>scadenza in ".$_SESSION['scadenza'];
+        echo "</br>cvv in ".$_SESSION['cvv'];
+        echo "</br>punti in ".$_SESSION['punti'];
+        echo "</br>Totale in ".$_SESSION['totale'];
+        echo "</br>id in ".$_SESSION['user_id'];
+        ?>
     </div>
 
 
