@@ -10,9 +10,16 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/map.css">
     <!-- per barra progressi -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
+    <!-- per il pulsante bollicinoso, in fondo alla pagina c'è lo script -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/bubbly.css">
+    <!-- per input text figo -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/inp_text.css">
     <!-- per font icone -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-
+    <!-- per la mia funzione post -->
+    <script src="js/post_function.js"></script>
+    <!-- per AJAX -->
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
   </head>
 
   <body>
@@ -47,26 +54,40 @@
           </ul>
         </div>
 
+      <?php         //prendo il POST dell'indirizzo consegna ordine
+        if ( !empty($_SESSION['indir_ordine']) || !empty($_POST['indir_ordine']) ) { //se c'è uno o l'altro
+          if ( !empty($_POST['indir_ordine']) ) {  //se c'è post
+            $_SESSION['indir_ordine'] = $_POST['indir_ordine']; //imposto indirizzo consegna di sessione al POST passato
+          }
+        } else { //se non c'è l'indirizzo di consegna in sessione e nemmeno quello passato da POST
+          $_SESSION['indir_ordine'] = $_SESSION['indirizzo']; //imposto indirizzo consegna di sessione a indirizzo utente
+        }
+      ?>
+
+
+
     <div class="row">
 
       <div class="col-4 center">
         <!-- classe dove l'utente sceglie -->
         <div class="pac-card" id="pac-card">
           <div id="title"></br>
-            Scegli luogo consegna:
+            Scegli luogo di consegna:
           </div>
           <!-- input -->
           <div id="pac-container">
-            <input id="pac-input" type="text" placeholder="Enter a location">
+            <div class='cont_inp'><span><input class='gate' id='pac-input' type='text' placeholder='enter a location' /><label for='class'>Luogo</label></span></div>
+            <!-- <input id="pac-input" type="text" placeholder="Enter a location"> -->
           </div>
-          <!-- pulsanti -->
-          <button class="but" onclick="geolocate()">Geo me <i class="fas fa-street-view"></i></button>
-          <button class="but" onclick="insede()"> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
+          <!-- pulsante geolocalizzazione -->
+          <button class="bubbly-button" onclick="geolocate()">Geo me <i class="fas fa-street-view"></i></button>
         </div>
         <!-- accuratezza stampata nel caso di geoloc -->
         <div id="accu"></div>
         <!-- pulsante consegna in questo luogo -->
-        <button class="but" onclick="consegna()"> Consegna qui <i class="fas fa-check-circle"></i></button>
+        <button class="bubbly-button" onclick="consegna()"> Consegna qui <i class="fas fa-check-circle"></i></button>
+        <br>oppure<br>
+        <button class="bubbly-button" onclick="insede()"> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
       </div>
 
       <div class="col-8">
@@ -76,20 +97,24 @@
 
     </div>
 
+                <script>
+                  //imposto input text all'indirizzo consegna di sessione   -->
+                  document.getElementById('pac-input').value = '<?php echo $_SESSION['indir_ordine'] ?>';
+                </script>
 
 
                 <script>
                 //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO IN SEDE
                 function insede() {
-                  //uso il metodo post sotto definito
-                  post('./cart.php', { indir_new : "Piazza Fabbri, 5, Cesena, FC, Italia" });
+                  //uso il metodo post a me stesso con AJAX e poi passo a carrello
+                  $.post('address.php', { indir_ordine : "Piazza Fabbri, 5, Cesena, FC, Italia" } , function(){ window.location.replace('cart.php'); });
                 }
 
                 //FUNZIONE CHIAMATA ALLA PRESSIONE TASTO CONSEGNA
                 function consegna() {
                   if (!(document.getElementById('pac-input').value == "")) {
-                    //uso il metodo post sotto definito
-                    post('./cart.php', { indir_new : document.getElementById('pac-input').value });
+                    //uso il metodo post a me stesso con AJAX e poi passo a carrello
+                    $.post('address.php', { indir_ordine : document.getElementById('pac-input').value } , function(){ window.location.replace('cart.php'); });
                   } else {
                     window.alert("Please set a place");
                   }
@@ -219,30 +244,6 @@
                           infoWindow.open(map);
                         }
 
-                        //per il POST
-                        function post(path, params, method) {
-                          method = method || "post"; // Set method to post by default if not specified.
-
-                          // The rest of this code assumes you are not using a library.
-                          // It can be made less wordy if you use one.
-                          var form = document.createElement("form");
-                          form.setAttribute("method", method);
-                          form.setAttribute("action", path);
-
-                          for(var key in params) {
-                              if(params.hasOwnProperty(key)) {
-                                  var hiddenField = document.createElement("input");
-                                  hiddenField.setAttribute("type", "hidden");
-                                  hiddenField.setAttribute("name", key);
-                                  hiddenField.setAttribute("value", params[key]);
-
-                                  form.appendChild(hiddenField);
-                              }
-                          }
-
-                          document.body.appendChild(form);
-                          form.submit();
-                      }
 
                 </script>
         <!-- <script async defer
@@ -260,6 +261,9 @@
          echo "<a href='accedi.php'>Accedi</a>";
       }
       ?>
+
+      <!-- script per pulsante bollicinoso -->
+      <script src="js/bubbly.js"></script>
 
     </div>
     <footer>

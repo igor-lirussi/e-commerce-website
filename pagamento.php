@@ -55,7 +55,7 @@
       Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39) DinersClub, (34-37) American Express, (65) Discover, (5019) DanKort
     </div>
 
-  </br>
+    </br>
     <h2>Inserisci i tuoi dati di pagamento</h2></br>
 
     <div class="container">
@@ -79,15 +79,15 @@
         </div>
       </div>
       <div class="col2">
-        <label>Card Number</label>
-        <input id="c_num" class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-        <label>Cardholder name</label>
-        <input id="c_name" class="inputname" type="text" placeholder=""/>
-        <label>Expiry date</label>
+        <label>Numero carta</label>
+        <input id="c_num" class="number" type="text" placeholder="0000 0000 0000 0000" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+        <label>Prprietario carta</label>
+        <input id="c_name" class="inputname" type="text" placeholder="Nome Cognome"/>
+        <label>Scadenza</label>
         <input id="c_date" class="expire" type="text" placeholder="MM / YYYY"/>
-        <label>Security Number</label>
-        <input id="c_cvv" class="ccv" type="text" placeholder="CVC" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-        <button class="buy" onclick="window.location.href='./fine.php'" ><i class="material-icons">lock</i> Pay <?php echo $_SESSION['totale']; ?> €</button>
+        <label>CVV</label>
+        <input id="c_cvv" class="ccv" type="text" placeholder="CVV" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+        <button class="buy" onclick="sim_pagamento()" ><i class="material-icons">lock</i> Pay <?php echo $_SESSION['totale']; ?> €</button>
       </div>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
@@ -104,8 +104,11 @@
           document.getElementById("c_name").value = "<?php echo $_SESSION['nome']." ".$_SESSION['cognome'] ?>";
           document.getElementById("c_date").value = "<?php echo $_SESSION['scadenza']?>";
           document.getElementById("c_cvv").value = "<?php echo $_SESSION['cvv'] ?>";
-
         }
+      }
+
+      function sim_pagamento(){
+        window.location.href='./fine.php';
       }
     </script>
 

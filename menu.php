@@ -89,7 +89,7 @@
      	<span class="cls"></span>
      	<span>
      		<ul class="sub-menu ">
-          <?php if ($_SESSION['nome'] != "guest") { ?>
+        <?php if ($_SESSION['nome'] != "guest") { ?>
      			<li>
             <div class="saluto"><?php echo "Ciao ".$_SESSION['nome'] ?></title></div>
      			</li>
@@ -99,11 +99,11 @@
      			<li>
      				<a href="./logout.php" title="">Logout</a>
      			</li>
-          <?php } else { ?>
+        <?php } else { ?>
           <li>
             <div class="saluto center">Come utente ospite non puoi accumulare punti e salvare i tuoi dati.</title></div>
           </li>
-          <?php } ?>
+        <?php } ?>
      			<li>
      				<a href="./ourContacts.html" title="contact">Aiuto</a>
      			</li>
@@ -148,40 +148,45 @@
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Pasti Veloci'"; //con questa query seleziono tutti i pasti dalla tabella listino che sono nella categoria "Pasti Veloci"
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
             while($row = $result->fetch_row()){ //il risultato prodotto è un insieme di righe prelevate dal database. faccio la fetch del risultato e ogni riga, fintanto che ci sono righe, la analizzo mettendola nella variabile "row"
-              echo "<div class = 'figurina'>";
-              echo  "<section class='movie_image'>";
-              echo      "<img class='movie_poster' src = '".$row[5]."'>"; //la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0
-              echo  "</section>";  //es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)
-              echo  "<section class='center_fig'>";
-              echo    "<div class='about_movie'>";
-              echo      "<h3>".$row[1]."</h3>";
-              echo      "<div class='movie_info'>";
-              echo        "<p>".$row[4]."€</p>";
-              echo      "</div>";
-              echo      "<div class='movie_desc'>";
-              echo        "<p>".$row[3]."</p>";
-              echo      "</div>";
-              echo      "<form action='menu.php' method='post'>
-                           <div class='cont_inp'><span><input class='gate' type='number' name='q".$row[0]."' max='100' value = 1 placeholder='Fame?' /><label for='class'>Quantità</label></span></div>
-                           <button class='bubbly-button'>Aggiungi</button>
-                        </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
-                if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
-                  $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
-                  $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
-                  $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
-                  $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+        ?>
+              <div class = 'figurina'>
+                <section class='movie_image'>
+                    <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
+                </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
+                <section class='center_fig'>
+                  <div class='about_movie'>
+                    <h3><?php echo $row[1] ?></h3>
+                    <div class='movie_info'>
+                      <p><?php echo $row[4] ?>€</p>
+                    </div>
+                    <div class='movie_desc'>
+                      <p><?php echo $row[3] ?></p>
+                    </div>
+                    <!-- uso AJAX per passare con post { l'ID : quantità } alla pagina stessa sul server, la parte che riceve i dati ( qui sotto) si occupa di memorizzarli in variabili di sessione -->
+                    <div class='cont_inp'><span><input class='gate' id='q<?php echo $row[0] ?>' type='number' name='q<?php echo $row[0] ?>' max='100' value=1 placeholder='Fame?' /><label for='class'>Quantità</label></span></div>
+                    <button class='bubbly-button' onclick="$.post('menu.php', { q<?php echo $row[0] ?> : document.getElementById('q<?php echo $row[0] ?>').value }, function(){} );">Aggiungi</button>
+                <?php
+                //PARTE CHE RICEVE I DATI LATO SERVER
+                //è dentro il while perchè deve fare tanti controlli quanto le righe del listino
+                if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
+                  if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                    $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                    $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                    $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                    $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+                  }
+                } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                  //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
+                  $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
                 }
-              } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
-                //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
-              }
-              echo    "</div>";
-              echo  "</section>";
-              echo "</div>";
+                ?>
+                  </div>
+                </section>
+              </div>
+        <?php
             }
           } else {
-            echo "Nessun dato trovato";
+            echo "Nessun dato nel listino trovato";
           }
         ?>
       </div>
@@ -192,41 +197,46 @@
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Primi'";
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
             while($row = $result->fetch_row()){ //il risultato prodotto è un insieme di righe prelevate dal database. faccio la fetch del risultato e ogni riga, fintanto che ci sono righe, la analizzo mettendola nella variabile "row"
-              echo "<div class = 'figurina'>";
-              echo  "<section class='movie_image'>";
-              echo      "<img class='movie_poster' src = '".$row[5]."'>"; //la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0
-              echo  "</section>";  //es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)
-              echo  "<section class='center_fig'>";
-              echo    "<div class='about_movie'>";
-              echo      "<h3>".$row[1]."</h3>";
-              echo      "<div class='movie_info'>";
-              echo        "<p>".$row[4]."€</p>";
-              echo      "</div>";
-              echo      "<div class='movie_desc'>";
-              echo        "<p>".$row[3]."</p>";
-              echo      "</div>";
-              echo      "<form action='menu.php' method='post'>
-                           <div class='cont_inp'><span><input class='gate' type='number' name='q".$row[0]."' max='100' value = 1 placeholder='Fame?' /><label for='class'>Quantità</label></span></div>
-                           <button class='bubbly-button'>Aggiungi</button>
-                        </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
-                if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
-                  $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
-                  $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
-                  $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
-                  $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+              ?>
+                    <div class = 'figurina'>
+                      <section class='movie_image'>
+                          <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
+                      </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
+                      <section class='center_fig'>
+                        <div class='about_movie'>
+                          <h3><?php echo $row[1] ?></h3>
+                          <div class='movie_info'>
+                            <p><?php echo $row[4] ?>€</p>
+                          </div>
+                          <div class='movie_desc'>
+                            <p><?php echo $row[3] ?></p>
+                          </div>
+                          <!-- uso AJAX per passare con post { l'ID : quantità } alla pagina stessa sul server, la parte che riceve i dati ( qui sotto) si occupa di memorizzarli in variabili di sessione -->
+                          <div class='cont_inp'><span><input class='gate' id='q<?php echo $row[0] ?>' type='number' name='q<?php echo $row[0] ?>' max='100' value=1 placeholder='Fame?' /><label for='class'>Quantità</label></span></div>
+                          <button class='bubbly-button' onclick="$.post('menu.php', { q<?php echo $row[0] ?> : document.getElementById('q<?php echo $row[0] ?>').value }, function(){} );">Aggiungi</button>
+                      <?php
+                      //PARTE CHE RICEVE I DATI LATO SERVER
+                      //è dentro il while perchè deve fare tanti controlli quanto le righe del listino
+                      if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
+                        if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                          $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                          $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                          $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                          $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+                        }
+                      } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                        //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
+                        $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
+                      }
+                      ?>
+                        </div>
+                      </section>
+                    </div>
+              <?php
+                  }
+                } else {
+                  echo "Nessun dato nel listino trovato";
                 }
-              } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
-                //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
-              }
-              echo    "</div>";
-              echo  "</section>";
-              echo "</div>";
-            }
-          } else {
-            echo "Nessun dato trovato";
-          }
         ?>
       </div>
 
@@ -236,41 +246,46 @@
           $query = "SELECT * FROM listino WHERE listino.Categoria ='Bevande'";
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
             while($row = $result->fetch_row()){ //il risultato prodotto è un insieme di righe prelevate dal database. faccio la fetch del risultato e ogni riga, fintanto che ci sono righe, la analizzo mettendola nella variabile "row"
-              echo "<div class = 'figurina'>";
-              echo  "<section class='movie_image'>";
-              echo      "<img class='movie_poster' src = '".$row[5]."'>"; //la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0
-              echo  "</section>";  //es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)
-              echo  "<section class='center_fig'>";
-              echo    "<div class='about_movie'>";
-              echo      "<h3>".$row[1]."</h3>";
-              echo      "<div class='movie_info'>";
-              echo        "<p>".$row[4]."€</p>";
-              echo      "</div>";
-              echo      "<div class='movie_desc'>";
-              echo        "<p>".$row[3]."</p>";
-              echo      "</div>";
-              echo      "<form action='menu.php' method='post'>
-                           <div class='cont_inp'><span><input class='gate' type='number' name='q".$row[0]."' max='100' value = 1 placeholder='Fame?' /><label for='class'>Quantità</label></span></div>
-                           <button class='bubbly-button'>Aggiungi</button>
-                        </form>";
-              if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
-                if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
-                  $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
-                  $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
-                  $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
-                  $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+              ?>
+                    <div class = 'figurina'>
+                      <section class='movie_image'>
+                          <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
+                      </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
+                      <section class='center_fig'>
+                        <div class='about_movie'>
+                          <h3><?php echo $row[1] ?></h3>
+                          <div class='movie_info'>
+                            <p><?php echo $row[4] ?>€</p>
+                          </div>
+                          <div class='movie_desc'>
+                            <p><?php echo $row[3] ?></p>
+                          </div>
+                          <!-- uso AJAX per passare con post { l'ID : quantità } alla pagina stessa sul server, la parte che riceve i dati ( qui sotto) si occupa di memorizzarli in variabili di sessione -->
+                          <div class='cont_inp'><span><input class='gate' id='q<?php echo $row[0] ?>' type='number' name='q<?php echo $row[0] ?>' max='100' value=1 placeholder='Fame?' /><label for='class'>Quantità</label></span></div>
+                          <button class='bubbly-button' onclick="$.post('menu.php', { q<?php echo $row[0] ?> : document.getElementById('q<?php echo $row[0] ?>').value }, function(){} );">Aggiungi</button>
+                      <?php
+                      //PARTE CHE RICEVE I DATI LATO SERVER
+                      //è dentro il while perchè deve fare tanti controlli quanto le righe del listino
+                      if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
+                        if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                          $q = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                          $_SESSION['carrello'][$row[0]]['quantity'] += $q; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                          $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                          $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
+                        }
+                      } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
+                        //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
+                        $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
+                      }
+                      ?>
+                        </div>
+                      </section>
+                    </div>
+              <?php
+                  }
+                } else {
+                  echo "Nessun dato nel listino trovato";
                 }
-              } else { //se non esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione, lo creo
-                //alla prima apertura della pagina cicla tutto e crea ogni cosa con quantità e prezzo nulle
-                $_SESSION['carrello'][$row[0]] = array('quantity' => 0, 'price' => 0); //sia quello per la quantità, sia quello per il prezzo
-              }
-              echo    "</div>";
-              echo  "</section>";
-              echo "</div>";
-            }
-          } else {
-            echo "Nessun dato trovato";
-          }
         //chiudo la connessione a fine query
         $conn->close();
       } else {
@@ -283,6 +298,8 @@
     <form class="" action="address.php" method="post">
       <input type="submit" name="cart" value="Scegli luogo consegna">
     </form>
+
+    <!-- script per pulsante bollicinoso -->
     <script src="js/bubbly.js"></script>
 
   </div>

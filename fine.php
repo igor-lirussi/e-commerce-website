@@ -51,7 +51,7 @@
     <div class = "row">
         FINE.</br>
         <?php
-        echo "</br>Consegna in ".$_SESSION['indir_new'];
+        echo "</br>Consegna in ".$_SESSION['indir_ordine'];
         echo "</br>Nome ".$_SESSION['nome'];
         echo "</br>cognome ".$_SESSION['cognome'];
         echo "</br>email in ".$_SESSION['email'];
