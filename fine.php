@@ -51,18 +51,11 @@
     <div class = "row">
         FINE.</br>
         <?php
+        echo "num ordine: ".$_SESSION['num_ordine'];
+        //echo "<br>lista: ".$_SESSION['cibi_ordine']; //no perchè l'ho azzerata
         echo "</br>Consegna in ".$_SESSION['indir_ordine'];
-        echo "</br>Nome ".$_SESSION['nome'];
-        echo "</br>cognome ".$_SESSION['cognome'];
-        echo "</br>email in ".$_SESSION['email'];
-        echo "</br>Indirizzo in ".$_SESSION['indirizzo'];
-        echo "</br>pagamento in ".$_SESSION['pagamento'];
-        echo "</br>carta in ".$_SESSION['carta'];
-        echo "</br>scadenza in ".$_SESSION['scadenza'];
-        echo "</br>cvv in ".$_SESSION['cvv'];
-        echo "</br>punti in ".$_SESSION['punti'];
-        echo "</br>Totale in ".$_SESSION['totale'];
-        echo "</br>id in ".$_SESSION['user_id'];
+        echo "</br>id utente ".$_SESSION['user_id'];
+        echo "</br>punti utente ".$_SESSION['punti'];
         ?>
     </div>
 

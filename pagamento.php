@@ -12,7 +12,9 @@
     <!-- per il pagamento -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/payment.css">
-
+    <!-- per AJAX -->
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    </script>
   </head>
 
   <body onload="body_loaded()">
@@ -48,6 +50,37 @@
       </ul>
     </div>
 
+    <?php
+    //OPERAZIONI LATO SERVER DOPO IL PAGAMENTO
+    if ( !empty($_POST['svuoto']) ) { //se c'è post di svuoto
+        if ($_POST['svuoto']==true) { //se è true (doppio controllo per sicurezza)
+          //azzero
+          $_POST['svuoto']=false;
+          //memorizzo numero ordine
+          $_SESSION['num_ordine'] = 0;
+          $_SESSION['num_ordine'] = mt_rand(10,99999999999);
+          echo "num ordine: ".$_SESSION['num_ordine'];
+          //inserisco ordine con query (le date vanno 'YYYY-MM-GG')
+          $query = "INSERT INTO ordini(NumeroOrdine, Cibi, PrezzoTotale, IndirizzoOrdine, NumeroCarta, Scadenza, CVV, IDUtente) VALUES".
+                                      "(' ".$_SESSION['num_ordine']." ', ' ".$_SESSION['cibi_ordine']." ',   ".$_SESSION['totale_ordine']."   , '  ".$_SESSION['indir_ordine']."  ',".$_POST['carta_ordine'].", '   ".$_POST['scadenza_ordine']."   ',".$_POST['cvv_ordine'].",".$_SESSION['user_id'].")";
+          if($result = $conn->query($query)){ //se la query ha prodotto un risultato
+            echo "<br>Ordine inserito";
+          }
+          //aggiorno punti totali all'utente
+          $punti_tot=$_SESSION['punti']+$_SESSION['punti_ordine'];
+          $query = "UPDATE members SET `PuntiAccumulati`=".$punti_tot." WHERE `id`=".$_SESSION['user_id'];
+          if($result = $conn->query($query)){ //se la query ha prodotto un risultato
+            echo "<br>Punti aggiunti";
+            $_SESSION['punti'] = $punti_tot;
+          }
+          //cancello il carrello e le variabili di sessione
+          unset( $_SESSION['carrello'] ); //devo fare l'unset oppure l'isset() del menu non crea di nuovo il carrello
+          $_SESSION['totale_ordine'] = 0;
+          $_SESSION['punti_ordine'] = 0;
+          $_SESSION['cibi_ordine'] = "";
+        }
+      }
+     ?>
 
     <div class = "row">
 
@@ -68,7 +101,7 @@
             <span class="chip"></span>
             <span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
             <div class="date"><span class="date_value">MM / YYYY</span></div>
-            <span class="fullname">FULL NAME</span>
+            <span class="fullname">Nome Cognome</span>
           </div>
           <div class="back">
             <div class="magnetic"></div>
@@ -81,13 +114,13 @@
       <div class="col2">
         <label>Numero carta</label>
         <input id="c_num" class="number" type="text" placeholder="0000 0000 0000 0000" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-        <label>Prprietario carta</label>
+        <label>Proprietario carta</label>
         <input id="c_name" class="inputname" type="text" placeholder="Nome Cognome"/>
         <label>Scadenza</label>
         <input id="c_date" class="expire" type="text" placeholder="MM / YYYY"/>
         <label>CVV</label>
         <input id="c_cvv" class="ccv" type="text" placeholder="CVV" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-        <button class="buy" onclick="sim_pagamento()" ><i class="material-icons">lock</i> Pay <?php echo $_SESSION['totale']; ?> €</button>
+        <button class="buy" onclick="sim_pagamento()" ><i class="material-icons">lock</i> Pay <?php echo $_SESSION['totale_ordine']; ?> €</button>
       </div>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
@@ -104,11 +137,25 @@
           document.getElementById("c_name").value = "<?php echo $_SESSION['nome']." ".$_SESSION['cognome'] ?>";
           document.getElementById("c_date").value = "<?php echo $_SESSION['scadenza']?>";
           document.getElementById("c_cvv").value = "<?php echo $_SESSION['cvv'] ?>";
+          //aggiorno la carta triggerando manualmente il keyup event
+          $( "#c_num" ).keyup();
+          $( "#c_name" ).keyup();
+          $( "#c_date" ).keyup();
+          $( "#c_cvv" ).keyup();
         }
       }
 
       function sim_pagamento(){
-        window.location.href='./fine.php';
+        //chiamo me stesso lato server
+
+        $.post('pagamento.php', { svuoto: true ,
+                                  carta_ordine: document.getElementById("c_num").value ,
+                                      scadenza_ordine: document.getElementById("c_date").value,
+                                        cvv_ordine: document.getElementById("c_cvv").value  } , function(){ window.location.replace('fine.php'); });
+        //post('pagamento.php', { svuoto: true ,
+        //                          carta_ordine: document.getElementById("c_num").value ,
+        //                              scadenza_ordine: document.getElementById("c_date").value,
+        //                                cvv_ordine: document.getElementById("c_cvv").value  });
       }
     </script>
 

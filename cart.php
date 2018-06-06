@@ -56,7 +56,8 @@
 
 
         $query = "SELECT * FROM listino"; //seleziono tutti i cibi dal listino
-        $_SESSION['totale'] = 0; //mi servirà per tenere conto del prezzo totale che l'utente deve pagare alla fine
+        $_SESSION['totale_ordine'] = 0; //mi servirà per tenere conto del prezzo totale che l'utente deve pagare alla fine
+        $_SESSION['cibi_ordine'] = "";  //mi serve come lista a parole del totale dei cibi
         if($result = $conn->query($query)){ //se la query ha prodotto risultato
           //echo session_id();
           while($row = $result->fetch_row()){ //fetcho e ciclo ogni riga della tabella
@@ -82,16 +83,17 @@
                       <p>Quantità selezionata:
                         <?php
                           echo $_SESSION['carrello'][$row[0]]['quantity']; //stampo la quantità selezionata dall'utente nel menù e salvata nella sessione
-                          $_SESSION['totale'] = $_SESSION['totale'] + $_SESSION['carrello'][$row[0]]['price']; //<!--aggiorno il prezzo totale e lo inserisco nella variabile di sessione-->
+                          //<!--aggiorno il prezzo totale del'ordine e lo inserisco nella variabile di sessione-->
+                          $_SESSION['totale_ordine'] = $_SESSION['totale_ordine'] + $_SESSION['carrello'][$row[0]]['price'];
+                          //aggiorno la lista di cibi
+                          $_SESSION['cibi_ordine'] .= " ".$_SESSION['carrello'][$row[0]]['quantity']." ".$row[1].","; // x3 pizza
                           //PARTE CHE RICEVE I DATI LATO SERVER
                           //è dentro il while perchè deve fare tanti controlli quanto le righe del listino
-                          if (isset($_SESSION['carrello'][$row[0]])) { //se esiste l'indice nel vettore "$_SESSION" corrispondente all'id del prodotto in quel momento preso in considerazione (la prima sessione crea tutta la struttura vuota, poi vado qui)
-                            if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
-                              $z = $_POST['q'.$row[0]]; //setto la variabile q per la quantità con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
-                              $_SESSION['carrello'][$row[0]]['quantity'] = $z; //aggiorno la quantità appena inserita dall'utente con quella già presente
-                              $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
-                              $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
-                            }
+                          if( isset($_POST['q'.$row[0]]) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                            $z = $_POST['q'.$row[0]]; //setto la variabile z per la quantità diretta del cibo con il paramentro inserito dall'utente, il quale è referenziato con l'indice "q+idprodotto"
+                            $_SESSION['carrello'][$row[0]]['quantity'] = $z; //aggiorno la quantità appena inserita dall'utente con quella già presente
+                            $p = $row[4] * $_SESSION['carrello'][$row[0]]['quantity']; //moltiplico il prezzo (preso dalla colonna 4 del database) per la quantità totale
+                            $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
                           }
                         ?>
                         </br>
@@ -105,13 +107,15 @@
             }
           } //fine while che cicla tabella
           //stampo totale
-          echo "Totale: ".$_SESSION['totale']." €</br>";  //<!--stampo il prezzo totale da pagare-->
+          echo "Totale: ".$_SESSION['totale_ordine']." €</br>";  //<!--stampo il prezzo totale da pagare-->
+          //calcolo punti guadagnati
+          $_SESSION['punti_ordine'] = ($_SESSION['totale_ordine']*2);
           //stampo punti
           if ($_SESSION['nome'] != "guest") {
             echo "Punti attuali: ".$_SESSION['punti']."</br>";
-            echo "Punti guadagnati: ".($_SESSION['totale']*2)."</br>";
+            echo "Punti guadagnati: ".$_SESSION['punti_ordine']."</br>";
           } else {
-            echo "Registrandoti avresti guadagnato: ".($_SESSION['totale']*2)." punti.</br>";
+            echo "Registrandoti avresti guadagnato: ".$_SESSION['punti_ordine']." punti.</br>";
           }
 
         }
