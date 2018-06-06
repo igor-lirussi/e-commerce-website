@@ -95,12 +95,6 @@
         <h2>Amministra menù</h2>
       </header>
 
-      <!-- Barra ricerca-->
-        <form class="searchform" action="???" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
-          <input type="search" name="search" value="" placeholder="Inserisci ricerca qui...">
-          <button class="btn third">Cerca</button>
-        </form>
-
       <div class="row listino">
         <div class="col-4 pastiVeloci">
           <h3>Pasti Veloci</h3>

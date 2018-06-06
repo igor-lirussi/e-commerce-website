@@ -14,6 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/notification.js">
 
+
+    </script>
     </script>
   </head>
   <body>
@@ -96,17 +98,18 @@
               <td><?php echo $row[1] ?></td>
               <td><?php echo $row[2] ?></td>
               <td><?php echo $row[4] ?></td>
-              <td><button onclick="$.post('menu.php', { pippo : <?php echo $row[0] ?>});">Consegna Ordine</button></td>
+              <td><button onclick="consegna($.post('amministra_ordini.php', {pippo:<?php echo $row[0] ?>}));">Consegna Ordine</button></td>
             </tr>
           </table>
         </div>
-        <script type="text/javascript">
-        function consegna(id){
-          alert("ciao");
-          $.post("menu.php", {pippo: "1"});
-        }
-        </script>
         <?php
+              if( $_SERVER['REQUEST_METHOD'] == 'POST' ) { //se mi è stata passato qualcosa tramite post
+                $numOrd = $_POST['pippo'];
+                $query2 = "UPDATE ordini SET Completato=1 WHERE NumeroOrdine=$numOrd";//aggiorno il campo "completato" riferito all'uten
+                if($conn->query($query2)){
+                  echo "Query2 andata a buon fine";
+                }
+              }
             }
           } else {
             echo "Nessun dato trovato";
