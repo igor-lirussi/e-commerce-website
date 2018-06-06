@@ -1,3 +1,4 @@
-import PNotify from '../notify/node_modules/pnotify/lib/iife/PNotify.js';
 
-PNotify.alert('Notice me, senpai!');
+    function consegna(id){
+      $.post("repositocibo/menu.php", {pippo: "1"});
+    }
