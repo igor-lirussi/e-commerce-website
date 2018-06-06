@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="css/payment.css">
     <!-- per AJAX -->
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-    </script>
+    <!-- per mia funzione poi cancellare -->
+    <script src="js/post_function.js"></script>
   </head>
 
   <body onload="body_loaded()">
@@ -59,18 +60,23 @@
           //memorizzo numero ordine
           $_SESSION['num_ordine'] = 0;
           $_SESSION['num_ordine'] = mt_rand(10,99999999999);
-          echo "num ordine: ".$_SESSION['num_ordine'];
+          echo "<br>num ordine: ".$_SESSION['num_ordine'];
+          echo "<br>cibi ordine: ".$_SESSION['cibi_ordine'];
+          echo "<br>totale ordine: ".$_SESSION['totale_ordine'];
+          echo "<br>punti ordine: ".$_SESSION['punti_ordine'];
           //inserisco ordine con query (le date vanno 'YYYY-MM-GG')
           $query = "INSERT INTO ordini(NumeroOrdine, Cibi, PrezzoTotale, IndirizzoOrdine, NumeroCarta, Scadenza, CVV, IDUtente) VALUES".
                                       "(' ".$_SESSION['num_ordine']." ', ' ".$_SESSION['cibi_ordine']." ',   ".$_SESSION['totale_ordine']."   , '  ".$_SESSION['indir_ordine']."  ',".$_POST['carta_ordine'].", '   ".$_POST['scadenza_ordine']."   ',".$_POST['cvv_ordine'].",".$_SESSION['user_id'].")";
+
+          echo "<br>Query: ".$query;
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
-            echo "<br>Ordine inserito";
+            echo "<br>Ordine inserito correttamente";
           }
           //aggiorno punti totali all'utente
           $punti_tot=$_SESSION['punti']+$_SESSION['punti_ordine'];
           $query = "UPDATE members SET `PuntiAccumulati`=".$punti_tot." WHERE `id`=".$_SESSION['user_id'];
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
-            echo "<br>Punti aggiunti";
+            echo "<br>Punti aggiunti correttamente";
             $_SESSION['punti'] = $punti_tot;
           }
           //cancello il carrello e le variabili di sessione
@@ -100,7 +106,7 @@
             </div>
             <span class="chip"></span>
             <span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
-            <div class="date"><span class="date_value">MM / YYYY</span></div>
+            <div class="date"><span class="date_value">YYYY-MM-GG</span></div>
             <span class="fullname">Nome Cognome</span>
           </div>
           <div class="back">
@@ -117,7 +123,7 @@
         <label>Proprietario carta</label>
         <input id="c_name" class="inputname" type="text" placeholder="Nome Cognome"/>
         <label>Scadenza</label>
-        <input id="c_date" class="expire" type="text" placeholder="MM / YYYY"/>
+        <input id="c_date" class="expire" type="text" placeholder="YYYY-MM-GG"/>
         <label>CVV</label>
         <input id="c_cvv" class="ccv" type="text" placeholder="CVV" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
         <button class="buy" onclick="sim_pagamento()" ><i class="material-icons">lock</i> Pay <?php echo $_SESSION['totale_ordine']; ?> €</button>
@@ -146,16 +152,20 @@
       }
 
       function sim_pagamento(){
-        //chiamo me stesso lato server
-
-        $.post('pagamento.php', { svuoto: true ,
-                                  carta_ordine: document.getElementById("c_num").value ,
-                                      scadenza_ordine: document.getElementById("c_date").value,
-                                        cvv_ordine: document.getElementById("c_cvv").value  } , function(){ window.location.replace('fine.php'); });
-        //post('pagamento.php', { svuoto: true ,
-        //                          carta_ordine: document.getElementById("c_num").value ,
-        //                              scadenza_ordine: document.getElementById("c_date").value,
-        //                                cvv_ordine: document.getElementById("c_cvv").value  });
+        //controllo campi non vuoti
+        if ( document.getElementById("c_num").value && document.getElementById("c_name").value && document.getElementById("c_date").value && document.getElementById("c_cvv").value ) {
+          //chiamo me stesso lato server
+          $.post('pagamento.php', { svuoto: true ,
+                                    carta_ordine: document.getElementById("c_num").value.replace(/\s/g,'') , //rimpiazzo tolgo tutti gli spazi, deve diventare un nu
+                                        scadenza_ordine: document.getElementById("c_date").value,
+                                          cvv_ordine: document.getElementById("c_cvv").value  } , function(){ window.location.replace('fine.php'); });
+          //post('pagamento.php', { svuoto: true ,
+          //                          carta_ordine: document.getElementById("c_num").value.replace(/\s/g,'') , //rimpiazzo tolgo tutti gli spazi, deve diventare un nu
+          //                              scadenza_ordine: document.getElementById("c_date").value,
+          //                                cvv_ordine: document.getElementById("c_cvv").value  });
+        } else { //se campi vuoti
+            window.alert("Please set all fields");
+        }
       }
     </script>
 

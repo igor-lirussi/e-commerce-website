@@ -119,7 +119,7 @@ html {
   transition: color 0.5s;
 }
 .container .col1 .paycard .front .date:after {
-  content: 'MONTH / YEAR';
+  content: 'YEAR-MONTH-DAY';
   position: absolute;
   display: block;
   font-size: 7px;

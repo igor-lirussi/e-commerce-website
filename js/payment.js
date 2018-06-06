@@ -127,16 +127,9 @@ $(function(){
   //Date expire input
   $(".expire").keypress(function(event){
     if(event.charCode >= 48 && event.charCode <= 57){
-      if($(this).val().length === 1){
-          $(this).val($(this).val() + event.key + " / ");
-      }else if($(this).val().length === 0){
-        if(event.key == 1 || event.key == 0){
-          month = event.key;
-          return event.charCode;
-        }else{
-          $(this).val(0 + event.key + " / ");
-        }
-      }else if($(this).val().length > 2 && $(this).val().length < 9){
+      if($(this).val().length === 3 || $(this).val().length === 6){
+          $(this).val($(this).val() + event.key + "-");
+      } else if($(this).val().length >= 0 && $(this).val().length < 10){
         return event.charCode;
       }
     }
@@ -148,7 +141,7 @@ $(function(){
     }
 
     if($(this).val().length === 0){
-      $(".date_value").text("MM / YYYY");
+      $(".date_value").text("YYYY-MM-GG");
     }
   }).keydown(function(){
     $(".date_value").html($(this).val());
