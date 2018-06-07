@@ -10,13 +10,10 @@
     <link rel="stylesheet" href="css/hamburger.css">
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/hamburger.js"></script>
+    <!-- per la tabella -->
+    <link rel="stylesheet" href="css/order_table.css">
     <link rel="icon" href="resources/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/notification.js">
-
-
-    </script>
-    </script>
   </head>
   <body>
     <!-- il not-footer serve per il footer statico -->
@@ -81,27 +78,44 @@
 
 
       <header>
-        <a href="home.html">
+        <a href="home.php">
         <h1>Yook!</h1>
         </a>
         <h2>Pagina di gestione degli ordini.</h2>
       </header>
+
+      <section class="wrapper">
+      <!-- Row title -->
+      <main class="row title">
+        <ul>
+          <li>Numero ordine</li>
+          <li><span class="title-hide"></span>Prezzo Totale</li>
+          <li>Indirizzo ordine</li>
+          <li>Numero carta</li>
+          <li>Completato</li>
+          <li>ID utente</li>
+        </ul>
+      </main>
+
         <?php
           $query = "SELECT * FROM ordini";
           if($result = $conn->query($query)){
             while($row = $result->fetch_row()){
         ?>
-        <div class = 'row'>
-          <table>
-            <tr>
-              <td><?php echo $row[0] ?></td>
-              <td><?php echo $row[1] ?></td>
-              <td><?php echo $row[2] ?></td>
-              <td><?php echo $row[4] ?></td>
-              <td><button onclick="consegna($.post('amministra_ordini.php', {pippo:<?php echo $row[0] ?>}));">Consegna Ordine</button></td>
-            </tr>
-          </table>
-        </div>
+        <article class = "row nhl">
+          <ul>
+              <li><?php echo $row[0] ?></li>
+              <li><?php echo $row[2] ?></li>
+              <li><?php echo $row[3] ?></li>
+              <li><?php echo $row[4] ?></li>
+              <li><?php echo $row[7] ?></li>
+              <li><?php echo $row[8] ?></li>
+              <li><button class="btn rounded" onclick="$.post('amministra_ordini.php', {pippo:<?php echo $row[0] ?>});"><span class="text">Consegna</span></button></li>
+          </ul>
+          <ul class="more-content-T">
+            <li>Contenuto dell'ordine: <?php echo $row[1] ?></li>
+          </ul>
+        </article>
         <?php
               if( $_SERVER['REQUEST_METHOD'] == 'POST' ) { //se mi è stata passato qualcosa tramite post
                 $numOrd = $_POST['pippo'];
@@ -115,9 +129,10 @@
             echo "Nessun dato trovato";
           }
         ?>
+      </section>
       <?php
           } else {
-            header("Location: ./home.html");
+            header("Location: ./home.php");
           }
         $conn->close();
         } else {

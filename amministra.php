@@ -100,7 +100,7 @@
 
 
       <header>
-        <a href="home.html">
+        <a href="home.php">
         <h1>Yook!</h1>
         </a>
         <h2>Pagina di gestione del sito.</h2>
@@ -199,7 +199,7 @@
 
       <?php
           } else {
-            header("Location: ./home.html");
+            header("Location: ./home.php");
           }
         $conn->close();
         } else {

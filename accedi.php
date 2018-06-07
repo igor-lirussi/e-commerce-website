@@ -55,7 +55,7 @@
     <div id="not-footer">
 
     <header>
-      <a href="home.html">
+      <a href="home.php">
       <h1>Yook!</h1>
       </a>
       <h2>Accedi</h2>
