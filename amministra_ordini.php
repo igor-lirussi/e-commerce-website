@@ -139,6 +139,7 @@
           echo 'You are not authorized to access this page, please login. <br/>';
         }
       ?>
+      <button><a href="amministra.php">Salva le modifiche</a></button>
     </div>
     <footer>
       <address>
