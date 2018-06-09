@@ -12,27 +12,10 @@
     <!-- per le cards -->
     <link rel="stylesheet" href="css/admin_card.css">
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <!-- per le notifiche -->
+    <script src="sweetalert2.all.min.js"></script>
     <script src="js/hamburger.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <style type="text/css">
-       .notifica {
-       position:relative;
-    }
-    .notifica[value]:after {
-       content:attr(value);
-       position:absolute;
-       top:-10px;
-       right:-9px;
-       font-size:.8em;
-       background:red;
-       color:white;
-       width:16px;height:16px;
-       text-align:center;
-       line-height:18px;
-       border-radius:40%;
-       border: 1px solid #ccc;
-    }
-    </style>
 
   </head>
   <body>
@@ -71,7 +54,6 @@
 
        <!-- menu hamburger -->
         <div  class="open">
-          <div class="notifica"></div>
        	<span class="cls"></span>
        	<span>
        		<ul class="sub-menu ">
