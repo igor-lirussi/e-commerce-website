@@ -18,5 +18,5 @@
       echo "Query non andata a buon fine";
       echo $conn->errno;
     }
-    header("Location: ./amministra.php");
+    //header("Location: ./amministra.php");
 ?>

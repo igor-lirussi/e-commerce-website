@@ -6,12 +6,7 @@
     <link rel="icon" href="resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
+
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -34,7 +29,7 @@
       <a href="home.php">
       <h1>Yook!</h1>
       </a>
-      <h2>Indirizzo Utenti</h2>
+      <h2>Posizione Utenti</h2>
     </header>
 
 
@@ -89,8 +84,7 @@
 
 
 
-    <h3><div id="io">
-    Google Mappo e privacy utenti (sappiamo dove abitate)</div></h3>
+    <div id="io" class="center"><h3>Indirizzo residenza degli utenti</h3></div>
     <div id="map"></div>
 
 
@@ -184,6 +178,14 @@
                     //geocode address
                     geocodeAddress(geocoder, address);
 
+                    //aspetta
+                    var milliseconds = 250;
+                    var start = new Date().getTime();
+                    for (var i = 0; i < 1e7; i++) {
+                      if ((new Date().getTime() - start) > milliseconds){
+                        break;
+                      }
+                    }
 
                   });
 
@@ -215,11 +217,7 @@
 
 
             </script>
-         <!-- <script async defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&callback=initMap">
-         </script> -->
-         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initAutocomplete"
-             async defer></script> -->
+
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBinnhjlVy7a2RxTETHiw0LrCByGnrZKnQ&libraries=places&callback=initMap"
                     async defer></script>
 
@@ -227,9 +225,21 @@
 
 
     <footer>
-    <p>Posted by: </p>
-    <p>Contact information: <a href="mailto:someone@example.com">
-    someone@example.com</a>.</p>
+      <address>
+            <p>
+                Copyright 2018 <strong>Yook S.r.l.</strong><br>
+                Piazza Fabbri n.5, Cesena 47521 (FC), Italia<br>
+                <a href="mailto:info@Yook.it">info@Yook.it</a>
+            </p>
+            <p>
+                P.Iva: 02684269693 - REA: FC-526419
+                <br>
+                Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 100.000€ interamente versati.
+            </p>
+            <p>
+                <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
+            </p>
+      </address>
     </footer>
   </body>
 </html>

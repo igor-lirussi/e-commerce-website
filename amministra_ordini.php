@@ -81,7 +81,7 @@
         <a href="home.php">
         <h1>Yook!</h1>
         </a>
-        <h2>Pagina di gestione degli ordini.</h2>
+        <h2>Gestisci gli ordini</h2>
       </header>
 
       <section class="wrapper">

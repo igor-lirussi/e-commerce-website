@@ -106,67 +106,60 @@
         <h2>Pagina di gestione del sito.</h2>
       </header>
 
+      <div class="row admin_home">
+        <div class="center">
+          </br>
+          Amministrazione:
+        </div>
 
-      <div class="admin_home">
-        <a href="amministra_menu.php" class="card education">
-             <div class="overlay"></div>
-          <div class="circle">
-
-        <svg width="71px" height="76px" viewBox="29 14 71 76">
-            <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-            <desc>Created with Sketch.</desc>
-            <defs></defs>
-            <image x="30" y="17" height="70" width="70"  xlink:href="./resources/menu.png">
-        </svg>
-          </div>
-          <p>Modifica il menu</p>
-        </a>
-
-          <a href="amministra_ordini.php" class="card human-resources">
+        <div class="admin_home">
+          <a href="amministra_menu.php" class="card education">
                <div class="overlay"></div>
             <div class="circle">
-
-          <svg width="71px" height="76px" viewBox="29 14 71 76">
-              <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-              <desc>Created with Sketch.</desc>
-              <defs></defs>
-              <image x="30" y="17" height="70" width="70"  xlink:href="./resources/ordini.png">
-          </svg>
+              <svg width="71px" height="76px" viewBox="29 14 71 76">
+                  <defs></defs>
+                  <image x="30" y="17" height="70" width="70"  xlink:href="./resources/amministrazione/menu.png">
+              </svg>
             </div>
-            <p>Gestisci gli ordini</p>
+            <p>Modifica il menù</p>
           </a>
 
-        <a href="user-addresses.php" class="card credentialing">
-             <div class="overlay"></div>
-          <div class="circle">
+            <a href="amministra_ordini.php" class="card human-resources">
+                 <div class="overlay"></div>
+              <div class="circle">
+                <svg width="71px" height="76px" viewBox="29 14 71 76">
+                    <defs></defs>
+                    <image x="30" y="17" height="70" width="70"  xlink:href="./resources/amministrazione/ordini.png">
+                </svg>
+              </div>
+              <p>Gestisci gli ordini</p>
+            </a>
 
-        <svg width="64px" height="72px" viewBox="27 21 64 72">
-            <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-            <desc>Created with Sketch.</desc>
-            <defs></defs>
-            <image x="25" y="22" height="70" width="70"  xlink:href="./resources/localizzazione.png">
-        </svg>
+          <a href="user-addresses.php" class="card credentialing">
+               <div class="overlay"></div>
+            <div class="circle">
+              <svg width="64px" height="72px" viewBox="27 21 64 72">
+                  <defs></defs>
+                  <image x="25" y="22" height="70" width="70"  xlink:href="./resources/amministrazione/localizzazione.png">
+              </svg>
+            </div>
+            <p>Posizione utenti</p>
+          </a>
 
-          </div>
-          <p>Localizza gli utenti</p>
-        </a>
-
-        <a href="chart.php" class="card wallet">
-             <div class="overlay"></div>
-          <div class="circle">
-
-
-        <svg width="78px" height="60px" viewBox="23 29 78 60">
-            <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-            <desc>Created with Sketch.</desc>
-            <defs></defs>
-            <image x="30" y="19" height="70" width="70"  xlink:href="./resources/grafico.png">
-        </svg>
-
-          </div>
-          <p>Visualizza le statistiche</p>
-        </a>
+          <a href="chart.php" class="card wallet">
+               <div class="overlay"></div>
+            <div class="circle">
+              <svg width="78px" height="60px" viewBox="23 29 78 60">
+                  <defs></defs>
+                  <image x="30" y="19" height="70" width="70"  xlink:href="./resources/amministrazione/grafico.png">
+              </svg>
+            </div>
+            <p>Statistiche utenti</p>
+          </a>
+        </div>
       </div>
+
+
 
       <?php
           } else {

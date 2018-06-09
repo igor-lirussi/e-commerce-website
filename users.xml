@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <users>
-  <user id="1" punti="0" address="Via Aeroporto, Orio al serio, BG, Italia" surname="farytell" name="bachelorette "/>
-  <user id="2" punti="0" address="via map" surname="meridio" name="nome"/>
-  <user id="3" punti="0" address="via terno" surname="registro" name="Primo"/>
-  <user id="5" punti="0" address="via loppo" surname="lazze" name="puzzole"/>
-  <user id="6" punti="0" address="vsfds" surname="Lirussi" name="igor"/>
-  <user id="7" punti="0" address="22 massa" surname="Gattu" name="SOfia"/>
-  <user id="8" punti="0" address="via finale" surname="Countdown" name="Final"/>
-  <user id="9" punti="5" address="sodija" surname="mazzi" name="provolo"/>
-  <user id="10" punti="5" address="sodija" surname="mazzi" name="prlo"/>
-  <user id="11" punti="0" address="Via Mario Angeloni, Cesena, FC, Italia" surname="paperino" name="pippo"/>
-  <user id="12" punti="8" address="Southeast Delaware Avenue, Ankeny, IA, Stati Uniti" surname="Countdown" name="FInal "/>
-  <user id="15" punti="8" address="Via Cesenatico, Cesenatico, FC, Italia" surname="guest" name="guest"/>
-  <user id="16" punti="8" address="Via Boccaquattro 2, Cesena, FC, Italia" surname="meridio" name="nome"/>
-  <user id="18" punti="8" address="ASD Passirana, Rho, MI, Italia" surname="admin" name="admin"/>
-  <user id="19" punti="8" address="Via Calcinaro, 3, Cesena, FC, Italia" surname="Carta" name="Francesco "/>
+  <user id="1" punti="67" address="Via Aeroporto, Orio al serio, BG, Italia" surname="Mondello" name="bachelorette "/>
+  <user id="2" punti="133" address="Vicolo Tavernelle, 2, Cesena, FC, Italia" surname="Giacomini" name="nome"/>
+  <user id="3" punti="88" address="Via E. Curiel, 2, Cesena, FC, Italia" surname="Regulli" name="Primo"/>
+  <user id="6" punti="12" address="Via Tito Maccio Plauto, 9, Cesena, FC, Italia" surname="Lirussi" name="igor"/>
+  <user id="7" punti="76" address="Via Savio, 34, Cesena, FC, Italia" surname="Gattu" name="SOfia"/>
+  <user id="8" punti="99" address="Viale Guglielmo Oberdan, 34, Cesena, FC, Italia" surname="Connor" name="Final"/>
+  <user id="10" punti="47" address="Ponte Europa Unita, 12, Cesena, FC, Italia" surname="Mazzi" name="prlo"/>
+  <user id="12" punti="18" address="Piazza Sanguinetti, 92, Cesena, FC, Italia" surname="Luppi" name="FInal "/>
+  <user id="15" punti="77" address="Via Alfonsine, 2, Cesena, FC, Italia" surname="guest" name="guest"/>
+  <user id="19" punti="145" address="Via Milani, 6, Cesena, FC, Italia" surname="Carta" name="Francesco "/>
+  <user id="20" punti="35" address="Via Fiorenzuola, 15, Cesena, FC, Italia" surname="Rossi" name="Mario"/>
 </users>

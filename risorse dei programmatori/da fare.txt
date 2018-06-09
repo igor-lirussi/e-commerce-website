@@ -1,13 +1,13 @@
 OK! cercare nel listino
 OK! barra progresso
 notifiche abbastanza elaborate
-salvataggio ordini in db
-accesso admin ad amministra
-pagamento
+OK! salvataggio ordini in db
+OK! accesso admin ad amministra
+OK! pagamento
 
-logout
+OK! logout
 controllare login ad ogni pagina
-carrello
+OK!carrello
 galleria responsive nella home
 
 OK! restringere campo ricerca mappe
@@ -21,7 +21,7 @@ OK! mettere il default admin a 0 così non si deve passare lo zero
 (più avanti) risolvere registrazione con mail uguali
 OK! rimettere immagine vettoriale logo
 
-mettere pulsante "ritira in negozio" che inserisce di nascosto l'indirizzo del negozio
+OK! mettere pulsante "ritira in negozio" che inserisce di nascosto l'indirizzo del negozio
 sistemare ricerca FAQ in contattaci
 sistemare home e aggiornare font-awesome
 aggiornare indirizzo nelle info legali
