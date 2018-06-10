@@ -84,10 +84,8 @@
 
 
 
-    <div id="io" class="center"><h3>Indirizzo residenza degli utenti</h3></div>
-    <div id="map"></div>
-
-
+          <div id="io" class="allcenter"><h3>Indirizzo residenza degli utenti</h3></div>
+          <div id="map"></div>
 
 
 
@@ -179,7 +177,7 @@
                     geocodeAddress(geocoder, address);
 
                     //aspetta
-                    var milliseconds = 250;
+                    var milliseconds = 0;
                     var start = new Date().getTime();
                     for (var i = 0; i < 1e7; i++) {
                       if ((new Date().getTime() - start) > milliseconds){

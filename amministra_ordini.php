@@ -6,6 +6,8 @@
     <title>Yook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
+    <!-- per font icone -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <!-- per hamburger menu -->
     <link rel="stylesheet" href="css/hamburger.css">
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
@@ -84,62 +86,92 @@
         <h2>Gestisci gli ordini</h2>
       </header>
 
-      <section class="wrapper">
-      <!-- Row title -->
-      <main class="row title">
-        <ul>
-          <li>Numero ordine</li>
-          <li><span class="title-hide"></span>Prezzo Totale</li>
-          <li>Indirizzo ordine</li>
-          <li>Numero carta</li>
-          <li>Completato</li>
-          <li>ID utente</li>
-        </ul>
-      </main>
+      <div class="row easy1sfondo allcenter">
+        <br>
+        <!-- tabella -->
+        <section class="wrapper_tabella">
+          <!-- titolo_tabella -->
+        <main class="riga titolo_tabella">
+          <ul>
+            <li>Numero ordine</li>
+            <li>Prezzo Totale</li>
+            <li>Indirizzo ordine</li>
+            <li>Numero carta</li>
+            <li>Completato</li>
+            <li>ID utente</li>
+            <li>Consegna</li>
+          </ul>
+        </main>
+
+          <?php
+            $query = "SELECT * FROM ordini";
+            if($result = $conn->query($query)){
+              while($row = $result->fetch_row()){
+          ?>
+          <!-- righe tabella -->
+          <article class="riga pga">
+            <!-- colonne -->
+            <ul>
+                <!-- NumeroOrdine -->
+                <li><a href="#"> <?php echo $row[0] ?> </a></li>
+                <!-- prezzo totale -->
+                <li><?php echo $row[2] ?> €</li>
+                <!-- indirizzo -->
+                <li><?php echo $row[3] ?></li>
+                <!-- Numero carta -->
+                <li><?php echo $row[4] ?></li>
+                <!-- completato con X o V -->
+                <li>
+                  <?php if($row[7]==1) {echo '<i class="fas fa-check" style="color:green"></i>';} else {echo '<i class="fas fa-times" style="color:red"></i>';} ?>
+                </li>
+                <!-- id utente -->
+                <li><?php echo $row[8] ?></li>
+                <!-- pulsante consegna -->
+                <li><button class="btnbounce rounded" onclick="$.post('amministra_ordini.php', {cons_ordine:<?php echo $row[0] ?>} ); $(this).parent().parent().parent().addClass('update-row'); "><span class="text">Consegna</span></button></li>
+            </ul>
+
+            <!-- contenuto aggiuntivo -->
+            <ul class="more-content_tabella">
+              <li>Contenuto dell'ordine: <br> <?php echo $row[1] ?></li>
+            </ul>
+          </article>
+          <?php
+                if( $_SERVER['REQUEST_METHOD'] == 'POST' ) { //se mi è stata passato qualcosa tramite post
+                  $numOrd = $_POST['cons_ordine'];
+                  $query2 = "UPDATE ordini SET Completato=1 WHERE NumeroOrdine=$numOrd";//aggiorno il campo "completato" riferito all'uten
+                  if($conn->query($query2)){
+                    echo "Query2 andata a buon fine";
+                  }
+                }
+
+                //fine while
+              }
+            } else {
+              echo "Nessun dato trovato";
+            }
+          ?>
+        </section>
+
+        <br>
+        <form class="" action="amministra.php" method="post">
+          <button class="btn third">Salva modifiche</button>
+        </form>
+
+      </div>
+
 
         <?php
-          $query = "SELECT * FROM ordini";
-          if($result = $conn->query($query)){
-            while($row = $result->fetch_row()){
-        ?>
-        <article class = "row nhl">
-          <ul>
-              <li><?php echo $row[0] ?></li>
-              <li><?php echo $row[2] ?></li>
-              <li><?php echo $row[3] ?></li>
-              <li><?php echo $row[4] ?></li>
-              <li><?php echo $row[7] ?></li>
-              <li><?php echo $row[8] ?></li>
-              <li><button class="btn rounded" onclick="$.post('amministra_ordini.php', {pippo:<?php echo $row[0] ?>});"><span class="text">Consegna</span></button></li>
-          </ul>
-          <ul class="more-content-T">
-            <li>Contenuto dell'ordine: <?php echo $row[1] ?></li>
-          </ul>
-        </article>
-        <?php
-              if( $_SERVER['REQUEST_METHOD'] == 'POST' ) { //se mi è stata passato qualcosa tramite post
-                $numOrd = $_POST['pippo'];
-                $query2 = "UPDATE ordini SET Completato=1 WHERE NumeroOrdine=$numOrd";//aggiorno il campo "completato" riferito all'uten
-                if($conn->query($query2)){
-                  echo "Query2 andata a buon fine";
-                }
-              }
+            } else {
+              header("Location: ./home.php");
             }
+          $conn->close();
           } else {
-            echo "Nessun dato trovato";
+            echo 'You are not authorized to access this page, please login. <br/>';
           }
         ?>
-      </section>
-      <?php
-          } else {
-            header("Location: ./home.php");
-          }
-        $conn->close();
-        } else {
-          echo 'You are not authorized to access this page, please login. <br/>';
-        }
-      ?>
-      <button><a href="amministra.php">Salva le modifiche</a></button>
+
+
+
     </div>
     <footer>
       <address>

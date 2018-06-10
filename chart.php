@@ -31,7 +31,12 @@
       <!-- Identify the chart. -->
       <div id="firstChart"/>
     </div>
-    <a href="amministra.php">Torna alla pagina iniziale</a>
+    <div class="row">
+      <form class="" action="amministra.php" method="post" style="background-color:grey">
+        <button class="btn third">Torna al pannello amministrazine</button>
+      </form>
+    </div>
+
     <!-- fine non footer -->
     </div>
     <footer>

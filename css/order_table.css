@@ -1,19 +1,13 @@
-/* Google fonts - Open Sans */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-/* colors */
-/* body */
-body {
-  font-family: 'Open Sans', sans-serif;
-}
+/**CSS TABELLA **/
 
 /*BOTTONI*/
-.btn {
+.btnbounce {
   border: none;
   padding: 10px 20px;
   font-size: 13px;
   position: relative;
 }
-.btn::before {
+.btnbounce::before {
   transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   content: '';
   width: 50%;
@@ -23,97 +17,112 @@ body {
   top: 0;
   left: 0;
 }
-.btn.rounded {
+.btnbounce.rounded {
   border-radius: 50px;
 }
-.btn.rounded .text {
+.btnbounce.rounded .text {
   color: #00F0B5;
   mix-blend-mode: difference;
 }
-.btn.rounded::before {
+.btnbounce.rounded::before {
   border-radius: 50px;
   width: 25%;
   background: #00F0B5;
 }
-.btn.rounded:hover::before {
+.btnbounce.rounded:hover::before {
   background: #00F0B5;
   width: 100%;
 }
 
 
 /* links */
-.nhl button, .pga button {
+.nfl a, .mlb a, .nhl a, .pga a {
   text-decoration: none;
   transition: color 0.2s ease-out;
 }
 
-.nhl button {
+.nfl a {
+  color: #4fc0d2;
+}
+
+.nfl a:hover {
+  color: #268695;
+}
+
+.mlb a {
+  color: #52d29a;
+}
+
+.mlb a:hover {
+  color: #279766;
+}
+
+.nhl a {
   color: rgba(231, 196, 104, 0.7);
 }
 
-.nhl button:hover {
+.nhl a:hover {
   color: rgba(201, 154, 32, 0.7);
 }
 
-.pga button {
+.pga a {
   color: #eb7655;
 }
 
-.pga button:hover {
+.pga a:hover {
   color: #c33d17;
 }
 
 /* wrapper */
-.wrapper {
+.wrapper_tabella {
   width: 100%;
-  max-width: 80%;
+  max-width: 1000px;
   margin: 20px auto 100px auto;
   padding: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(50, 50, 50, 0.9);
   color: rgba(255, 255, 255, 0.9);
   overflow: hidden;
   position: relative;
 }
 
 /* lists */
-.row ul {
+.riga ul {
   margin: 0;
   padding: 0;
 }
 
-.row ul li {
+.riga ul li {
   margin: 0;
-  text-align: center;
   font-size: 16px;
   font-weight: normal;
   list-style: none;
   display: inline-block;
-  width: 14%;
+  width: 14%;  /**MODIFICARE QUI IN BASE AL NUMERO DELLE COLONNE**/
   box-sizing: border-box;
 }
 @media only screen and (max-width: 767px) and (min-width: 480px) {
-  .row ul li {
+  .riga ul li {
     font-size: 13px;
   }
 }
 @media only screen and (max-width: 479px) {
-  .row ul li {
+  .riga ul li {
     font-size: 13px;
   }
 }
 
-.title ul li {
+.titolo_tabella ul li {
   padding: 15px 13px;
 }
 
-.row ul li {
-  padding: 1px 10px;
+.riga ul li {
+  padding: 5px 10px;
 }
 
 /* rows */
-.row {
+.riga {
   padding: 20px 0;
-  height: 60px;
+  height: 50px;
   font-size: 0;
   position: relative;
   overflow: hidden;
@@ -121,22 +130,22 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.row:hover {
+.riga:hover {
   background-color: rgba(26, 26, 26, 0.9);
-  height: 100px;
+  height: 120px;
 }
 @media only screen and (max-width: 767px) {
-  .row:hover {
-    height: 85px;
+  .riga:hover {
+    height: 285px;
   }
 }
 @media only screen and (max-width: 359px) {
-  .row:hover {
-    height: 105px;
+  .riga:hover {
+    height: 505px;
   }
 }
 
-.title {
+.titolo_tabella {
   padding: 25px 0 5px 0;
   height: 45px;
   font-size: 0;
@@ -144,16 +153,32 @@ body {
   border-left: 3px solid rgba(255, 255, 255, 0.1);
 }
 
-.title:hover {
+.titolo_tabella:hover {
   height: 45px;
   background-color: rgba(255, 255, 255, 0.1);
   border-left: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 @media only screen and (max-width: 767px) {
-  .title-hide {
+  .titolo_tabella_hide {
     display: none;
   }
+}
+
+.nfl {
+  border-left: 3px solid #1c616c;
+}
+
+.nfl:hover {
+  border-left: 3px solid #4fc0d2;
+}
+
+.mlb {
+  border-left: 3px solid #1d6e4b;
+}
+
+.mlb:hover {
+  border-left: 3px solid #52d29a;
 }
 
 .nhl {
@@ -172,6 +197,21 @@ body {
   border-left: 3px solid #eb7655;
 }
 
+/* row one - fadeIn */
+.row-fadeIn-wrapper {
+  opacity: 0;
+  font-size: 0;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease-out;
+  animation: fadeIn 0.4s ease-out 2s 1 alternate;
+  animation-fill-mode: forwards;
+}
+
+.row-fadeIn-wrapper:hover {
+  height: 35px;
+}
 @media only screen and (max-width: 767px) {
   .row-fadeIn-wrapper:hover {
     height: 55px;
@@ -183,9 +223,37 @@ body {
   }
 }
 
+.fadeIn {
+  padding: 20px 0;
+  font-size: 0;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+.fadeIn:hover {
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+/* row two - fadeOut */
+.row-fadeOut-wrapper {
+  font-size: 0;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease-out;
+  animation: fadeOut 0.4s ease-out 8s 1 alternate;
+  animation-fill-mode: forwards;
+  opacity: 1;
+  height: 65px;
+}
+
+.row-fadeOut-wrapper:hover {
+  height: 100px;
+}
+
 /* update content */
 .update-row {
-  animation: update 0.5s ease-out 12s 1 alternate;
+  animation: update 0.5s ease-out 1 alternate;
 }
 
 .update1 {
@@ -193,7 +261,7 @@ body {
   top: 25px;
   display: inline-block;
   opacity: 1;
-  animation: update1 1s ease-out 12s 1 alternate;
+  animation: update1 1s ease-out 1 alternate;
   animation-fill-mode: forwards;
 }
 
@@ -202,15 +270,15 @@ body {
   top: 25px;
   display: inline-block;
   opacity: 0;
-  animation: update2 4s ease-out 13s 1 alternate;
+  animation: update2 4s ease-out 1s 1 alternate;
   animation-fill-mode: forwards;
 }
 
 /* more content */
-ul.more-content-T li {
+ul.more-content_tabella li {
   position: relative;
   top: 8px;
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
   display: block;
   height: 50px;
@@ -218,7 +286,7 @@ ul.more-content-T li {
   color: rgba(128, 128, 128, 0.9);
 }
 @media only screen and (max-width: 767px) {
-  ul.more-content-T li {
+  ul.more-content_tabella li {
     font-size: 11px;
   }
 }
@@ -236,6 +304,31 @@ ul.more-content-T li {
   }
 }
 
+/* keyframe animations */
+@keyframes fadeIn {
+  from {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    padding: 0;
+  }
+  to {
+    background: rgba(51, 51, 51, 0.1);
+    opacity: 1;
+    padding: 0 0 65px 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    background: rgba(51, 51, 51, 0.1);
+    opacity: 1;
+    height: 65px;
+  }
+  to {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    height: 0;
+  }
+}
 @keyframes update {
   0% {
     background: rgba(51, 51, 51, 0.1);
