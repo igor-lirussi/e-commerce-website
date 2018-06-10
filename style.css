@@ -149,6 +149,17 @@ address p {
 .right {
 }
 
+/*allineamenti*/
+.allcenter {
+  text-align: center;
+}
+.allleft {
+  text-align: left;
+}
+.allright {
+  text-align: right;
+}
+
 /*choice nel menù */
 #choice {
   color: white;
@@ -341,12 +352,20 @@ th, td {
   padding: 20px;
   border-radius: 7px;
 }
-
-/***/
+/** sfondo **/
+.easy1sfondo{
+    background-image: url("resources/bg/4.jpg");
+}
+.easy2sfondo{
+    background-image: url("resources/bg/5.jpg");
+    background-size: cover;
+}
+/** menu  **/
 .listino{
     float: center;
     padding-left: 25px;
     padding-right: 25px;
+    background-image: url("resources/bg/paper2.jpg");
 }
 
 .pastiVeloci h3{
@@ -472,6 +491,7 @@ input[type=submit]:hover {
     background-color: var(--main-color);
     color: white;
 }
+
 .btn {
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -492,6 +512,7 @@ input[type=submit]:hover {
   text-transform: uppercase;
   font-weight: 700;
 }
+
 .btn:hover, .btn:focus {
   color: #fff;
   outline: 0;
@@ -506,6 +527,15 @@ input[type=submit]:hover {
   box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 }
 
+.third2  {
+  border-color: green;
+  color: #fff;
+  box-shadow: 0 0 40px 40px green inset, 0 0 0 0 green;
+  transition: all 150ms ease-in-out;
+}
+.third2:hover {
+  box-shadow: 0 0 10px 0 green inset, 0 0 10px 4px green;
+}
 /*pulsanti nella choice della home che si allargano*/
 .myButt {
   outline: none;
@@ -652,6 +682,17 @@ hr {
 .clearfix {
   font-size: 0.8em;
 }
+
+/*titolo menu e altri*/
+.title {
+  color: #7c795d;
+  font-family: 'Trocchi', serif;
+  font-size: 45px;
+  font-weight: normal;
+  line-height: 48px;
+  margin: 0;
+}
+
 
 /******************************************************************************/
 /******************************RESPONSIVE**************************************/

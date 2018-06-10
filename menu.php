@@ -122,24 +122,30 @@
       <p>I nostri prodotti</p>
     </header>
 
-    <!-- barra progressi -->
-    <div class="checkout-wrap">
-      <ul class="checkout-bar">
-        <li class="active">Menù</li>
-        <li class="">Luogo Consegna</li>
-        <li class="">Carrello</li>
-        <li class="">Pagamento</li>
-        <li class="">Fine</li>
-      </ul>
-    </div>
+<div class="" style="background-color: white">
+  <!-- barra progressi -->
+    <ul class="checkout-bar">
+      <li class="active">Menù</li>
+      <li class="">Luogo Consegna</li>
+      <li class="">Carrello</li>
+      <li class="">Pagamento</li>
+      <li class="">Fine</li>
+    </ul>
+</div>
 
-    <h3> I nostri piatti sono divisi in categorie </h3>
+
+
+<div class="row listino allcenter">
+    <br>
+    <br>
+    <img src="./resources/menu/menu1.png" width="30%">
     <!-- Barra ricerca-->
       <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post"> <!-- on submit non dovrebbe fare niete-->
         <input type="search" name="search" value="" placeholder="Inserisci ricerca qui...">
         <button class="btn third">Cerca</button>
       </form>
 
+    </div>
     <!-- Inizio elenco menù-->
     <div class="row listino">
       <div class="col-4 pastiVeloci"> <!-- Categoria pasti veloci-->
@@ -295,9 +301,11 @@
         ?>
       </div>
     </div>
-    <form class="" action="address.php" method="post">
-      <input type="submit" name="cart" value="Scegli luogo consegna">
-    </form>
+    <div class="row listino allright">
+      <form class="" action="address.php" method="post">
+        <button class="btn third">Scegli luogo consegna</button>
+      </form>
+    </div>
 
     <!-- script per pulsante bollicinoso -->
     <script src="js/bubbly.js"></script>

@@ -19,11 +19,16 @@
   position: relative;
 }
 
+.checkout-bar {
+   margin: 0px;
+ }
+ 
 ul.checkout-bar li {
   color: #ccc;
   display: block;
   font-size: 16px;
   font-weight: 600;
+  text-shadow: 2px 2px 2px black;
   padding: 14px 20px 14px 80px;
   position: relative;
 }
@@ -97,6 +102,8 @@ ul.checkout-bar a {
   text-decoration: none;
 }
 
+
+/*********RESPONSIVE schermi grandi*********/
 @media all and (min-width: 768px) {
   .checkout-bar li.active:after {
     -webkit-animation: myanimation 3s 0;
@@ -119,6 +126,11 @@ ul.checkout-bar a {
     margin: 20px auto 60px;
   }
 
+  .checkout-bar {
+     margin: 0px;
+   }
+
+
   ul.checkout-bar {
     -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
     box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
@@ -128,7 +140,7 @@ ul.checkout-bar a {
     background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
     border-radius: 15px;
     height: 15px;
-    margin: 0 auto;
+    margin: 0px;
     padding: 0;
     position: absolute;
     width: 100%;
@@ -152,6 +164,7 @@ ul.checkout-bar a {
     margin: 50px 0 0;
     padding: 0;
     text-align: center;
+    text-shadow: 2px 2px 2px black;
     width: 19%;
   }
   ul.checkout-bar li:before {

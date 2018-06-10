@@ -42,7 +42,7 @@
     </header>
 
         <!-- barra progressi -->
-        <div class="checkout-wrap">
+        <div class="" style="background-color: white">
           <ul class="checkout-bar">
             <li class="visited"><a href="menu.php">Menù</a></li>
             <li class="active">Luogo Consegna</li>
@@ -64,17 +64,18 @@
 
 
 
-    <div class="row">
+    <div class="row easy1sfondo">
 
       <div class="col-4 center">
         <!-- classe dove l'utente sceglie -->
         <div class="pac-card" id="pac-card">
-          <div id="title"></br>
+          <div id="title">
+          </br></br></br>
             Scegli luogo di consegna:
           </div>
           <!-- input -->
           <div id="pac-container">
-            <div class='cont_inp'><span><input class='gate' id='pac-input' type='text' placeholder='enter a location' /><label for='class'>Luogo</label></span></div>
+            <div class='cont_inp'><span><input class='gate' id='pac-input' width="10%" type='text' placeholder='enter a location' /><label for='class'>Luogo</label></span></div>
             <!-- <input id="pac-input" type="text" placeholder="Enter a location"> -->
           </div>
           <!-- pulsante geolocalizzazione -->
@@ -83,12 +84,14 @@
         <!-- accuratezza stampata nel caso di geoloc -->
         <div id="accu"></div>
         <!-- pulsante consegna in questo luogo -->
+        <br>e la modalità:
+        <br>
         <button class="bubbly-button" onclick="consegna()"> Consegna qui <i class="fas fa-check-circle"></i></button>
-        <br>oppure<br>
         <button class="bubbly-button" onclick="insede()"> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
       </div>
 
       <div class="col-8">
+        <br><br><br>
         <!-- mappa verrà qui -->
         <div id="map"></div>
       </div>

@@ -34,7 +34,7 @@
 
 
         <!-- barra progressi -->
-        <div class="checkout-wrap">
+        <div class="" style="background-color: white">
           <ul class="checkout-bar">
             <li class="visited"><a href="menu.php">Menù</a></li>
             <li class="visited"><a href="address.php">Luogo Consegna</a></li>
@@ -44,9 +44,9 @@
           </ul>
         </div>
 
-
-    <div class = "row">
-      <h1>Il tuo carrello</h1>
+    <div class = "row listino allcenter">
+      <br><br>
+      <img src="./resources/menu/carrello.png" width="30%">
       <?php
         include 'connection.php';
         include 'functions.php';
@@ -121,8 +121,8 @@
         }
       ?>
       </br>
-      <a href="menu.php">Torna al menu</a>
-      <a href="pagamento.php">Vai alla pagina di pagamento</a>
+
+
 
 
       <?php
@@ -132,6 +132,21 @@
          echo "<a href='accedi.php'>Accedi</a>";
       }
       ?>
+    </div>
+
+    <div class="row listino">
+
+      <div class="col-6 allleft">
+        <form class="" action="menu.php" method="post">
+          <button class="btn third">Torna al menù</button>
+        </form>
+      </div>
+      <div class="col-6 allright">
+        <form class="" action="pagamento.php" method="post">
+          <button class="btn third">Vai alla pagina di pagamento</button>
+        </form>
+      </div>
+
     </div>
 
     <!-- script per pulsante bollicinoso -->

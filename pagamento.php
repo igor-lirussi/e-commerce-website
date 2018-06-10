@@ -41,7 +41,7 @@
 
 
     <!-- barra progressi -->
-    <div class="checkout-wrap">
+    <div class="" style="background-color: white">
       <ul class="checkout-bar">
         <li class="visited"><a href="menu.php">Menù</a></li>
         <li class="visited"><a href="address.php">Luogo Consegna</a></li>
@@ -88,14 +88,17 @@
       }
      ?>
 
-    <div class = "row">
+    <div class="row easy2sfondo">
 
     <div class="tips">
       Payment card number: (4) VISA, (51 -> 55) MasterCard, (36-38-39) DinersClub, (34-37) American Express, (65) Discover, (5019) DanKort
     </div>
 
-    </br>
-    <h2>Inserisci i tuoi dati di pagamento</h2></br>
+    </br></br></br>
+    <div class="allcenter">
+      <h2>Inserisci i tuoi dati di pagamento</h2></br>
+    </div>
+
 
     <div class="container">
       <div class="col1">

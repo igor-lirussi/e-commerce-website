@@ -37,7 +37,7 @@
 
 
         <!-- barra progressi -->
-        <div class="checkout-wrap">
+        <div class="" style="background-color: white">
           <ul class="checkout-bar">
             <li class="visited">Menù</li>
             <li class="visited">Luogo Consegna</li>
@@ -47,9 +47,9 @@
           </ul>
         </div>
 
-
-    <div class = "row">
-        FINE.</br>
+    <div class = "row easy1sfondo allcenter">
+        <br><br><br>
+        FINE</br>
         <?php
         echo "num ordine: ".$_SESSION['num_ordine'];
         //echo "<br>lista: ".$_SESSION['cibi_ordine']; //no perchè l'ho azzerata

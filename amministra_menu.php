@@ -2,9 +2,9 @@
 <html lang="it">
 
   <head>
-  </script>
     <meta charset="utf-8">
     <title>Yook</title>
+    <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per il pulsante bollicinoso, in fondo alla pagina c'è lo script -->
@@ -75,9 +75,9 @@
             if($result = $conn->query($query)){
               while($row = $result->fetch_row()){
           ?>
-                <div class = 'figurina'>
+                <div class='figurina'>
                   <section class='movie_image'>
-                      <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
+                      <img class='movie_poster' src="<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
                   </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
                   <section class='center_fig'>
                     <div class='about_movie'>
@@ -96,18 +96,24 @@
               }
           ?>
                 <!-- per l'aggiunta  -->
-                <div class = 'figurina'>
+                <div class='figurina'>
                   <form action='insert.php' method='post' enctype='multipart/form-data'>
                     <section class='movie_image'>
-              	       <input name='image' type='file' value='Inserisci immagine'>
+                      <div class="center">
+                        </br>
+                        <!-- immagine che al click fa click sull'elemento inputfile nascosto, poi ne prende il valore, ci toglie la parte del percorso e lo inserisce in un div per mostrare il nome del file -->
+                        <img class='movie_poster' onclick="$('#inp_file_pasti').click(); " src="./resources/amministrazione/mini-allega.gif">
+                        <input name='image' type='file' id="inp_file_pasti" style="display:none" value='Inserisci immagine' onchange=" $('#des_file_pasti').text( $(this).val().split(/(\\|\/)/g).pop() ); " >
+                        <div id="des_file_pasti" style="color:white">Allegare immagine</div>
+                      </div>
                     </section>
                     <section class='center_fig'>
                       <div class='about_movie'>
-                       <div class='cont_inp'><span><input class='gate' type = 'text' name = 'nomeInserito' placeholder = 'Inserisci nome prodotto'><label for='class'>Nome</label></span></div>
-                       <div class='cont_inp'><span><input class='gate' type = 'text' name = 'categInserita' placeholder = 'Inserisci categoria prodotto'><label for='class'>Categoria</label></span></div>
-                       <div class='cont_inp'><span><textarea class='gate' rows='4' cols='50' name = 'descInserita' placeholder = 'Inserisci descrizione prodotto'></textarea></span></div>
-                       <div class='cont_inp'><span><input class='gate' type = 'number' name = 'prezzoInserito' placeholder = 'Inserisci prezzo prodotto'><?php echo "€" ?><label for='class'>Prezzo</label></span></div>
-                       <button class='bubbly-button' >Aggiungi prodotto</button>
+                       <div class='cont_inp'><span><input class='gate' type='text' name='nomeInserito' placeholder='Inserisci nome prodotto'><label for='class'>Nome</label></span></div>
+                       <div class='cont_inp'><span><input class='gate' type='text' name='categInserita' value="Pasti Veloci" placeholder='Inserisci categoria prodotto'><label for='class'>Categoria</label></span></div>
+                       <div class='cont_inp'><span><textarea class='gate' rows='4' cols='50' name='descInserita' placeholder='Inserisci descrizione prodotto'></textarea></span></div>
+                       <div class='cont_inp'><span><input class='gate' type='number' name='prezzoInserito' placeholder='Inserisci prezzo prodotto'><label for='class'>Prezzo</label></span></div>
+                       <button class='bubbly-button'>Aggiungi prodotto</button>
                      </div>
                     </section>
                   </form>
@@ -126,43 +132,51 @@
             if($result = $conn->query($query)){
               while($row = $result->fetch_row()){
           ?>
-                <div class = 'figurina'>
-                  <section class='movie_image'>
-                      <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
-                  </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
-                  <section class='center_fig'>
-                    <div class='about_movie'>
-                      <h3><?php echo $row[1] ?></h3>
-                      <div class='movie_info'>
-                        <p><?php echo $row[4] ?>€</p>
-                      </div>
-                      <div class='movie_desc'>
-                        <p><?php echo $row[3] ?></p>
-                      </div>
-                      <button class='bubbly-button' onclick="post('delete.php', {cod : <?php echo $row[0] ?> });">Cancella prodotto</button>
-                    </div>
-                  </section>
+            <div class='figurina'>
+              <section class='movie_image'>
+                  <img class='movie_poster' src="<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
+              </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
+              <section class='center_fig'>
+                <div class='about_movie'>
+                  <h3><?php echo $row[1] ?></h3>
+                  <div class='movie_info'>
+                    <p><?php echo $row[4] ?>€</p>
+                  </div>
+                  <div class='movie_desc'>
+                    <p><?php echo $row[3] ?></p>
+                  </div>
+                  <button class='bubbly-button' onclick="post('delete.php', {cod : <?php echo $row[0] ?> });">Cancella prodotto</button>
                 </div>
+              </section>
+            </div>
           <?php
               }
           ?>
 
-          <div class = 'figurina'>
+          <!-- per l'aggiunta  -->
+          <div class='figurina'>
             <form action='insert.php' method='post' enctype='multipart/form-data'>
               <section class='movie_image'>
-                 <input name='image' type='file' value = 'Inserisci immagine'>
+                <div class="center">
+                  </br>
+                  <!-- immagine che al click fa click sull'elemento inputfile nascosto, poi ne prende il valore, ci toglie la parte del percorso e lo inserisce in un div per mostrare il nome del file -->
+                  <img class='movie_poster' onclick="$('#inp_file_primi').click(); " src="./resources/amministrazione/mini-allega.gif">
+                  <input name='image' type='file' id="inp_file_primi" style="display:none" value='Inserisci immagine' onchange=" $('#des_file_primi').text( $(this).val().split(/(\\|\/)/g).pop() ); " >
+                  <div id="des_file_primi" style="color:white">Allegare immagine</div>
+                </div>
               </section>
               <section class='center_fig'>
                 <div class='about_movie'>
-                 <div class='cont_inp'><span><input class='gate' type = 'text' name = 'nomeInserito' placeholder = 'Inserisci nome prodotto'><label for='class'>Nome</label></span></div>
-                 <div class='cont_inp'><span><input class='gate' type = 'text' name = 'categInserita' placeholder = 'Inserisci categoria prodotto'><label for='class'>Categoria</label></span></div>
-                 <div class='cont_inp'><span><textarea class='gate' rows='4' cols='50' name = 'descInserita' placeholder = 'Inserisci descrizione prodotto'></textarea></span></div>
-                 <div class='cont_inp'><span><input class='gate' type = 'number' name = 'prezzoInserito' placeholder = 'Inserisci prezzo prodotto'><?php echo "€" ?><label for='class'>Prezzo</label></span></div>
-                 <input name= 'invia' type='submit' value='Aggiungi prodotto'>
+                 <div class='cont_inp'><span><input class='gate' type='text' name='nomeInserito' placeholder='Inserisci nome prodotto'><label for='class'>Nome</label></span></div>
+                 <div class='cont_inp'><span><input class='gate' type='text' name='categInserita' value="Primi" placeholder='Inserisci categoria prodotto'><label for='class'>Categoria</label></span></div>
+                 <div class='cont_inp'><span><textarea class='gate' rows='4' cols='50' name='descInserita' placeholder='Inserisci descrizione prodotto'></textarea></span></div>
+                 <div class='cont_inp'><span><input class='gate' type='number' name='prezzoInserito' placeholder='Inserisci prezzo prodotto'><label for='class'>Prezzo</label></span></div>
+                 <button class='bubbly-button'>Aggiungi prodotto</button>
                </div>
               </section>
             </form>
            </div>
+
            <?php
             } else {
               echo "Nessun dato trovato";
@@ -177,42 +191,51 @@
             if($result = $conn->query($query)){
               while($row = $result->fetch_row()){
           ?>
-                <div class = 'figurina'>
-                  <section class='movie_image'>
-                      <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
-                  </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
-                  <section class='center_fig'>
-                    <div class='about_movie'>
-                      <h3><?php echo $row[1] ?></h3>
-                      <div class='movie_info'>
-                        <p><?php echo $row[4] ?>€</p>
-                      </div>
-                      <div class='movie_desc'>
-                        <p><?php echo $row[3] ?></p>
-                      </div>
-                      <button class='bubbly-button' onclick="post('delete.php', {cod : <?php echo $row[0] ?> });">Cancella prodotto</button>
-                    </div>
-                  </section>
+            <div class='figurina'>
+              <section class='movie_image'>
+                  <img class='movie_poster' src="<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
+              </section>  <!--es: nella tabella listino la colonna con indice 0 è "Codice", con indice 1 è "Nome" ecc.. (vedi phpMyAdmmin per l'ordine delle colonne)-->
+              <section class='center_fig'>
+                <div class='about_movie'>
+                  <h3><?php echo $row[1] ?></h3>
+                  <div class='movie_info'>
+                    <p><?php echo $row[4] ?>€</p>
+                  </div>
+                  <div class='movie_desc'>
+                    <p><?php echo $row[3] ?></p>
+                  </div>
+                  <button class='bubbly-button' onclick="post('delete.php', {cod : <?php echo $row[0] ?> });">Cancella prodotto</button>
                 </div>
+              </section>
+            </div>
           <?php
               }
           ?>
-                <div class = 'figurina'>
-                  <form action='insert.php' method='post' enctype='multipart/form-data'>
-                    <section class='movie_image'>
-              	       <input name='image' type='file' value = 'Inserisci immagine'>
-                    </section>
-                    <section class='center_fig'>
-                      <div class='about_movie'>
-                       <div class='cont_inp'><span><input class='gate' type = 'text' name = 'nomeInserito' placeholder = 'Inserisci nome prodotto'><label for='class'>Nome</label></span></div>
-                       <div class='cont_inp'><span><input class='gate' type = 'text' name = 'categInserita' placeholder = 'Inserisci categoria prodotto'><label for='class'>Categoria</label></span></div>
-                       <div class='cont_inp'><span><textarea class='gate' rows='4' cols='50' name = 'descInserita' placeholder = 'Inserisci descrizione prodotto'></textarea></span></div>
-                       <div class='cont_inp'><span><input class='gate' type = 'number' name = 'prezzoInserito' placeholder = 'Inserisci prezzo prodotto'><?php echo "€" ?><label for='class'>Prezzo</label></span></div>
-                       <input name= 'invia' type='submit' value='Aggiungi prodotto'>
-                     </div>
-                    </section>
-                  </form>
-                 </div>
+
+          <!-- per l'aggiunta  -->
+          <div class='figurina'>
+            <form action='insert.php' method='post' enctype='multipart/form-data'>
+              <section class='movie_image'>
+                <div class="center">
+                  </br>
+                  <!-- immagine che al click fa click sull'elemento inputfile nascosto, poi ne prende il valore, ci toglie la parte del percorso e lo inserisce in un div per mostrare il nome del file -->
+                  <img class='movie_poster' onclick="$('#inp_file_bev').click(); " src="./resources/amministrazione/mini-allega.gif">
+                  <input name='image' type='file' id="inp_file_bev" style="display:none" value='Inserisci immagine' onchange=" $('#des_file_bev').text( $(this).val().split(/(\\|\/)/g).pop() ); " >
+                  <div id="des_file_bev" style="color:white">Allegare immagine</div>
+                </div>
+              </section>
+              <section class='center_fig'>
+                <div class='about_movie'>
+                 <div class='cont_inp'><span><input class='gate' type='text' name='nomeInserito' placeholder='Inserisci nome prodotto'><label for='class'>Nome</label></span></div>
+                 <div class='cont_inp'><span><input class='gate' type='text' name='categInserita' value="Bevande" placeholder='Inserisci categoria prodotto'><label for='class'>Categoria</label></span></div>
+                 <div class='cont_inp'><span><textarea class='gate' rows='4' cols='50' name='descInserita' placeholder='Inserisci descrizione prodotto'></textarea></span></div>
+                 <div class='cont_inp'><span><input class='gate' type='number' name='prezzoInserito' placeholder='Inserisci prezzo prodotto'><label for='class'>Prezzo</label></span></div>
+                 <button class='bubbly-button'>Aggiungi prodotto</button>
+               </div>
+              </section>
+            </form>
+           </div>
+
           <?php
             } else {
               echo "Nessun dato trovato";
@@ -227,14 +250,13 @@
           ?>
         </div>
       </div>
-      <script>
-        $(document).ready(function(){
-          $("#nascondi").hide();
-        });
-      </script>
-      <form class="" action="amministra.php" method="post">
-        <input type="submit" name="sm" value="Salva modifiche">
-      </form>
+
+      <div class="row listino center">
+        <form class="" action="amministra.php" method="post">
+          <button class="btn third">Salva modifiche</button>
+        </form>
+      </div>
+
     </div>
     <footer>
       <address>
