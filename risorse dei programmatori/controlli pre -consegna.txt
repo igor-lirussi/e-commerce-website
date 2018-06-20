@@ -1,0 +1,3 @@
+nome dell'amministratore: admin
+cognome amministratore: Rossi
+max 11 righe nei membri

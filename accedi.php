@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="css/modal.css">
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/modal.js"></script>
+    <!-- per il pulsante bollicinoso, in fondo alla pagina c'è lo script -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/bubbly.css">
+    <!-- per input text figo -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/inp_text.css">
   </head>
 
   <body>
@@ -63,30 +67,55 @@
     </header>
 
 
+<div class="row easy2sfondo">
+  <div class="col-6 allright">
+    <br>
+    <div class="logga">
+      <fieldset> <legend><h2>Login</h2></legend>
+      <form action="process_login.php" method="post" name="login_form">
+         <p><label for="ema">Email
+           <div class='cont_inp'><span><input class='gate' type="text" id="ema" name="email" autocomplete="on" placeholder="inserisci email" required /><label for='class'>Email</label></span></div>
+           <!-- <input type="text" id="ema" name="email" autocomplete="on" placeholder="inserisci email" required/></label> -->
+         </p>
+         <p><label for="password">Password
+           <div class='cont_inp'><span><input class='gate' name="p" id="password" placeholder="inserisci password" required /><label for='class'>Password</label></span></div>
+            <!-- <input type="password" name="p" id="password" placeholder="inserisci password" required /> -->
+              <?php
+                if(isset($_GET['error'])) {
+                if($_GET['error']==1) {
+                  echo '<div class="tip"> Forgot your password? Send an <a href="accedi.php?error=2">e-mail</a></div>';
+                }}
+              ?>
+            </label>
+          </p>
+          <button class="bubbly-button" onclick="formhash(this.form, this.form.password);">Accedi <i class="fas fa-sign-in-alt"></i></button>
+           <!-- se l'utente accede con admin@admin.com, pw:admin, viene rediretto sulla pagina dell'amministratore -->
+      </form>
 
+      </fieldset>
+    </div>
+    <br>
+  </div>
 
-    <fieldset> <legend><h2>i tuoi dati personali:</h2></legend>
-    <form action="process_login.php" method="post" name="login_form">
-       <p><label for="ema">Email:
-         <input type="text" id="ema" name="email" autocomplete="on"
-         placeholder="inserisci email" required/></label>
-       </p>
-       <p><label for="password">Password:
-          <input type="password" name="p" id="password"
-          placeholder="inserisci password" required />
-            <?php
-              if(isset($_GET['error'])) {
-              if($_GET['error']==1) {
-                echo '<div class="tip"> Forgot your password? Send an <a href="accedi.php?error=2">e-mail</a></div>';
-              }}
-            ?>
-          </label>
-        </p>
-        <input type="button" value="Accedi" onclick="formhash(this.form, this.form.password);" /> <!-- se l'utente accede con admin@admin.com, pw:admin, viene rediretto sulla pagina dell'amministratore -->
-    </form>
-    <br/>Non hai ancora un account? <br/>
-    <a href="registrati.html">Registrati!</a>
-  </fieldset>
+  <div class="col-6 allleft">
+    <br><br><br>
+    <div class="registra">
+      <fieldset> <legend><h2>Registrati</h2></legend>
+        <form class="" action="registrati.html" method="post">
+          <br/><h3>Non hai ancora un account? </h3>  <br/>
+          Con la registrazione puoi accumulare punti e salvare i tuoi dati!
+          <br>
+          <button class="bubbly-button" onclick="./registrati.html">Registrati <i class="fas fa-user-plus"></i></button>
+        </form>
+      </fieldset>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- script per pulsante bollicinoso -->
+<script src="js/bubbly.js"></script>
 
   </div>
   <footer>

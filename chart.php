@@ -33,7 +33,7 @@
     </div>
     <div class="row">
       <form class="" action="amministra.php" method="post" style="background-color:grey">
-        <button class="btn third">Torna al pannello amministrazine</button>
+        <button class="btn third">Torna al pannello amministrazione</button>
       </form>
     </div>
 

@@ -86,7 +86,9 @@
 
           <div id="io" class="allcenter"><h3>Indirizzo residenza degli utenti</h3></div>
           <div id="map"></div>
-
+          <form class="" action="amministra.php" method="post" style="background-color:grey">
+            <button class="btn third">Torna al pannello amministrazione</button>
+          </form>
 
 
             <script>
