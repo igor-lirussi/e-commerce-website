@@ -3,10 +3,10 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Yook</title>
+    <title>Yook - Amministra</title>
+    <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
-    <link rel="icon" href="resources/favicon.ico" />
     <!-- per hamburger menu -->
     <link rel="stylesheet" href="css/hamburger.css">
     <!-- per le cards -->
@@ -128,7 +128,7 @@
             <p>Posizione utenti</p>
           </a>
 
-          <a href="chart.php" class="card wallet">
+          <a href="user-graph.php" class="card wallet">
                <div class="overlay"></div>
             <div class="circle">
               <svg width="78px" height="60px" viewBox="23 29 78 60">

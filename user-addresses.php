@@ -2,10 +2,10 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title>Indirizzo Utenti</title>
-    <link rel="icon" href="resources/favicon.ico" />
+    <title>Yook - Indirizzo Utenti</title>
+    <link rel="icon" href="resources/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
       /* Always set the map height explicitly to define the size of the div

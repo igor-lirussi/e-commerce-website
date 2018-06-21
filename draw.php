@@ -4,6 +4,8 @@
   <head>
   </script>
     <meta charset="utf-8">
+    <title>Yook - Personalizza</title>
+    <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,8 +15,6 @@
         $(".nascondi").hide();
       });
     </script>
-    <title>SitoCibo</title>
-    <link rel="icon" href="resources/favicon.ico" />
   </head>
 
   <body>

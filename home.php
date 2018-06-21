@@ -6,15 +6,15 @@
     <title>Yook</title>
     <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!--per le icone social uso font apposito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
-
+    <!-- per la gallery -->
     <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
     <link rel="stylesheet" href="css/squaredgallery.css">
     <!-- per il loader -->
     <link rel="stylesheet" href="css/loader.css">
-    <!-- per il passaggio dei dati guest -->
+    <!-- per il passaggio dei dati di accesso del guest -->
     <script type="text/javascript" src="./js/forms.js"></script>
     <script type="text/javascript" src="./js/sha512.js"></script>
     <!-- per hamburger menu -->

@@ -3,7 +3,8 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Yook</title>
+    <title>Yook - Amministra Ordini</title>
+    <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per font icone -->
@@ -14,7 +15,6 @@
     <script src="js/hamburger.js"></script>
     <!-- per la tabella -->
     <link rel="stylesheet" href="css/order_table.css">
-    <link rel="icon" href="resources/favicon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>

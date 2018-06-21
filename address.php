@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="utf-8">
-    <title>Yook</title>
+    <title>Yook - Luogo Consegna</title>
     <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">

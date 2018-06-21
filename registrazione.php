@@ -2,9 +2,9 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <title>Registrati</title>
-    <link rel="icon" href="resources/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Latest compiled and minified CSS -->
+    <title>Yook - Registrazione</title>
+    <link rel="icon" href="resources/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./resources/JquerySteps/mysteps.css">

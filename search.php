@@ -3,6 +3,8 @@
 
   <head>
     <meta charset="utf-8">
+    <title>Yook - Search</title>
+    <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per barra progressi -->
@@ -17,9 +19,6 @@
     <link rel="stylesheet" href="css/hamburger.css">
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/hamburger.js"></script>
-
-    <title>SitoCibo</title>
-    <link rel="icon" href="resources/favicon.ico" />
   </head>
 
   <body>
