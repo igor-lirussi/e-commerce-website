@@ -1,3 +1,7 @@
 nome dell'amministratore: admin
 cognome amministratore: Rossi
+username amministratore: admin_admin
+nome guest: guest
 max 11 righe nei membri
+indirizzi membri non troppo lunghi e corretti
+punti membri realistici 

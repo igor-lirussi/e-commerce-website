@@ -78,7 +78,7 @@
            <!-- <input type="text" id="ema" name="email" autocomplete="on" placeholder="inserisci email" required/></label> -->
          </p>
          <p><label for="password">Password
-           <div class='cont_inp'><span><input class='gate' name="p" id="password" placeholder="inserisci password" required /><label for='class'>Password</label></span></div>
+           <div class='cont_inp'><span><input class='gate' type="password" name="p" id="password" placeholder="inserisci password" required /><label for='class'>Password</label></span></div>
             <!-- <input type="password" name="p" id="password" placeholder="inserisci password" required /> -->
               <?php
                 if(isset($_GET['error'])) {
@@ -101,11 +101,11 @@
     <br><br><br>
     <div class="registra">
       <fieldset> <legend><h2>Registrati</h2></legend>
-        <form class="" action="registrati.html" method="post">
+        <form class="" action="registrazione.php" method="post">
           <br/><h3>Non hai ancora un account? </h3>  <br/>
           Con la registrazione puoi accumulare punti e salvare i tuoi dati!
           <br>
-          <button class="bubbly-button" onclick="./registrati.html">Registrati <i class="fas fa-user-plus"></i></button>
+          <button class="bubbly-button">Registrati <i class="fas fa-user-plus"></i></button>
         </form>
       </fieldset>
     </div>
@@ -119,21 +119,10 @@
 
   </div>
   <footer>
-    <address>
-          <p>
-              Copyright 2018 <strong>Yook S.r.l.</strong><br>
-              Via Albert Einstein n. 3, 48018 Faenza (RA)<br>
-              <a href="mailto:info@Yook.it">info@Yook.it</a>
-          </p>
-          <p>
-              P.Iva: 02684269693 - REA: RA-526419
-              <br>
-              Cap. Soc. 10.000€ e riserve in conto capitale per un totale di 101.000€ interamente versati.
-          </p>
-          <p>
-              <a id="footer_InfoLegali" href="info_legali.html">Info Legali</a> | <a id="footer_PrivacyPolicy" href="privacy_policy.html">Privacy</a>
-          </p>
-    </address>
+    <?php
+      include 'footer.php';
+      print_footer();
+    ?>
   </footer>
   </body>
 </html>

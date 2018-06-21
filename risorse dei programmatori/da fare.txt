@@ -1,4 +1,4 @@
-OK! cercare nel listino
+﻿OK! cercare nel listino
 OK! barra progresso
 notifiche abbastanza elaborate
 OK! salvataggio ordini in db
@@ -24,4 +24,4 @@ OK! rimettere immagine vettoriale logo
 OK! mettere pulsante "ritira in negozio" che inserisce di nascosto l'indirizzo del negozio
 sistemare ricerca FAQ in contattaci
 sistemare home e aggiornare font-awesome
-aggiornare indirizzo nelle info legali
+OK! aggiornare indirizzo nelle info legali e in tutti i footer
