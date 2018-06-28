@@ -98,22 +98,22 @@
               // Login eseguito!!!!
               return true;
            } else {
-             echo "Login non eseguito";
+             // echo "Login non eseguito";
               //  Login non eseguito
               return false;
            }
         } else {
-          echo "Login non eseguito";
+          // echo "Login non eseguito";
             // Login non eseguito
             return false;
         }
      } else {
-       echo "Login non eseguito";
+       // echo "Login non eseguito";
         // Login non eseguito
         return false;
      }
    } else {
-     echo "Login non eseguito";
+     // echo "Login non eseguito";
      // Login non eseguito
      return false;
    }

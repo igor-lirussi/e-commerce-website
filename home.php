@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="css/hamburger.css">
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/hamburger.js"></script>
+    <!-- per le notifiche -->
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="./js/sweetalert2.all.js"></script>
   </head>
 
   <body onload="lateFunction()">
@@ -81,9 +84,6 @@
 
      <!-- menu hamburger -->
       <div  class="open">
-        <div class="notify">
-
-        </div>
      	<span class="cls"></span>
      	<span>
      		<ul class="sub-menu ">
@@ -208,14 +208,61 @@
 
   <!-- SCRIPT LOADER -->
   <script>
+      var keyloop;
       //per il loader
       function loadedFunction() {
          document.getElementById("cooking").style.display = "none";
          document.getElementById("allpage").style.display = "block";
+         <?php
+           if(login_check($conn) == true) {  //se loggato
+             if(!empty($_SESSION['num_ordine'])){ //se esiste la variabile di sessione relativa all'ordine
+         ?>
+         keyloop = setInterval(function(){ controlla_notifica(); }, 4000);
+         <?php
+             }
+           }
+          ?>
       }
       //ritarda il loader
       function lateFunction() {
         var myVar = setTimeout(loadedFunction, 3000);
+      }
+
+      function visualizza_notifica(){
+        swal({
+          position: 'top',
+          type: 'success',
+          title: 'Complimenti',
+          text: 'Il tuo ordine è stato consegnato!',
+          showConfirmButton: false,
+          timer: 4000,
+          costumClass: 'animate jackInTheBox',
+          width: 600,
+          padding: '3em',
+          backdrop:`
+            rgba(255,255,255,0.2)
+            url("./resources/Fattorino.gif")
+            center right
+            no-repeat`
+        });
+      }
+
+      function controlla_notifica(){
+        $.ajax({
+          url: "notification_check.php",
+          type: "post",
+          dataType: 'json',
+          success: function(data){
+                      console.log(data.status);//se ricevo qualcosa, lo stampo
+                      if(data.status == "Delivered"){
+                        visualizza_notifica();
+                        clearInterval(keyloop);
+                      }
+                    },
+          error: function(data){
+                    console.log("Fail");
+                  }
+        });
       }
   </script>
   <noscript>
