@@ -217,7 +217,7 @@
            if(login_check($conn) == true) {  //se loggato
              if(!empty($_SESSION['num_ordine'])){ //se esiste la variabile di sessione relativa all'ordine
          ?>
-         keyloop = setInterval(function(){ controlla_notifica(); }, 4000);
+        keyloop = setInterval(function(){ controlla_notifica(); }, 4000); //intervallo funzione controllo notifica
          <?php
              }
            }
@@ -249,18 +249,18 @@
 
       function controlla_notifica(){
         $.ajax({
-          url: "notification_check.php",
+          url: "notification_check.php", //pagina php apposita che ritorna json dopo una query
           type: "post",
           dataType: 'json',
           success: function(data){
                       console.log(data.status);//se ricevo qualcosa, lo stampo
                       if(data.status == "Delivered"){
-                        visualizza_notifica();
-                        clearInterval(keyloop);
+                        visualizza_notifica();   //se è consegnato visualizzo la notifica
+                        clearInterval(keyloop); //fermo il ciclo
                       }
                     },
           error: function(data){
-                    console.log("Fail");
+                    console.log("Fail");//se non ricevo nulla stampo fail
                   }
         });
       }

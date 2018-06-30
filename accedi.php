@@ -69,7 +69,10 @@
 
 
 <div class="row easy2sfondo">
-  <div class="col-6 allright">
+  <div class="col-1">
+      &nbsp;
+  </div>
+  <div class="col-5 allright">
     <br>
     <div class="logga">
       <fieldset> <legend><h2>Login</h2></legend>
@@ -98,21 +101,22 @@
     <br>
   </div>
 
-  <div class="col-6 allleft">
+  <div class="col-5 allleft">
     <br><br><br>
     <div class="registra">
       <fieldset> <legend><h2>Registrati</h2></legend>
         <form class="" action="registrazione.php" method="post">
-          <br/><h3>Non hai ancora un account? </h3>  <br/>
+          <h3>Non hai ancora un account? </h3> 
           Con la registrazione puoi accumulare punti e salvare i tuoi dati!
           <br>
           <button class="bubbly-button">Registrati <i class="fas fa-user-plus"></i></button>
         </form>
       </fieldset>
     </div>
-
   </div>
-
+  <div class="col-1">
+        &nbsp;
+  </div>
 </div>
 
 <!-- script per pulsante bollicinoso -->

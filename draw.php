@@ -2,14 +2,18 @@
 <html lang="it">
 
   <head>
-  </script>
     <meta charset="utf-8">
     <title>Yook - Personalizza</title>
     <link rel="icon" href="resources/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </script>
+    <!-- per il radio button con le immagini, serve anche jquery -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/radio_img.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- per il pulsante bollicinoso, in fondo alla pagina c'è lo script -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/bubbly.css">
     <script>
       $(document).ready(function(){
         $(".nascondi").hide();
@@ -30,121 +34,211 @@
     </header>
 
 
-<div class="row">
-  <div class="col-8">
-    <h3>Canvas:</h3>
-    <canvas id="myCanvas" width="500" height="500"
-    style="border:1px solid #d3d3d3;">
+<div class="row easy3sfondo">
+  <div class="col-6 allcenter">
+    <h3>La tua pizza:</h3>
+    Prezzo: <span id="price">0</span> € </br>
+    <canvas id="myCanvas" width="500" height="500" style="border:0px solid #d3d3d3;">
     Your browser does not support the HTML5 canvas tag.
     </canvas>
-    <button type="button" name="" onclick="inizializePizza()">Reset</button>
+    <button class="bubbly-button"type="button" name="" onclick="inizializePizza()">Reset</button>
   </div>
 
-  <div class="col-4">
-    <h3>Scegli condimento</h3>
-    <select>
-      <option value="volvo">Salsa</option>
-      <option value="saab">Salame</option>
-      <option value="opel">Funghi</option>
-      <option value="audi">Pomodorini</option>
-    </select>
+  <div class="col-6 allcenter">
+    <h3>Scegli gli ingredienti</h3>
 
-    <p>Salsa di pomodoro</p>
-    <img id="salsa" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/salsapomodoro.png" alt="Salsa">
-    <p>Funghi</p>
-    <img id="funghi" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/fungo.png" alt="Mashroom">
-    <p>Salame</p>
-    <img id="salame" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/salame2.png" alt="Salame">
-    <p>Pomodorini</p>
-    <img id="pomodori" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/pomodorino.png" alt="Pomodorini">
-    <p>Peperoni</p>
-    <img id="peperoni" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/peperone.png" alt="Peperoni">
-    <p>Patate al forno</p>
-    <img id="patforno" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/patata.png" alt="Patate al forno">
-    <p>Patate fritte</p>
-    <img id="patfritte" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/patatina.png" alt="Patate fritte">
-    <p>Zucchine</p>
-    <img id="zucchine" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/zucchina.png" alt="Zucchine">
-    <p>Cipolla</p>
-    <img id="cipolla" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/cipolla.png" alt="Cipolla">
-    <p>Salsiccia</p>
-    <img id="salsiccia" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza/salsiccia.png" alt="Salsiccia">
+    <h4>Salsa di pomodoro</h4>
+    <section>
+      <div>
+        <input type="radio" id="control_01POMO" name="selectPOM" >
+        <label for="control_01POMO">
+          Disegna <br>
+          <i class="fas fa-pencil-alt"></i>
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_02POMO" name="selectPOM" >
+        <label for="control_02POMO">
+          Riempi <br>
+          <i class="fab fa-gratipay"></i>
+        </label>
+      </div>
+    </section>
+
+    <h4>Mozzarella</h4>
+    <section>
+      <div>
+        <input type="radio" id="control_01MOZ" name="selectPOM" >
+        <label for="control_01MOZ">
+          Disegna <br>
+          <i class="fas fa-pencil-alt"></i>
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_02MOZ" name="selectPOM" >
+        <label for="control_02MOZ">
+          Riempi <br>
+          <i class="fab fa-gratipay"></i>
+        </label>
+      </div>
+    </section>
+
+    <h4>Condimenti</h4>
+    <!-- riga 1 -->
+    <section>
+      <div>
+        <input type="radio" id="control_01" name="select" value="asparago" checked>
+        <label for="control_01">
+          Asparago
+          <img id="asparago" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/asparago.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_02" name="select" value="cipolla">
+        <label for="control_02">
+          Cipolla
+          <img id="cipolla" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/cipolla.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_03" name="select" value="fungo">
+        <label for="control_03">
+          Fungo
+          <img id="fungo" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/fungo.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_04" name="select" value="gambero">
+        <label for="control_04">
+          Gambero
+          <img id="gambero" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/gambero.png"  >
+        </label>
+      </div>
+    </section>
+    <!-- riga 2 -->
+    <section>
+      <div>
+        <input type="radio" id="control_05" name="select" value="mais">
+        <label for="control_05">
+          Mais
+          <img id="mais" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/mais.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_06" name="select" value="noce">
+        <label for="control_06">
+          noce
+          <img id="noce" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/noce.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_07" name="select" value="oliva">
+        <label for="control_07">
+          oliva
+          <img id="oliva" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/oliva.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_08" name="select" value="patata">
+        <label for="control_08">
+          patata
+          <img id="patata" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/patata.png"  >
+        </label>
+      </div>
+    </section>
+    <!-- riga 3 -->
+    <section>
+      <div>
+        <input type="radio" id="control_09" name="select" value="patatina">
+        <label for="control_09">
+          patatina
+          <img id="patatina" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/patatina.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_10" name="select" value="peperone">
+        <label for="control_10">
+          peperone
+          <img id="peperone" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/peperone.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_11" name="select" value="pomodorino">
+        <label for="control_11">
+          pomodorino
+          <img id="pomodorino" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/pomodorino.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_12" name="select" value="radicchio">
+        <label for="control_12">
+          radicchio
+          <img id="radicchio" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/radicchio.png"  >
+        </label>
+      </div>
+    </section>
+    <!-- riga 4 -->
+    <section>
+      <div>
+        <input type="radio" id="control_13" name="select" value="rucola">
+        <label for="control_13">
+          rucola
+          <img id="rucola" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/rucola.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_14" name="select" value="salame">
+        <label for="control_14">
+          salame
+          <img id="salame" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/salame.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_15" name="select" value="salsiccia">
+        <label for="control_15">
+          salsiccia
+          <img id="salsiccia" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/salsiccia.png"  >
+        </label>
+      </div>
+      <div>
+        <input type="radio" id="control_16" name="select" value="zucchina">
+        <label for="control_16">
+          zucchina
+          <img id="zucchina" width="100%" height="100" src="./resources/immaginiCibi/condimenti_pizza/zucchina.png"  >
+        </label>
+      </div>
+    </section>
+
     <div class="nascondi">
-      <img id="impasto" width="100" height="100" src="./resources/immaginiCibi/condimenti pizza2/impasto.png" alt="Impasto">
+      <img id="impasto" width="100" height="100" src="./resources/immaginiCibi/condimenti_pizza/impasto.png" >
+      <img id="salsa_piena" width="100" height="100" src="./resources/immaginiCibi/condimenti_pizza/salsa_piena.png" >
+      <img id="mozza_piena" width="100" height="100" src="./resources/immaginiCibi/condimenti_pizza/mozza_piena.png" >
     </div>
+
   </div>
 </div>
 
     <script>
-    var canvas = document.getElementById('myCanvas');
-    var ctx = canvas.getContext('2d');
-    window.onload = function() {
-        inizializePizza();
-        var salsa = document.getElementById("salsa");
-        var funghi = document.getElementById("funghi");
-        var salame = document.getElementById("salame");
-        var pomodori = document.getElementById("pomodori");
-        var peperoni = document.getElementById("peperoni");
-        var patforno = document.getElementById("patforno");
-        var patfritte = document.getElementById("patfritte");
-        var zucchine = document.getElementById("zucchine");
-        var cipolla = document.getElementById("cipolla");
-        var salsiccia = document.getElementById("salsiccia");
-        $(document).ready(function(){
-          $("#salsa").click(function(){
+          var canvas = document.getElementById('myCanvas');
+          var ctx = canvas.getContext('2d');
+          var price = 0;
 
-            ctx.fillStyle = 'darkred';
-            ctx.beginPath();
-            var radius = canvas.height/2-50;
-            ctx.arc(canvas.width/2, canvas.height/2, radius, 0, Math.PI*2, 0);
-            ctx.fill();
+          window.onload = function() {
+              inizializePizza();
 
-          });
-          $("#funghi").click(function(){
-          // ctx.globalCompositeOperation = "source-over";
-          ctx.drawImage(funghi, 177, 135, 30, 30);
-          ctx.drawImage(funghi, 235, 278, 30, 30);
-          ctx.drawImage(funghi, 260, 105, 30, 30);
-          ctx.drawImage(funghi, 217, 172, 30, 30);
-          ctx.drawImage(funghi, 340, 200, 30, 30);
-          ctx.drawImage(funghi, 330, 140, 30, 30);
-          ctx.drawImage(funghi, 330, 248, 30, 30);
-          ctx.drawImage(funghi, 280, 219, 30, 30);
-          ctx.drawImage(funghi, 170, 200, 30, 30);
-          ctx.drawImage(funghi, 217, 238, 30, 30);
-          ctx.drawImage(funghi, 270, 158, 30, 30);
-          });
-          $("#salame").click(function(){
-          // ctx.globalCompositeOperation = "source-over";
-          ctx.drawImage(salame, 207, 1555, 30, 30);
-          ctx.drawImage(salame, 265, 298, 30, 30);
-          ctx.drawImage(salame, 290, 125, 30, 30);
-          ctx.drawImage(salame, 247, 192, 30, 30);
-          ctx.drawImage(salame, 370, 220, 30, 30);
-          ctx.drawImage(salame, 360, 160, 30, 30);
-          ctx.drawImage(salame, 360, 268, 30, 30);
-          ctx.drawImage(salame, 310, 239, 30, 30);
-          ctx.drawImage(salame, 200, 220, 30, 30);
-          ctx.drawImage(salame, 247, 258, 30, 30);
-          ctx.drawImage(salame, 300, 178, 30, 30);
-          });
-          $("#pomodori").click(function(){
-          // ctx.globalCompositeOperation = "source-over";
-          ctx.drawImage(salame, 117, 95, 30, 30);
-          ctx.drawImage(salame, 175, 238, 30, 30);
-          ctx.drawImage(salame, 200, 65, 30, 30);
-          ctx.drawImage(salame, 157, 132, 30, 30);
-          ctx.drawImage(salame, 280, 160, 30, 30);
-          ctx.drawImage(salame, 270, 100, 30, 30);
-          ctx.drawImage(salame, 270, 208, 30, 30);
-          ctx.drawImage(salame, 220, 179, 30, 30);
-          ctx.drawImage(salame, 110, 160, 30, 30);
-          ctx.drawImage(salame, 157, 198, 30, 30);
-          ctx.drawImage(salame, 210, 118, 30, 30);
-          });
-        });
+                $("#control_02POMO").click(function(){
+                  var salsa_piena = document.getElementById("salsa_piena");
+                  ctx.drawImage(salsa_piena, 0, 0, canvas.width, canvas.height);
+                  aggiungi_prezzo("salsa_piena");
+                });
 
-    };
+                $("#control_02MOZ").click(function(){
+                  var mozza_piena = document.getElementById("mozza_piena");
+                  ctx.drawImage(mozza_piena, 0, 0, canvas.width, canvas.height);
+                  aggiungi_prezzo("mozza_piena");
+                });
+
+          };
 
           function writeMessage(canvas, message) {
             var ctx = canvas.getContext('2d');
@@ -163,25 +257,78 @@
           }
 
           function inizializePizza() {
+            ctx.save(); // save current state
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var sfondo = document.getElementById("impasto");
             ctx.drawImage(sfondo, 0, 0, canvas.width, canvas.height);
+            price = 4.00; //Prezzo di partenza
+            document.getElementById("price").innerHTML = price;
+          }
+
+          function lato_ingrediente( ingrediente_pass ) {
+            var lato;
+            switch (ingrediente_pass) {
+              case "asparago":
+                lato = 90;
+                break;
+              case "radicchio":
+                lato = 100;
+                break;
+              default: lato = 60;
+            }
+            return lato;
           }
 
 
+          function aggiungi_prezzo( ingrediente_pass ) {
+            var sovrapprezzo;
+            switch (ingrediente_pass) {
+              case "gambero", "noce":
+                sovrapprezzo = 0.50;
+                break;
+              case "asparago", "cipolla", "pomodorino", "radicchio", "salame":
+                sovrapprezzo = 0.10;
+                break;
+              case "mais", "salsiccia", "rucola", "zucchina", "oliva":
+                sovrapprezzo = 0.05;
+                break;
+              case "salsa_piena", "mozza_piena":
+                sovrapprezzo = 0.5;
+                break;
+              default: sovrapprezzo = 0.20;
+            }
+            // somma prezzo
+            price = (price*10 + sovrapprezzo*10)/10;
+            //aggiorno Prezzo
+            document.getElementById("price").innerHTML = price;
+          }
 
+          //AL CLICK SULLA PIZZA
           canvas.addEventListener('click', function(evt) {
             var mousePos = getMousePos(canvas, evt);
-            var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+            //var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
             //writeMessage(canvas, message);
-
-            var salame = document.getElementById("salame");
-            var lato = 60;
-            ctx.drawImage(salame, mousePos.x - lato/2, mousePos.y - lato/2, lato, lato);
+            var nome_ingrediente = $('input[name=select]:checked').val();
+            var ingrediente = document.getElementById(nome_ingrediente);
+            aggiungi_prezzo(nome_ingrediente);
+            //disegno cosa centrata sul mouse
+            var lato = lato_ingrediente(nome_ingrediente);
+            ctx.save(); // save current state
+            ctx.translate(mousePos.x, mousePos.y);
+            ctx.rotate(Math.floor(Math.random() * 360) ); // rotate (non serve la mousePos perchè l'ho già traslata prima)
+            //se non facevo la traslazione prima usavo:
+            //ctx.drawImage(ingrediente, mousePos.x - lato/2, mousePos.y - lato/2, lato, lato);
+            ctx.drawImage(ingrediente, -lato/2,  -lato/2, lato, lato);
+            ctx.restore(); // restore original states (no rotation etc)
 
           }, false);
 
     </script>
+
+
+    <!-- script per pulsante bollicinoso -->
+    <script src="js/bubbly.js"></script>
+
 
   </div>
   <footer>

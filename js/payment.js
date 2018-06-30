@@ -14,7 +14,7 @@ $(function(){
   }, {
     nome: "dinersclub",
     colore: "#888",
-    src: "http://www.worldsultimatetravels.com/wp-content/uploads/2016/07/Diners-Club-Logo-1920x512.png"
+    src: "https://upload.wikimedia.org/wikipedia/it/thumb/0/09/Diners_Club_Logo.svg/386px-Diners_Club_Logo.svg.png"
   }, {
     nome: "americanExpress",
     colore: "#108168",
@@ -27,6 +27,10 @@ $(function(){
     nome: "dankort",
     colore: "#0061A8",
     src: "https://upload.wikimedia.org/wikipedia/commons/5/51/Dankort_logo.png"
+  }, {
+    nome: "miaCarta",
+    colore: "#6061A8",
+    src: "./resources/carte/masti.png"
   }];
 
   var month = 0;
@@ -69,6 +73,8 @@ $(function(){
       selected_card = 4;
     }else if(parseInt(number.substring(0, 4)) == 5019){
       selected_card = 5;
+    }else if(parseInt(number.substring(0, 4)) == 69){
+      selected_card = 6;
     }else{
       selected_card = -1;
     }

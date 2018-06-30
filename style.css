@@ -378,6 +378,10 @@ th, td {
     background-image: url("resources/bg/5.jpg");
     background-size: cover;
 }
+.easy3sfondo{
+    background-image: url("resources/bg/6.jpg");
+    background-size: contain;
+}
 /** menu  **/
 .listino{
     float: center;

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" title="stylesheet" href="style.css">
     <!-- per barra progressi -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/progress.css">
-    <!-- per il pagamento -->
+    <!-- per il pagamento più script in fondo -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/payment.css">
     <!-- per AJAX -->
