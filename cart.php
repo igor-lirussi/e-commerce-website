@@ -77,9 +77,6 @@
                       <div class='movie_desc'>
                         <p><?php echo $row[3] ?></p>
                       </div>
-                      <p>
-                        Totale:<?php echo $_SESSION['carrello'][$row[0]]['price']."€" ?> <!-- //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione -->
-                      </p>
                       <p>Quantità selezionata:
                         <?php
                           echo $_SESSION['carrello'][$row[0]]['quantity']; //stampo la quantità selezionata dall'utente nel menù e salvata nella sessione
@@ -96,9 +93,11 @@
                             $_SESSION['carrello'][$row[0]]['price'] = $p; //inserisco il prezzo nella sessione
                           }
                         ?>
-                        </br>
-                        <button class='bubbly-button' onclick="$.post('cart.php', { q<?php echo $row[0] ?>:0 } , function(){ window.location.replace('cart.php'); });">Rimuovi</button>
                       </p>
+                      <p>
+                        Totale: <?php echo $_SESSION['carrello'][$row[0]]['price']." €" ?> <!-- //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione -->
+                      </p>
+                      <button class='bubbly-button' onclick="$.post('cart.php', { q<?php echo $row[0] ?>:0 } , function(){ window.location.replace('cart.php'); });">Rimuovi</button>
                     </div>
                   </section>
                 </div>
@@ -106,6 +105,50 @@
               }
             }
           } //fine while che cicla tabella
+      ?>
+
+      <?php //inserisco l'eventale pizza personalizzata
+        if (isset($_SESSION['pizza_pers'])) {
+      ?>
+      <div class = 'figurina'>
+        <section class='movie_image'>
+          <img class='movie_poster' src = '<?php echo $_SESSION['pizza_pers']['image'] ?>'>
+        </section>
+        <section class='center_fig'>
+          <div class='about_movie'>
+            <h3><?php echo $_SESSION['pizza_pers']['name'] ?></h3>
+            <div class='movie_info'>
+              <p>Grande! Guadagni subito <?php echo (($_SESSION['pizza_pers']['price'])*2) ?> punti</p>
+            </div>
+            <div class='movie_desc'>
+              <p>La mia pizza personalizzata</p>
+            </div>
+            <p>
+              Prezzo: <?php echo $_SESSION['pizza_pers']['price']." €" ?> <!-- //stampo il suo prezzo calcolato nel menù in base alla quantità, prendendolo dalla sessione -->
+            </p>
+            <p>
+              <?php
+                //<!--aggiorno il prezzo totale del'ordine e lo inserisco nella variabile di sessione-->
+                $_SESSION['totale_ordine'] = $_SESSION['totale_ordine'] + $_SESSION['pizza_pers']['price'];
+                //aggiorno la lista di cibi
+                $_SESSION['cibi_ordine'] .= " Pizza personalizzata,";
+                //PARTE CHE RICEVE I DATI LATO SERVER
+                if( isset($_POST['del_pizza_pers']) ) {  //se c'è qualcosa passato nel $_POST aggiorno le variabili di sessione
+                  if($_POST['del_pizza_pers'] == true){
+                    unset($_SESSION['pizza_pers']);
+                  }
+                }
+              ?>
+              <button class='bubbly-button' onclick="$.post('cart.php', { del_pizza_pers : true } , function(){ window.location.replace('cart.php'); });">Rimuovi</button>
+            </p>
+          </div>
+        </section>
+      </div>
+      <?php
+        }
+      ?>
+
+      <?php //parte finale
           //stampo totale
           echo "Totale: ".$_SESSION['totale_ordine']." €</br>";  //<!--stampo il prezzo totale da pagare-->
           //calcolo punti guadagnati

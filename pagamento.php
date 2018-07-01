@@ -57,13 +57,8 @@
         if ($_POST['svuoto']==true) { //se è true (doppio controllo per sicurezza)
           //azzero
           $_POST['svuoto']=false;
-          //memorizzo numero ordine
-          $_SESSION['num_ordine'] = 0;
+          //creo e memorizzo numero ordine
           $_SESSION['num_ordine'] = mt_rand(10,99999999999);
-          echo "<br>num ordine: ".$_SESSION['num_ordine'];
-          echo "<br>cibi ordine: ".$_SESSION['cibi_ordine'];
-          echo "<br>totale ordine: ".$_SESSION['totale_ordine'];
-          echo "<br>punti ordine: ".$_SESSION['punti_ordine'];
           //inserisco ordine con query (le date vanno 'YYYY-MM-GG')
           $query = "INSERT INTO ordini(NumeroOrdine, Cibi, PrezzoTotale, IndirizzoOrdine, NumeroCarta, Scadenza, CVV, IDUtente) VALUES".
                                       "(' ".$_SESSION['num_ordine']." ', ' ".$_SESSION['cibi_ordine']." ',   ".$_SESSION['totale_ordine']."   , '  ".$_SESSION['indir_ordine']."  ',".$_POST['carta_ordine'].", '   ".$_POST['scadenza_ordine']."   ',".$_POST['cvv_ordine'].",".$_SESSION['user_id'].")";
@@ -72,7 +67,7 @@
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
             echo "<br>Ordine inserito correttamente";
           }
-          //aggiorno punti totali all'utente
+          //aggiorno punti totali all'utente con query
           $punti_tot=$_SESSION['punti']+$_SESSION['punti_ordine'];
           $query = "UPDATE members SET `PuntiAccumulati`=".$punti_tot." WHERE `id`=".$_SESSION['user_id'];
           if($result = $conn->query($query)){ //se la query ha prodotto un risultato
@@ -81,9 +76,9 @@
           }
           //cancello il carrello e le variabili di sessione
           unset( $_SESSION['carrello'] ); //devo fare l'unset oppure l'isset() del menu non crea di nuovo il carrello
-          $_SESSION['totale_ordine'] = 0;
-          $_SESSION['punti_ordine'] = 0;
-          $_SESSION['cibi_ordine'] = "";
+          if (isset($_SESSION['pizza_pers'])) { //se è stata aggiunta al carello la pizza personalizzata
+            unset($_SESSION['pizza_pers']); //faccio l'unset
+          }
         }
       }
      ?>

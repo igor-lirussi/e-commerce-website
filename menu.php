@@ -244,6 +244,53 @@
                   echo "Nessun dato nel listino trovato";
                 }
         ?>
+
+        <!-- per la pizza Personalizza  -->
+        <?php if (isset($_SESSION["pizza_pers"])) { ?>
+        <div class='figurina'>
+          <form action='draw.php' method='post' enctype='multipart/form-data'>
+            <section class='movie_image'>
+              <div class="center">
+                <img class='movie_poster' src="<?php echo $_SESSION["pizza_pers"]["image"]; ?>">
+              </div>
+            </section>
+            <section class='center_fig'>
+              <div class='about_movie'>
+                <h3><?php echo $_SESSION["pizza_pers"]["name"]; ?></h3>
+                <div class='movie_info'>
+                  <p><?php echo $_SESSION["pizza_pers"]["price"]; ?> €</p>
+                </div>
+                <div class='movie_desc'>
+                  <p>La mia pizza personalizzata!</p>
+                </div>
+                <button class='bubbly-button'>Ricrea</button>
+             </div>
+            </section>
+          </form>
+         </div>
+       <?php } else {?>
+         <div class='figurina'>
+           <form action='draw.php' method='post' enctype='multipart/form-data'>
+             <section class='movie_image'>
+               <div class="center">
+                 <img class='movie_poster' src="./resources/logo2.png">
+               </div>
+             </section>
+             <section class='center_fig'>
+               <div class='about_movie'>
+                 <h3>Crea la tua pizza</h3>
+                 <div class='movie_info'>
+                   <p></p>
+                 </div>
+                 <div class='movie_desc'>
+                   <p>Puoi creare una pizza personalizzata ad ogni ordine dal prezzo variabile in base agli ingredienti</p>
+                 </div>
+                 <button class='bubbly-button'>Crea</button>
+              </div>
+             </section>
+           </form>
+          </div>
+       <?php } ?>
       </div>
 
       <div class="col-4 bevande"> <!-- come sopra -->

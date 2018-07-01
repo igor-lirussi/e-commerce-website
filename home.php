@@ -156,6 +156,7 @@
         <a href="https://plus.google.com" class="fa fa-google"><div class="follow-desc">Google Plus</div></a>
       </div>
       <div class="col-9 right gallery">
+        <br>
         <div class="demo" >
           <div class="demo__help">
             I <a href="./ourFood.html">nostri piatti</a> in breve:

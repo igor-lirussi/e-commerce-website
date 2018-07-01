@@ -78,15 +78,15 @@
             <div class='cont_inp'><span><input class='gate' id='pac-input' width="10%" type='text' placeholder='enter a location' /><label for='class'>Luogo</label></span></div>
             <!-- <input id="pac-input" type="text" placeholder="Enter a location"> -->
           </div>
+          <!-- accuratezza stampata nel caso di geoloc -->
+          <div id="accu"></div>
           <!-- pulsante geolocalizzazione -->
           <button class="bubbly-button" onclick="geolocate()">Geo me <i class="fas fa-street-view"></i></button>
         </div>
-        <!-- accuratezza stampata nel caso di geoloc -->
-        <div id="accu"></div>
         <!-- pulsante consegna in questo luogo -->
-        <br>e la modalità:
-        <br>
         <button class="bubbly-button" onclick="consegna()"> Consegna qui <i class="fas fa-check-circle"></i></button>
+        <br><br>Oppure:
+        <br>
         <button class="bubbly-button" onclick="insede()"> Ritiro in sede <i class="fas fa-map-marker-alt"></i></button>
       </div>
 

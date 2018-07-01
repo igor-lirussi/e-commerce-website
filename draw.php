@@ -14,6 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- per il pulsante bollicinoso, in fondo alla pagina c'è lo script -->
     <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/bubbly.css">
+    <!-- per input text figo -->
+    <link rel="stylesheet" type="text/css" title="stylesheet" href="./css/inp_text.css">
     <script>
       $(document).ready(function(){
         $(".nascondi").hide();
@@ -22,6 +24,13 @@
   </head>
 
   <body>
+    <?php
+      include 'functions.php';
+      include 'connection.php';
+      error_reporting(~E_WARNING);
+      sec_session_start();  //chiama inizia sessione
+      if(login_check($conn) == true) {
+     ?>
 
     <!-- il not-footer serve per il footer statico -->
     <div id="not-footer">
@@ -35,13 +44,27 @@
 
 
 <div class="row easy3sfondo">
+
   <div class="col-6 allcenter">
     <h3>La tua pizza:</h3>
-    Prezzo: <span id="price">0</span> € </br>
-    <canvas id="myCanvas" width="500" height="500" style="border:0px solid #d3d3d3;">
-    Your browser does not support the HTML5 canvas tag.
-    </canvas>
+    Prezzo: <span id="price">0</span> €
+    </br>
+    <!-- cavas con pizza -->
+    <canvas id="myCanvas" width="500" height="500" style="border:0px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
+    <br>
+    <!-- input nome pizza -->
+    <div class='cont_inp'><span><input class='gate' id='pac-input' width="10%" type='text' placeholder='Inserisci nome' /><label for='class'>Nome Pizza</label></span></div>
+    <!-- pulsanti scelta -->
+    <button class="bubbly-button"type="button" name="" onclick=" window.location.replace('menu.php');">Torna Indietro</button>
     <button class="bubbly-button"type="button" name="" onclick="inizializePizza()">Reset</button>
+    <button class="bubbly-button"type="button" name="" onclick="salva()">Salva</button>
+    <br>
+    <!-- immagine vecchia piiza -->
+    <div id="vecchia-pizza" style="display:none;">
+      <br>
+      La tua pizza corrente:
+      <img id="canvasimg" >
+    </div>
   </div>
 
   <div class="col-6 allcenter">
@@ -50,15 +73,15 @@
     <h4>Salsa di pomodoro</h4>
     <section>
       <div>
-        <input type="radio" id="control_01POMO" name="selectPOM" >
-        <label for="control_01POMO">
+        <input type="radio" id="control_01POM" name="select" value="disPOM">
+        <label for="control_01POM">
           Disegna <br>
           <i class="fas fa-pencil-alt"></i>
         </label>
       </div>
       <div>
-        <input type="radio" id="control_02POMO" name="selectPOM" >
-        <label for="control_02POMO">
+        <input type="radio" id="control_02POM" name="select" value="fill">
+        <label for="control_02POM">
           Riempi <br>
           <i class="fab fa-gratipay"></i>
         </label>
@@ -68,14 +91,14 @@
     <h4>Mozzarella</h4>
     <section>
       <div>
-        <input type="radio" id="control_01MOZ" name="selectPOM" >
+        <input type="radio" id="control_01MOZ" name="select" value="disMOZ">
         <label for="control_01MOZ">
           Disegna <br>
           <i class="fas fa-pencil-alt"></i>
         </label>
       </div>
       <div>
-        <input type="radio" id="control_02MOZ" name="selectPOM" >
+        <input type="radio" id="control_02MOZ" name="select" value="fill">
         <label for="control_02MOZ">
           Riempi <br>
           <i class="fab fa-gratipay"></i>
@@ -218,15 +241,21 @@
   </div>
 </div>
 
+
+
     <script>
           var canvas = document.getElementById('myCanvas');
           var ctx = canvas.getContext('2d');
           var price = 0;
+          //per il disegno
+          var mousePressed = false;
+          var lastX, lastY;
 
           window.onload = function() {
               inizializePizza();
 
-                $("#control_02POMO").click(function(){
+                //per i riempimenti
+                $("#control_02POM").click(function(){
                   var salsa_piena = document.getElementById("salsa_piena");
                   ctx.drawImage(salsa_piena, 0, 0, canvas.width, canvas.height);
                   aggiungi_prezzo("salsa_piena");
@@ -238,7 +267,52 @@
                   aggiungi_prezzo("mozza_piena");
                 });
 
+                //per il disegno
+                $('#myCanvas').mousedown(function (e) {
+                    mousePressed = true;
+                    Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+                });
+
+                $('#myCanvas').mousemove(function (e) {
+                    if (mousePressed) {
+                      //solo se è selezionata il disegna pomodoro o Mozzarella
+                      if ($('input[name=select]:checked').val() == "disPOM" || $('input[name=select]:checked').val() == "disMOZ") {
+                          Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                          aggiungi_prezzo("salsa");
+                      }
+
+                    }
+                });
+
+                $('#myCanvas').mouseup(function (e) {
+                    mousePressed = false;
+                });
+
+                $('#myCanvas').mouseleave(function (e) {
+                    mousePressed = false;
+                });
+
           };
+
+          function Draw(x, y, isDown) {
+              if (isDown) {
+                  ctx.beginPath();
+                  //se pomodoro
+                  if ($('input[name=select]:checked').val() == "disPOM") {
+                    ctx.strokeStyle = "rgba(155, 0, 0, 1)";
+                    ctx.lineWidth = 52;
+                  } else { //Mozzarella
+                    ctx.strokeStyle = "rgba(255, 255, 255, 1)";
+                    ctx.lineWidth = 32;
+                  }
+                  ctx.lineJoin = "round";
+                  ctx.moveTo(lastX, lastY);
+                  ctx.lineTo(x, y);
+                  ctx.closePath();
+                  ctx.stroke();
+              }
+              lastX = x; lastY = y;
+          }
 
           function writeMessage(canvas, message) {
             var ctx = canvas.getContext('2d');
@@ -265,6 +339,32 @@
             document.getElementById("price").innerHTML = price;
           }
 
+          function salva() {
+            //piglio l'immagine dal canvas
+            var dataURL = canvas.toDataURL();
+            //ajax a me stesso immagine, prezzo, nome
+            $.post( "draw.php", { image_pizza_pers : dataURL, price_pizza_pers : price.toFixed(2) , name_pizza_pers : document.getElementById('pac-input').value } , function(){ window.location.replace('menu.php'); } );
+            //parte che riceve dati lato server
+            <?php
+              if (isset($_POST['image_pizza_pers'])) {
+                $_SESSION["pizza_pers"]["image"] = $_POST['image_pizza_pers'];
+              }
+              if (isset($_POST['price_pizza_pers'])) {
+                $_SESSION["pizza_pers"]["price"] = $_POST['price_pizza_pers'];
+              }
+              if (isset($_POST['name_pizza_pers'])) {
+                $_SESSION["pizza_pers"]["name"] = $_POST['name_pizza_pers'];
+              }
+            ?>
+          }
+
+          <?php if (isset($_SESSION["pizza_pers"])) { ?>
+            //mostro la pizza se ce ne ha una in sessione
+            document.getElementById("canvasimg").src = "<?php echo $_SESSION["pizza_pers"]["image"]; ?>";
+            document.getElementById("vecchia-pizza").style.display = "inline";
+          <?php } ?>
+
+
           function lato_ingrediente( ingrediente_pass ) {
             var lato;
             switch (ingrediente_pass) {
@@ -283,44 +383,54 @@
           function aggiungi_prezzo( ingrediente_pass ) {
             var sovrapprezzo;
             switch (ingrediente_pass) {
-              case "gambero", "noce":
+              case "salsa":
+                sovrapprezzo = 0.001;
+                break;
+              case "gambero":
+              case "noce":
                 sovrapprezzo = 0.50;
                 break;
-              case "asparago", "cipolla", "pomodorino", "radicchio", "salame":
-                sovrapprezzo = 0.10;
-                break;
-              case "mais", "salsiccia", "rucola", "zucchina", "oliva":
+              case "mais":
+              case "salsiccia":
+              case "rucola":
+              case "zucchina":
+              case "oliva":
                 sovrapprezzo = 0.05;
                 break;
-              case "salsa_piena", "mozza_piena":
-                sovrapprezzo = 0.5;
+              case "salsa_piena":
+              case "mozza_piena":
+                sovrapprezzo = 0.50;
                 break;
-              default: sovrapprezzo = 0.20;
+              default: sovrapprezzo = 0.10;
             }
             // somma prezzo
-            price = (price*10 + sovrapprezzo*10)/10;
+            price = (price*1000 + sovrapprezzo*1000)/1000;
             //aggiorno Prezzo
-            document.getElementById("price").innerHTML = price;
+            document.getElementById("price").innerHTML = price.toFixed(2);
           }
 
-          //AL CLICK SULLA PIZZA
+          //AL CLICK SULLA PIZZA PER INGREDIENTI
           canvas.addEventListener('click', function(evt) {
-            var mousePos = getMousePos(canvas, evt);
-            //var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-            //writeMessage(canvas, message);
-            var nome_ingrediente = $('input[name=select]:checked').val();
-            var ingrediente = document.getElementById(nome_ingrediente);
-            aggiungi_prezzo(nome_ingrediente);
-            //disegno cosa centrata sul mouse
-            var lato = lato_ingrediente(nome_ingrediente);
-            ctx.save(); // save current state
-            ctx.translate(mousePos.x, mousePos.y);
-            ctx.rotate(Math.floor(Math.random() * 360) ); // rotate (non serve la mousePos perchè l'ho già traslata prima)
-            //se non facevo la traslazione prima usavo:
-            //ctx.drawImage(ingrediente, mousePos.x - lato/2, mousePos.y - lato/2, lato, lato);
-            ctx.drawImage(ingrediente, -lato/2,  -lato/2, lato, lato);
-            ctx.restore(); // restore original states (no rotation etc)
-
+            //se sono selezionati gli ingredienti
+            if ($('input[name=select]:checked').val() != "disPOM" &&
+                  $('input[name=select]:checked').val() != "disMOZ" &&
+                    $('input[name=select]:checked').val() != "fill") {
+              var mousePos = getMousePos(canvas, evt);
+              //var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+              //writeMessage(canvas, message);
+              var nome_ingrediente = $('input[name=select]:checked').val();
+              var ingrediente = document.getElementById(nome_ingrediente);
+              aggiungi_prezzo(nome_ingrediente);
+              //disegno cosa centrata sul mouse
+              var lato = lato_ingrediente(nome_ingrediente);
+              ctx.save(); // save current state
+              ctx.translate(mousePos.x, mousePos.y);
+              ctx.rotate(Math.floor(Math.random() * 360) ); // rotate (non serve la mousePos perchè l'ho già traslata prima)
+              //se non facevo la traslazione prima usavo:
+              //ctx.drawImage(ingrediente, mousePos.x - lato/2, mousePos.y - lato/2, lato, lato);
+              ctx.drawImage(ingrediente, -lato/2,  -lato/2, lato, lato);
+              ctx.restore(); // restore original states (no rotation etc)
+            }
           }, false);
 
     </script>
@@ -330,6 +440,7 @@
     <script src="js/bubbly.js"></script>
 
 
+
   </div>
   <footer>
     <?php
@@ -337,6 +448,14 @@
       print_footer();
     ?>
   </footer>
+  
+  <?php
+  //alternativa alla pagina
+  } else {
+     echo 'You are not authorized to access this page, please login. <br/>';
+     echo "<a href='accedi.php'>Accedi</a>";
+  }
+  ?>
 </body>
 
 </html>
