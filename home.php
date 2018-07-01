@@ -103,7 +103,7 @@
           </li>
         <?php } ?>
      			<li>
-     				<a href="./ourContacts.html" title="contact">Aiuto</a>
+     			    <div id="stato_ord"><a href="./ourContacts.html" title="contact">Aiuto</a></div>
      			</li>
      		</ul>
      	</span>
@@ -225,7 +225,7 @@
            if(login_check($conn) == true) {  //se loggato
              if(!empty($_SESSION['num_ordine'])){ //se esiste la variabile di sessione relativa all'ordine
          ?>
-        keyloop = setInterval(function(){ controlla_notifica(); }, 4000); //intervallo funzione controllo notifica
+        keyloop = setInterval(function(){ controlla_notifica(); }, 8000); //intervallo funzione controllo notifica
          <?php
              }
            }
@@ -262,7 +262,8 @@
           dataType: 'json',
           success: function(data){
                       console.log(data.status);//se ricevo qualcosa, lo stampo
-                      if(data.status == "Delivered"){
+                      document.getElementById("stato_ord").innerHTML = "Stato ordine: <br>"+data.status;
+                      if(data.status == "Consegnato"){
                         visualizza_notifica();   //se è consegnato visualizzo la notifica
                         clearInterval(keyloop); //fermo il ciclo
                       }

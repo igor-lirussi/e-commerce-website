@@ -9,10 +9,10 @@ if(login_check($conn) == true) {  //se loggato
      if($result2 = $conn->query($query2)){
        $value = $result2->fetch_row();
        if($value[0] == 1){ //se l'ordine è stato consegnato
-         echo json_encode(array('status' => 'Delivered'));
+         echo json_encode(array('status' => 'Consegnato'));
          session_unset($_SESSION['num_ordine']);
        } else { //altrimenti non ritorno nulla e la chiamata fallisce
-         echo json_encode(array('status' => 'Not delivered'));
+         echo json_encode(array('status' => 'Non consegnato'));
        }
      }
   } else {
