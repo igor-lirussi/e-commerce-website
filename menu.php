@@ -122,7 +122,6 @@
       <p>I nostri prodotti</p>
     </header>
 
-<div class="" style="background-color: white">
   <!-- barra progressi -->
     <ul class="checkout-bar">
       <li class="active">Menù</li>
@@ -131,7 +130,6 @@
       <li class="">Pagamento</li>
       <li class="">Fine</li>
     </ul>
-</div>
 
 
 

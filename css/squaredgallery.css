@@ -15,8 +15,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: -webkit-linear-gradient(30deg, #5B5893, #2c2a49);
-  background: linear-gradient(60deg, #5B5893, #2c2a49);
 }
 .demo__gallery {
   width: 688px;
@@ -104,7 +102,7 @@
   color: white;
 }
 .demo__help a:hover {
-  color: #E39999;
+  color: red;
 }
 
 .demo__part-1-1 .demo__part-back-inner {

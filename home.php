@@ -131,12 +131,18 @@
 
         <div class="row" id="choice">
           <div class="col-6 left">
+          <?php if(!isset($_SESSION['user_id'])) { ?>
             <form action="process_login.php" method="post">
                <input type="text" id="ema" name="email" value="guest@guest" style="display:none;"/></label>
                <input type="text" id="password" name="p" value="guest" style="display:none;"/></label>
               <!-- pulsante ordina al volo -->
               <button class='myButt three' onclick="formhash(this.form, this.form.password);">Ordina al volo</button>
             </form>
+          <?php } else { ?>
+              <form class="" action="menu.php" >
+                <button class='myButt three'>&nbsp;&nbsp;&nbsp;&nbsp;Menu&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              </form>
+          <?php } ?>
           </div>
           <div class="col-6 right">
             <form class="" action="accedi.php" >
@@ -146,9 +152,9 @@
         </div>
 
 
-    <div class = "row">
+    <div class = "row easy4sfondo">
       <div class="col-3 left social">
-        Social:<br/>
+        <br>Social:<br/>
         <a href="https://www.facebook.com" class="fa fa-facebook"><div class="follow-desc">Facebook</div></a>
         <a href="https://twitter.com" class="fa fa-twitter"><div class="follow-desc">Twitter</div></a>
         <a href="https://www.instagram.com" class="fa fa-instagram"><div class="follow-desc">Instagram</div></a>
@@ -163,6 +169,7 @@
           </div>
           <div class="demo__gallery"></div>
         </div>
+        <br>
         <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
         <script src="js/squaredgallery.js"></script>
 
@@ -190,7 +197,7 @@
     <div class="row">
       <div class="discover people">
         <div class="card">
-          <h2>Near your heart.</h2>
+          <h2>Yook for You.</h2>
           <p><a href="ourContacts.html">discover how you can contact us.</a></p>
         </div>
       </div>

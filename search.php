@@ -90,26 +90,29 @@
       <h1>Yook!</h1>
       </a>
       <h2>Menù</h2>
+      <p>I nostri prodotti</p>
     </header>
 
     <!-- barra progressi -->
-    <div class="checkout-wrap">
       <ul class="checkout-bar">
-        <li class="active"><a href="#">Menù</a></li>
+        <li class="active">Menù</li>
         <li class="">Luogo Consegna</li>
         <li class="">Carrello</li>
         <li class="">Pagamento</li>
         <li class="">Fine</li>
       </ul>
-    </div>
 
     <div class="row listino">
-      <h3>Cerca</h3>
-      <h3><a href="menu.php">Torna al menù</a></h3>
+      <br>
+      <br>
+      <div class="allcenter">
+        <img src="./resources/menu/cerca.png" width="30%">
         <form class="searchform" action="search.php" onsubmit="return displayFunction()" method="post">
           <input type="search" name="search" value="" placeholder="Inserisci ricerca qui..">
           <button class="btn third">Cerca</button>
         </form>
+      </div>
+
         <div class="searchresult">  <!-- DA SPOSATRE TUTTO QUESTO DIV IN UNO SCRIPT CHE SI VISUALIZZA SOLO SE E' STATO PREMUTO IL PULSANTE DELLA RICERCA -->
           <?php
             if($query = $conn->prepare("SELECT * FROM listino WHERE Nome LIKE ?")){
@@ -119,7 +122,8 @@
               $result = $query->get_result();
               while($row = $result->fetch_row()){
                 switch ($row[2]) {
-                  case 'Pasti Veloci':?>
+                  case 'Pasti Veloci':
+                    ?>
                     <div class = 'figurina'>
                       <section class='movie_image'>
                           <img class='movie_poster' src = "<?php echo $row[5] ?>"> <!--la variabile row, che contiene riga per riga, ad ogni iterazione, il risultato della query, è un vettore i cui indici sono le colonne della tabella (quella indicata nella query) con indice a partire da 0-->
@@ -155,7 +159,7 @@
                       </section>
                     </div>
                     <?php
-                  break;
+                    break;
 
                   case 'Primi':
                     ?>
@@ -244,19 +248,21 @@
             }
           ?>
           </div>
+
+          <form class="" action="menu.php"  method="post">
+            <button class="btn third">Torna al menu</button>
+          </form>
+
         </div>
     <?php $conn->close();
       } else {
          echo 'You are not authorized to access this page, please login. <br/>';
       }
         ?>
-      </div>
+
       <script src="js/bubbly.js"></script>
-    </div>
-    <form class="" action="cart.php" method="post">
-      <input type="submit" name="cart" value="Vai al carrello">
-    </form>
-    </div>
+
+    </div> <!--  fine non footer -->
     <footer>
       <?php
         include 'footer.php';

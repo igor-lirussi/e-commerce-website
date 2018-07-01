@@ -3,7 +3,7 @@
 
 :root {
     --main-color: red;
-    --second-color: pink;
+    --second-color: yellow;
 }
 
 html {
@@ -165,7 +165,7 @@ address p {
   color: white;
   text-shadow: 2px 2px var(--main-color);
   font-size: 20px;
-  padding: 50px;
+  padding: 57px;
   margin-bottom: 0px;
   background-image: url('resources/immaginiCibi/pianocucina.jpg');
   -webkit-background-size: cover;
@@ -215,9 +215,14 @@ nav ul li a:hover {
   color: rgba(122, 0, 0, 0.9);
 }
 
-
+/*gallery*/
+.gallery {
+  text-shadow: 2px 2px 3px black;
+}
 /*social container*/
 .social {
+
+    text-shadow: 2px 2px 3px black;
       color: #ffffff;
       text-align: center;
 }
@@ -240,7 +245,7 @@ nav ul li a:hover {
 }
 
 .fa:hover {
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .fa-facebook {
@@ -381,6 +386,11 @@ th, td {
 .easy3sfondo{
     background-image: url("resources/bg/6.jpg");
     background-size: contain;
+}
+
+.easy4sfondo{
+    background-image: url("resources/immaginiCibi/pizza-forno.jpg");
+    background-size: cover;
 }
 /** menu  **/
 .listino{
