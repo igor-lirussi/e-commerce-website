@@ -101,7 +101,7 @@ body {
 } */
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
-@media all and (max-width: 600px) {
+@media all and (max-width: 768px) {
   /* Full-width containers */
     .container {
       width: 80%;

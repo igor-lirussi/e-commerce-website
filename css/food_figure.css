@@ -75,6 +75,7 @@
   }
 }
 .figurina .about_movie {
+  color: lightyellow;
   margin: 0px;
   flex-basis: 100%;
   padding: 0px 10px;

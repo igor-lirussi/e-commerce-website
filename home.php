@@ -103,7 +103,7 @@
           </li>
         <?php } ?>
      			<li>
-     			    <div id="stato_ord"><a href="./ourContacts.html" title="contact">Aiuto</a></div>
+     			    <div id="stato_ord" class="ombrabianca"><a href="./ourContacts.html" title="contact">Aiuto</a></div>
      			</li>
      		</ul>
      	</span>
@@ -249,7 +249,7 @@
           padding: '3em',
           backdrop:`
             rgba(255,255,255,0.2)
-            url("./resources/Fattorino.gif")
+            url("./resources/immagini_notifica/Fattorino.gif")
             center right
             no-repeat`
         });

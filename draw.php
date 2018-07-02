@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="col-6 allcenter">
+  <div class="col-6 allcenter disegna">
     <h3>Scegli gli ingredienti</h3>
 
     <h4>Salsa di pomodoro</h4>
@@ -448,7 +448,7 @@
       print_footer();
     ?>
   </footer>
-  
+
   <?php
   //alternativa alla pagina
   } else {

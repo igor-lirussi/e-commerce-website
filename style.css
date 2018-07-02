@@ -279,7 +279,7 @@ nav ul li a:hover {
   align-items: center;
 }
 .onions{
-  background-image: url("resources/onions.svg");
+  background-image: url("resources/immaginiCibi/svg/onions.svg");
   background-attachment: fixed;
 }
 .loca {
@@ -363,7 +363,6 @@ th, td {
 }
 
 .link1{
-  /* background-image: url("resources/menu_con_logo.png"); */
   margin: 20px;
   padding: 20px;
   border-radius: 5px;
@@ -392,6 +391,16 @@ th, td {
     background-image: url("resources/immaginiCibi/pizza-forno.jpg");
     background-size: cover;
 }
+
+.ombrabianca{
+  text-shadow: 2px 2px 2px white;
+}
+
+/*draw*/
+.disegna h3,h4 {
+    text-shadow: 2px 2px 5px white;
+}
+
 /** menu  **/
 .listino{
     float: center;

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <users>
   <user id="1" punti="67" address="Via Aeroporto, Orio al serio, BG, Italia" surname="Mondello" name="bachelorette "/>
-  <user id="2" punti="133" address="Vicolo Tavernelle, 2, Cesena, FC, Italia" surname="Giacomini" name="nome"/>
   <user id="3" punti="88" address="Via E. Curiel, 2, Cesena, FC, Italia" surname="Regulli" name="Primo"/>
-  <user id="6" punti="12" address="Via Tito Maccio Plauto, 9, Cesena, FC, Italia" surname="Lirussi" name="igor"/>
-  <user id="7" punti="76" address="Via Savio, 34, Cesena, FC, Italia" surname="Gattu" name="SOfia"/>
+  <user id="7" punti="76" address="Via Savio, 34, Cesena, FC, Italia" surname="Gattucci" name="SOfia"/>
   <user id="8" punti="99" address="Viale Guglielmo Oberdan, 34, Cesena, FC, Italia" surname="Connor" name="Final"/>
   <user id="10" punti="47" address="Ponte Europa Unita, 12, Cesena, FC, Italia" surname="Mazzi" name="prlo"/>
   <user id="12" punti="18" address="Piazza Sanguinetti, 92, Cesena, FC, Italia" surname="Luppi" name="FInal "/>
-  <user id="15" punti="166" address="Via Alfonsine, 2, Cesena, FC, Italia" surname="guest" name="guest"/>
-  <user id="19" punti="325" address="Via Milani, 6, Cesena, FC, Italia" surname="Carta" name="Francesco "/>
+  <user id="15" punti="267" address="Via Alfonsine, 2, Cesena, FC, Italia" surname="guest" name="guest"/>
+  <user id="19" punti="131" address="Via Milani, 6, Cesena, FC, Italia" surname="Carta" name="Francesco "/>
   <user id="20" punti="47" address="Via Fiorenzuola, 15, Cesena, FC, Italia" surname="Rossi" name="admin"/>
+  <user id="22" punti="35" address="Corso Gastone Sozzi, 3, Cesena, FC, Italia" surname="Franceschi" name="Marco"/>
 </users>

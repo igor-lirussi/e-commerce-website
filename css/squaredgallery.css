@@ -229,3 +229,10 @@
   -webkit-transform: none;
           transform: none;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobiles: */
+    .demo {
+      display: none;
+    }
+}

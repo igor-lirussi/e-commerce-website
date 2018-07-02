@@ -100,7 +100,7 @@
   width: 14%;  /**MODIFICARE QUI IN BASE AL NUMERO DELLE COLONNE**/
   box-sizing: border-box;
 }
-@media only screen and (max-width: 767px) and (min-width: 480px) {
+@media only screen and (max-width: 768px) and (min-width: 480px) {
   .riga ul li {
     font-size: 13px;
   }
@@ -134,7 +134,7 @@
   background-color: rgba(26, 26, 26, 0.9);
   height: 120px;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .riga:hover {
     height: 285px;
   }
@@ -159,7 +159,7 @@
   border-left: 3px solid rgba(255, 255, 255, 0.1);
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .titolo_tabella_hide {
     display: none;
   }
@@ -212,7 +212,7 @@
 .row-fadeIn-wrapper:hover {
   height: 35px;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .row-fadeIn-wrapper:hover {
     height: 55px;
   }
@@ -285,7 +285,7 @@ ul.more-content_tabella li {
   width: 100%;
   color: rgba(128, 128, 128, 0.9);
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   ul.more-content_tabella li {
     font-size: 11px;
   }
@@ -298,7 +298,7 @@ ul.more-content_tabella li {
   padding: 0 10px;
   margin: 0;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .small {
     display: none;
   }

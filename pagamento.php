@@ -55,10 +55,12 @@
     //OPERAZIONI LATO SERVER DOPO IL PAGAMENTO
     if ( !empty($_POST['svuoto']) ) { //se c'è post di svuoto
         if ($_POST['svuoto']==true) { //se è true (doppio controllo per sicurezza)
-          //azzero
+          //azzero post
           $_POST['svuoto']=false;
           //creo e memorizzo numero ordine
           $_SESSION['num_ordine'] = mt_rand(10,99999999999);
+          //cancello la virgola finale nella lista dei cibi_ordine
+          $_SESSION['cibi_ordine'] = substr($_SESSION['cibi_ordine'], 0, -1);
           //inserisco ordine con query (le date vanno 'YYYY-MM-GG')
           $query = "INSERT INTO ordini(NumeroOrdine, Cibi, PrezzoTotale, IndirizzoOrdine, NumeroCarta, Scadenza, CVV, IDUtente) VALUES".
                                       "(' ".$_SESSION['num_ordine']." ', ' ".$_SESSION['cibi_ordine']." ',   ".$_SESSION['totale_ordine']."   , '  ".$_SESSION['indir_ordine']."  ',".$_POST['carta_ordine'].", '   ".$_POST['scadenza_ordine']."   ',".$_POST['cvv_ordine'].",".$_SESSION['user_id'].")";
@@ -90,7 +92,7 @@
     </div>
 
     </br></br></br>
-    <div class="allcenter">
+    <div class="allcenter ombrabianca">
       <h2>Inserisci i tuoi dati di pagamento</h2></br>
     </div>
 
@@ -111,7 +113,7 @@
             <div class="magnetic"></div>
             <div class="bar"></div>
             <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
-            <span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random corporation. <br> If found please return to Random Bank of Random corporation - 47521, via Boccaquattro, 3 Cesena </span>
+            <span class="chip"></span><span class="disclaimer">This card is property of a Bank. <br> If found please return to Bank of TVB Sofia - 47521, via Boccaquattro, 3 Cesena </span>
           </div>
         </div>
       </div>
@@ -119,7 +121,7 @@
         <label>Numero carta</label>
         <input id="c_num" class="number" type="text" placeholder="0000 0000 0000 0000" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
         <label>Proprietario carta</label>
-        <input id="c_name" class="inputname" type="text" placeholder="Nome Cognome"/>
+        <input id="c_name" class="inputname" type="text" placeholder="Nome Cognome" maxlength="23"/>
         <label>Scadenza</label>
         <input id="c_date" class="expire" type="text" placeholder="YYYY-MM-GG"/>
         <label>CVV</label>

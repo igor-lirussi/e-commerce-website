@@ -271,7 +271,7 @@
            <form action='draw.php' method='post' enctype='multipart/form-data'>
              <section class='movie_image'>
                <div class="center">
-                 <img class='movie_poster' src="./resources/logo2.png">
+                 <img class='movie_poster' src="./resources/logov2.svg">
                </div>
              </section>
              <section class='center_fig'>
