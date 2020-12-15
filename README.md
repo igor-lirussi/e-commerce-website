@@ -1,29 +1,24 @@
-# README #
+# E-Commerce WebSite - Yook!
+**An e-commerce WebSite for food.**
+<br>
+The website has customer login, shopping cart, fidelity points. It is possible to order without registration.  Administration area for stats and orders. Extra function to draw your personalized pizza.
+<br>A demo is available at: [here](http://egoladventures.altervista.org/Yook/home.php)
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+## Built With
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+*   HTML
+*   CSS
+*   JavaScript
+*   php
+*   MYSQL
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Authors
 
-### Contribution guidelines ###
+*   **Igor Lirussi** @ University of Bologna
+*   **Sofia Gattucci** @ University of Bologna
 
-* Writing tests
-* Code review
-* Other guidelines
+## License
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+This project is under a License - see the [LICENSE](LICENSE) file for details
