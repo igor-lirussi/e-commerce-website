@@ -2,7 +2,7 @@
 **An e-commerce WebSite for food.**
 <br>
 The website has customer login, shopping cart, fidelity points. It is possible to order without registration.  Administration area for stats and orders. Extra function to draw your personalized pizza.
-<br>A demo is available at: [here](http://egoladventures.altervista.org/Yook/home.php)
+<br>A demo is available [here](https://egoladventures.altervista.org/Yook/home.php)
 
 
 ## Built With
